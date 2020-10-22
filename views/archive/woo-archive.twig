@@ -1,0 +1,136 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+{% if grid_list == 'list-view' %}
+{% set list_active_class = 'uk-active' %}
+{% else %}
+{% set list_active_class = 'not-active' %}
+{% endif %}
+{% if grid_list == 'grid-view' %}
+{% set grid_active_class = 'uk-active' %}
+{% else %}
+{% set grid_active_class = 'not-active' %}
+{% endif %}
+
+{% if grid_list == 'list-view' %}
+{% set grid_list_layout_class = 'uk-child-width-1-1@m' %}
+{% elseif grid_list == 'grid-view' or grid_list == '' %}
+{% set grid_list_layout_class = 'uk-child-width-1-4@m' %}
+{% endif %}
+
+{% if grid_list == 'list-view' %}
+{% set tease_template = 'tease-product-list.twig' %}
+{% elseif grid_list == 'grid-view' or grid_list == '' %}
+{% set tease_template = 'tease-product.twig' %}
+{% endif %}
+
+{% set woo_before_shop_loop %}
+{% do action('woocommerce_before_shop_loop') %}
+{% endset %}
+
+{% include 'breads.twig' %}
+
+{% include 'site-notice.twig' %}
+
+<div class="uk-container">
+
+  {% do action('woocommerce_before_main_content') %}
+
+  <div id="ToolbarNav">
+    <div class="desktop-toolbar uk-section uk-section-small uk-section-default uk-visible@s">
+      <nav id="ShopToolbar" class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-left pull-left-15">
+          <div class="uk-navbar-item min-height-40">
+            <h1 id="ShopArchiveTitle" class="uk-article-title woocommerce-products-header__title page-title uk-margin-remove-bottom font-2">{{ title }}</h1>
+          </div>
+        </div>
+        {% if not is_search %}
+        <div class="uk-navbar-right pull-right-15">
+          <div class="uk-navbar-item min-height-40">
+            <span class="uk-margin-small-right">Sort by:</span>{{ woo_before_shop_loop }}
+          </div>
+          <!-- <div id="GridList" class="uk-navbar-item min-height-40">
+            <a href="{{ function ('add_query_arg', 'grid_list', 'grid-view', '') }}" class="grid-toggle uk-button uk-button-default uk-button-small padding-0-10 uk-margin-small-right {{ grid_active_class }}"><span uk-icon="grid"></span></a>
+            <a href="{{ function ('add_query_arg', 'grid_list', 'list-view', '') }}" class="list-toggle uk-button uk-button-default uk-button-small padding-0-10 {{ list_active_class }}"><span uk-icon="icon: list"></span></a>
+          </div> -->
+          <!-- <div class="uk-navbar-item min-height-40">
+            <a class="uk-button uk-button-primary uk-button-small" href="#offcanvas-flip-reveal" uk-toggle><i class="fas fa-bars"></i> Filter by Category</a>
+          </div> -->
+        </div>
+        {% endif %}
+      </nav>
+    </div>
+    <div class="mobile-toolbar uk-section uk-section-small padding-top-20 padding-bottom-20 uk-section-default uk-hidden@s">
+      <h1 id="ShopArchiveTitle" class="uk-article-title woocommerce-products-header__title page-title font-1.5">{{ title }}</h1>
+      <nav id="ShopToolbar" class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-left pull-left-15">
+          <div class="uk-navbar-item min-height-40">
+            {{ woo_before_shop_loop }}
+          </div>
+        </div>
+        <!-- <div class="uk-navbar-right pull-right-15">
+          <div class="uk-navbar-item min-height-40">
+            <a class="uk-button uk-button-default uk-button-small" href="#offcanvas-flip-reveal" uk-toggle>Filter</a>
+          </div>
+        </div> -->
+      </nav>
+    </div>
+  </div>
+
+  <div id="offcanvas-flip-reveal" uk-offcanvas="mode: reveal; flip: true">
+    <div class="uk-offcanvas-bar uk-light dark-bg-black">
+
+      <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+      {% include 'sidebar-filters.twig' %}
+
+    </div>
+  </div>
+
+  {% do action('woocommerce_archive_description') %}
+
+  <div id="MainProductArchive" class="uk-section uk-section-small uk-section-default {% if is_paginated %}padding-remove-bottom{% endif %} padding-remove-top">
+    <div id="MainProductArchive" class="uk-article">
+      <div class="uk-margin-bottom">
+        <div id="ProductGrid" class="archive-posts uk-child-width-1-2 uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true">
+          {% for post in products %}
+          {% include [tease_template] %}
+          {% endfor %}
+          {% if products is empty %}
+          {% do action('woocommerce_no_products_found') %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% do action('woocommerce_after_shop_loop') %}
+  
+  {% if is_search and is_paginated %}
+    {% include 'pagination.twig' %}
+  {% endif %}
+
+  {% if is_paginated %}
+  
+  <div class="scroll-loaders uk-section uk-section-small uk-section-default">
+    <div class="page-load-status">
+      <div class="loader-ellips infinite-scroll-request">
+        <span class="loader-ellips__dot"></span>
+        <span class="loader-ellips__dot"></span>
+        <span class="loader-ellips__dot"></span>
+        <span class="loader-ellips__dot"></span>
+      </div>
+      <p class="infinite-scroll-last">No more Products</p>
+      <p class="infinite-scroll-error">No products to load</p>
+    </div>
+
+    <button class="view-more-button uk-button uk-button-primary uk-align-center">Load More Products</button>
+
+  </div>
+  {% endif %}
+
+  {% do action('woocommerce_after_main_content') %}
+
+</div>
+
+{% endblock  %}

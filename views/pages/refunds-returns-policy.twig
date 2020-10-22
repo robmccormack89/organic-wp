@@ -1,0 +1,39 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<div data-template="delivery.twig">
+  
+  {% include 'breads.twig' %}
+  
+  {% include 'site-notice.twig' %}
+    
+  <div class="uk-section uk-section-small">
+    
+    <div class="uk-container uk-container-small">
+      
+      <article id="page-{{post.ID}}" class=" uk-article {{post.class}}">
+        
+        <h1 class="uk-article-title page-title uk-margin-medium-bottom uk-heading-line"><span>{{post.title}}</span></h1>
+
+        <div class="the-content uk-margin-bottom">
+          
+          <p>Thanks for purchasing our products at organicforhealth.ie.
+          
+          <p>Due to the nature of our business and products we sell, items that expire sooner than 1 month from the date of the purchase are not eligible for a refund.</p>
+          
+          <p>If our products arrived damaged, rotten or contaminated in any way, please contact us right away and we will be happy to send a free replacement regardless of its expiration date, or provide a refund.</p>
+          
+          <p>For items to be eligible for a refund, you have to photograph the item you have purchased and email it to us within 7 calendar days of the purchase. The item must unopened and/or in its original condition. You can email us with your Photo at <a href="mailto:info@organicforhealth.ie">info@organicforhealth.ie</a>. Please provide fill your Order number with your email. Thank you.</p>
+          
+          <p>We will also provide refunds for any customer who might have accidentaly bought an out of stock item.</p>
+
+        </div>
+      
+      </article>
+      
+    </div>
+
+  </div>
+</div>
+
+{% endblock  %}

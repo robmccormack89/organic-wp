@@ -1,0 +1,19 @@
+// 1. Customizing variables from uikit. These will overwrite the UIKIT imports below. 
+$global-primary-background: #299169;
+$global-secondary-background: #D6A83C;
+$global-link-color: #299169;
+$global-link-hover-color: #116444;
+$global-muted-background: #f7fbf9;
+$global-muted-color: #5c5c5c;
+// $container-large-max-width: 1400px;
+// $logo-font-size: 2.2rem;
+
+// 2. Import variables & mixins froim uikit. You can also use the default styling scss files, I have used the theme ones.
+@import "node_modules/uikit/src/scss/variables-theme.scss";
+@import "node_modules/uikit/src/scss/mixins-theme.scss";
+
+// 4. Import main UIkit (theme)
+@import "node_modules/uikit/src/scss/uikit-theme.scss";
+
+// import your custom sass styles
+@import "style.scss";

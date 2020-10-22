@@ -1,0 +1,466 @@
+/**
+ * woocommerce.scss
+ * Governs the general look and feel of WooCommerce sections of stores using themes that do not
+ * integrate with WooCommerce specifically.
+ */
+
+/**
+ * Imports
+ */
+@import "woomixins";
+@import "woovariables";
+@import "wooanimation";
+
+/**
+ * Global styles - deleted
+ */
+
+/**
+ * Utility classes - deleted
+ */
+
+/**
+ * Main WooCommerce styles - edited
+ */
+.woocommerce {
+
+	.blockUI.blockOverlay {
+		position: relative;
+
+		@include loader();
+	}
+
+	.loader {
+
+		@include loader();
+	}
+
+	/**
+	 * Product Page - edited
+	 */
+	div.product {
+
+		div.images {
+			margin-bottom: 2em;
+
+			img {
+				display: block;
+				width: 100%;
+				height: auto;
+				box-shadow: none;
+			}
+
+			div.thumbnails {
+				padding-top: 1em;
+			}
+
+			&.woocommerce-product-gallery {
+				position: relative;
+			}
+
+			.woocommerce-product-gallery__wrapper {
+				transition: all cubic-bezier(0.795, -0.035, 0, 1) 0.5s;
+				margin: 0;
+				padding: 0;
+			}
+
+			.woocommerce-product-gallery__wrapper .zoomImg {
+				background-color: #fff;
+				opacity: 0;
+			}
+
+			.woocommerce-product-gallery__image--placeholder {
+				border: 1px solid #f2f2f2;
+			}
+
+			.woocommerce-product-gallery__image:nth-child(n+2) {
+				width: 25%;
+				display: inline-block;
+			}
+
+			.woocommerce-product-gallery__trigger {
+				position: absolute;
+				top: 0.5em;
+				right: 0.5em;
+				font-size: 2em;
+				z-index: 9;
+				width: 36px;
+				height: 36px;
+				background: #fff;
+				text-indent: -9999px;
+				border-radius: 100%;
+				box-sizing: content-box;
+
+				&::before {
+					content: "";
+					display: block;
+					width: 10px;
+					height: 10px;
+					border: 2px solid #000;
+					border-radius: 100%;
+					position: absolute;
+					top: 9px;
+					left: 9px;
+					box-sizing: content-box;
+				}
+
+				&::after {
+					content: "";
+					display: block;
+					width: 2px;
+					height: 8px;
+					background: #000;
+					border-radius: 6px;
+					position: absolute;
+					top: 19px;
+					left: 22px;
+					transform: rotate(-45deg);
+					box-sizing: content-box;
+				}
+			}
+
+			.flex-control-thumbs {
+				overflow: hidden;
+				zoom: 1;
+				margin: 0;
+				padding: 0;
+
+				li {
+					width: 25%;
+					float: left;
+					margin: 0;
+					list-style: none;
+
+					img {
+						cursor: pointer;
+						opacity: 0.5;
+						margin: 0;
+
+						&.flex-active,
+						&:hover {
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+
+		.woocommerce-product-gallery--columns-3 {
+
+			.flex-control-thumbs li:nth-child(3n+1) {
+				clear: left;
+			}
+		}
+
+		.woocommerce-product-gallery--columns-4 {
+
+			.flex-control-thumbs li:nth-child(4n+1) {
+				clear: left;
+			}
+		}
+
+		.woocommerce-product-gallery--columns-5 {
+
+			.flex-control-thumbs li:nth-child(5n+1) {
+				clear: left;
+			}
+		}
+	}
+
+	/**
+	 * Product loops - edited
+	 */
+
+	ul.products li.product {
+		.star-rating {
+			font-size: 0.857em;
+		}
+	}
+
+	/**
+	 * Buttons - edited
+	 */
+	a.button,
+	button.button,
+	input.button,
+	#respond input#submit {
+
+		&.loading {
+			opacity: 0.25;
+			padding-right: 2.618em;
+
+			&::after {
+		    font-family: WooCommerce;
+		    content: "\e01c";
+		    vertical-align: top;
+		    font-weight: 400;
+		    position: absolute;
+				margin-left: 0.53em;
+		    -webkit-animation: spin 2s linear infinite;
+		    animation: spin 2s linear infinite;
+			}
+		}
+
+	}
+
+	/**
+	 * Reviews - deleted
+	 */
+
+	 /**
+ 	 * Star ratings - edited
+ 	 */
+ 	.star-rating {
+ 		overflow: hidden;
+ 		position: relative;
+		margin-bottom: 1.2rem;
+ 		height: 1em;
+ 		line-height: 1;
+ 		font-size: 1em;
+ 		width: 5.4em;
+ 		font-family: "star";
+
+ 		&::before {
+ 			content: "\73\73\73\73\73";
+ 			color: $global-secondary-background;
+ 			float: left;
+ 			top: 0;
+ 			left: 0;
+ 			position: absolute;
+ 		}
+
+ 		span {
+ 			overflow: hidden;
+ 			float: left;
+ 			top: 0;
+ 			left: 0;
+ 			position: absolute;
+ 			padding-top: 1.5em;
+ 		}
+
+ 		span::before {
+ 			content: "\53\53\53\53\53";
+			color: $global-secondary-background;
+ 			top: 0;
+ 			position: absolute;
+ 			left: 0;
+ 		}
+ 	}
+
+ 	.woocommerce-product-rating {
+
+ 		@include clearfix();
+ 		line-height: 2;
+ 		display: block;
+
+ 		.star-rating {
+ 			margin: 0.5em 4px 0 0;
+ 			float: left;
+ 		}
+ 	}
+
+ 	.products .star-rating {
+ 		display: block;
+ 		margin: 0 0 0.5em;
+ 		float: none;
+ 	}
+
+ 	.hreview-aggregate .star-rating {
+ 		margin: 10px 0 0;
+ 	}
+
+ 	#review_form #respond {
+
+ 		@include clearfix();
+ 		position: static;
+ 		margin: 0;
+ 		width: auto;
+ 		padding: 0;
+ 		background: transparent none;
+ 		border: 0;
+
+ 		p {
+ 			margin: 0 0 10px;
+ 		}
+
+ 		.form-submit input {
+ 			left: auto;
+ 		}
+
+ 		textarea {
+ 			box-sizing: border-box;
+ 			width: 100%;
+ 		}
+ 	}
+
+ 	p.stars {
+
+ 		a {
+ 			position: relative;
+ 			height: 1em;
+ 			width: 1em;
+ 			text-indent: -999em;
+ 			display: inline-block;
+ 			text-decoration: none;
+
+ 			&::before {
+ 				display: block;
+ 				position: absolute;
+ 				top: 0;
+ 				left: 0;
+ 				width: 1em;
+ 				height: 1em;
+ 				line-height: 1;
+ 				font-family: "WooCommerce";
+ 				content: "\e021";
+ 				text-indent: 0;
+ 			}
+
+ 			&:hover ~ a::before {
+ 				content: "\e021";
+ 			}
+ 		}
+
+ 		&:hover a::before {
+ 			content: "\e020";
+ 		}
+
+ 		&.selected {
+
+ 			a.active {
+
+ 				&::before {
+ 					content: "\e020";
+ 				}
+
+ 				~ a::before {
+ 					content: "\e021";
+ 				}
+ 			}
+
+ 			a:not(.active)::before {
+ 				content: "\e020";
+ 			}
+ 		}
+ 	}
+
+	/**
+	 * Tables - deleted
+	 */
+
+	/**
+	 * Cart sidebar - deleted
+	 */
+
+	/**
+	 * Forms - deleted
+	 */
+
+	/**
+	 * Order page - deleted
+	 */
+
+	/**
+	 * Layered nav widget - deleted
+	 */
+
+	/**
+	 * Price filter widget - deleted
+	 */
+
+	/**
+	 * Rating Filter Widget - deleted
+	 */
+
+}
+
+// .woocommerce-no-js {
+// 
+// 	form.woocommerce-form-login,
+// 	form.woocommerce-form-coupon {
+// 		display: block !important;
+// 	}
+// 
+// 	.woocommerce-form-login-toggle,
+// 	.woocommerce-form-coupon-toggle,
+// 	.showcoupon {
+// 		display: none !important;
+// 	}
+// }
+
+// .woocommerce-message,
+// .woocommerce-error,
+// .woocommerce-info {
+// 	padding: 1em 2em 1em 3.5em;
+// 	margin: 0 0 2em;
+// 	position: relative;
+// 	background-color: lighten($secondary, 5%);
+// 	color: $secondarytext;
+// 	border-top: 3px solid $primary;
+// 	list-style: none outside;
+// 
+// 	@include clearfix();
+// 	width: auto;
+// 	word-wrap: break-word;
+// 
+// 	&::before {
+// 		font-family: "WooCommerce";
+// 		content: "\e028";
+// 		display: inline-block;
+// 		position: absolute;
+// 		top: 1em;
+// 		left: 1.5em;
+// 	}
+// 
+// 	.button {
+// 		float: right;
+// 	}
+// 
+// 	li {
+// 		list-style: none outside !important; // Required for default theme compatibility
+// 		padding-left: 0 !important; // Required for default theme compatibility
+// 		margin-left: 0 !important; // Required for default theme compatibility
+// 	}
+// }
+
+/**
+ * Right to left styles - deleted
+ */
+
+// .woocommerce-message {
+// 	border-top-color: #8fae1b;
+// 
+// 	&::before {
+// 		content: "\e015";
+// 		color: #8fae1b;
+// 	}
+// }
+
+// .woocommerce-info {
+// 	border-top-color: #1e85be;
+// 
+// 	&::before {
+// 		color: #1e85be;
+// 	}
+// }
+
+// .woocommerce-error {
+// 	border-top-color: #b81c23;
+// 
+// 	&::before {
+// 		content: "\e016";
+// 		color: #b81c23;
+// 	}
+// }
+
+/**
+ * Account page - deleted
+ */
+
+/**
+ * Cart/checkout page - deleted
+ */
+
+/**
+ * Password strength meter - deleted
+ */

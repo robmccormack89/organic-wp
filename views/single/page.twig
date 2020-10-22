@@ -1,0 +1,38 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<div data-template="page.twig">
+  
+  {% include 'breads.twig' %}
+  
+  {% include 'site-notice.twig' %}
+    
+  <div class="uk-section uk-section-small">
+    
+    <div class="uk-container uk-container-small">
+      
+      <article id="page-{{post.ID}}" class=" uk-article {{post.class}}">
+        
+        <h1 class="uk-article-title page-title uk-text-uppercase uk-margin-medium-bottom uk-heading-line"><span>{{post.title}}</span></h1>
+
+        <div class="the-content uk-margin-bottom">
+          
+          <p>
+            {% if post.thumbnail %}
+            <figure>
+              <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
+            </figure>
+            {% endif %}
+          </p>
+          {{post.content}}
+
+        </div>
+      
+      </article>
+      
+    </div>
+
+  </div>
+</div>
+
+{% endblock  %}

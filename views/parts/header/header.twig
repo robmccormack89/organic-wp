@@ -1,0 +1,165 @@
+<header id="SiteHeader">
+  <div class="darker-bg-primary uk-text-center uk-text-lead uk-light" style="padding: 5px 0;">
+    <div class="uk-container">
+      For more info on deliveries, <a href="/delivery">click here</a>. For refunds & returns, <a href="/refunds-returns-policy">click here</a>.
+    </div>
+  </div>
+  <div id="HeaderMain" class="uk-section uk-section-small uk-background-primary header-main uk-visible@m">
+    <div class="uk-container">
+      <div class="desktop-header-grid" uk-grid>
+        <div class="logo-left uk-width-1-2 uk-inline uk-light">
+          <a class="uk-logo uk-text-bold uk-text-emphasis uk-position-center-left padding-left-40" title="{{ site.title }}" href="{{ site.url }}">{{ site.title }}</a>
+        </div>
+        <div class="search-navs-right uk-width-1-2">
+          <div class="account-links uk-text-right uk-margin-small-bottom uk-light">
+            {% if not user %}
+            <a href="/my-account">Login / Register</a>
+            {% else %}
+            <a href="/my-account">My Account</a>
+            {% endif %}
+          </div>
+          <nav class="search-cart uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+            <div class="uk-navbar-right">
+              <div class="uk-navbar-item height-content pull-right-30">
+                <form role="search" method="get" action="{{site.url}}">
+                  <div class="uk-inline uk-light">
+                    <a class="uk-form-icon uk-form-icon-flip uk-link-reset"><i class="fas fa-search fa-lg"></i></a>
+                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Search for products" id="SearchDesktop" name="s" autocomplete="off">
+                  </div>
+                </form>
+              </div>
+              {% if is_cart or is_checkout  %}
+              <div class="uk-navbar-item height-content pull-right-15">
+                <a class="cart-icon uk-margin-left uk-light" href="/basket" aria-expanded="false"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                {% do action('cart_ajax_result_count') %}
+              </div>
+              {% else %}
+              <div class="uk-navbar-item height-content pull-right-15 boundary-cart">
+                <a class="cart-icon uk-margin-left uk-light" aria-expanded="false" href="#modal-overflow" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i></a>
+                {% do action('cart_ajax_result_count') %}
+              </div>
+              <div id="CartNavDropdown" class="uk-padding-remove" uk-dropdown="pos: bottom-right; boundary: .boundary-cart; boundary-align: true">
+                <div class="widget_shopping_cart_content">{{ function('woocommerce_mini_cart') }}</div>
+              </div>
+              {% endif %}
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="HeaderBottom" class="uk-light uk-visible@m darker-bg-primary">
+    <div class="uk-container">
+      <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-left pull-left-15">
+          <ul class="uk-navbar-nav">
+            <!-- <li>
+              <a>All <i class="fas fa-angle-down" style="padding-left: 3px;"></i></a>
+              <div class="uk-navbar-dropdown padding-20-0" uk-drop="cls-drop: uk-navbar-dropdown; boundary: !nav; boundary-align: true; pos: bottom-justify; flip: x;mode: click">
+                <div class="uk-navbar-dropdown-grid" uk-grid>
+                  {% include 'sidebar-megamenu.twig' %}
+                </div>
+              </div>
+            </li> -->
+            {% if has_menu_main %}
+            {% for item in menu_main.get_items %}
+              
+              {% if item.get_children %}
+              <li class="{{ item.classes | join(' ') }}"><a href="{{ item.link }}">{{ item.title }}<span data-uk-icon="icon: triangle-down"></span></a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    {% for child in item.get_children %}
+                    <li><a href="{{ child.get_link }}">{{ child.title }}</a>
+                      {% if child.children %}
+                        <ul class="uk-nav-sub">
+                          {% for third in child.children %}
+                            <li>
+                              <a href="{{ third.get_link }}">{{ third.title }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li>
+              {% else %}
+              <li class="{{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div id="HeaderMobile" class="uk-background-primary uk-hidden@m">
+    <div class="" uk-sticky="sel-target: .my-sticky-nav; cls-active: uk-navbar-sticky">
+      <nav class="uk-background-primary my-sticky-nav uk-container uk-light" uk-navbar>
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle uk-navbar-item uk-text-emphasis" data-uk-toggle href="#offcanvas-nav"><i class="fas fa-bars fa-lg"></i><span class="uk-flex-last push-left-7">Menu</span></a>
+          <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
+            <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide dark-bg-black">
+              <a uk-toggle="target: #offcanvas-nav" style="float: right;"><i class="fas fa-times fa-2x"></i></a>
+              <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+                {% if has_menu_mobile %}
+                {% for item in menu_mobile.get_items %}
+                  
+                  {% if item.get_children %}
+                  <li class="{{ item.classes | join(' ') }} uk-parent"><a href="{{ item.link }}">{{ item.title }}</a>
+                    <ul class="uk-nav-sub">
+                      {% for child in item.get_children %}
+                      <li><a href="{{ child.get_link }}">{{ child.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  {% else %}
+                  <li class="{{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% endif %}
+                <li class="uk-nav-divider"></li>
+                <li>
+                  <form role="search" method="get"  class="uk-margin-top" action="{{site.url}}">
+                    <div class="uk-inline uk-light">
+                      <a class="uk-form-icon uk-form-icon-flip uk-link-reset"><i class="fas fa-search fa-lg"></i></a>
+                      <input class="uk-input uk-form-width-medium" type="text" placeholder="Search for products" id="SearchMobile" name="s" autocomplete="off">
+                    </div>
+                  </form>
+                </li>
+              </ul>
+              <!-- <h3>Title</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+            </div>
+          </div>
+        </div>
+        <div class="uk-navbar-right">
+          {% if is_cart or is_checkout  %}
+          <div class="uk-navbar-item">
+            <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false"><i class="fas fa-shopping-cart fa-2x"></i></a>
+            {% do action('cart_ajax_result_count') %}
+          </div>
+          {% else %}
+          <div class="uk-navbar-item">
+            <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false" href="#modal-overflow" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i></a>
+            {% do action('cart_ajax_result_count') %}
+          </div>
+          {% endif %}
+        </div>
+      </nav>
+    </div>
+    <div class="uk-section uk-text-center uk-light padding-bottom-20" style="padding-top: 0;">
+      <a class="uk-logo uk-text-bold uk-text-emphasis font-1-5" title="{{ site.title }}" href="{{ site.url }}">{{ site.title }}</a>
+    </div>
+  </div>
+  <div id="modal-overflow" uk-modal>
+    <div class="uk-modal-dialog">
+      <div class="uk-modal-body padding-20 height-content" uk-overflow-auto>
+        {% include 'sidebar-cart.twig' %}
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,24 @@
+{{ fn('timber_set_product', post) }}
+<div id="ProductItem{{ post.id }}" class="entry grid-item item {{ post.class }}" data-product-id="{{ post.id }}">
+  <div class="uk-card uk-card-hover theme-border padding-15 uk-text-center">
+     {% do action('woocommerce_before_shop_loop_item') %}
+     <div id="ProductMedia" class="media-figure uk-card-media-top">
+        <a class="single-product-image-link" href="{{ post.link }}">
+          <img data-src="{{ post.thumbnail.src('medium') }}" class="single-product-image" alt="{{ post.thumbnail.alt }}" uk-img>
+        </a>
+        {% do action('woocommerce_before_shop_loop_item_title') %}
+     </div>
+     <div id="ProductInfo" class="uk-card-body uk-padding-small">
+        <div id="ProductTitle">
+           {% do action('woocommerce_shop_loop_item_title') %}
+           <h3 class="uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ post.title }}</a></h3>
+        </div>
+        <div id="ProductPriceRating">
+           {% do action( 'woocommerce_after_shop_loop_item_title' ) %}
+        </div>
+     </div>
+     <div id="ProductButtons" class="uk-card-footer uk-padding-remove">
+       {% do action( 'woocommerce_after_shop_loop_item' ) %}
+     </div>
+  </div>
+</div>

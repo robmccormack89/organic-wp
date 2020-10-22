@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html {{site.language_attributes}}>
+  <head>
+    <meta charset="{{site.charset}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- wp header -->
+    {{ function('wp_head') }}
+    <!-- /wp header -->
+    <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/all.min.css">
+    <style>
+    .uk-text-lead {
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+    .uk-alert h1, .uk-alert h2, .uk-alert h3, .uk-alert h4, .uk-alert h5, .uk-alert h6 {
+      color: #333;
+    }
+    </style>
+  </head>
+  <!-- body classes go here -->
+  <body class="{{ body_class }}" data-template="base.twig">
+    
+    <!-- main site wrapper -->
+    <div id="SiteWrapper" class="site-wrapper">
+      
+      <!-- header -->
+      {% block header %}
+        {% include 'header.twig' %}
+      {% endblock %}
+      <!-- /header -->
+      
+      <!-- content -->
+      <div id="MainContent">
+        {% block content %}
+          <p>Sorry, Nothing to Display!!</p>
+        {% endblock %}
+      </div>
+      <!-- /content -->
+
+      <!-- footer -->
+      {% block footer %}
+        {% include 'footer.twig' %}
+      {% endblock %}
+      <!-- /footer -->
+      
+    </div>
+    <!-- /main site wrapper -->
+    
+    <!-- wp footer -->
+    {{ function('wp_footer') }}
+    <!-- /wp footer -->
+    
+  </body>
+  <!-- /body -->
+  {% if is_paginated %}
+  <script src="/wp-content/themes/organicwp-theme/assets/js/main/scroll.js"></script>
+  {% endif %}
+  <script src="/wp-content/themes/organicwp-theme/assets/js/main/custom.js"></script>
+</html>
+

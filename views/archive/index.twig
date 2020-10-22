@@ -1,0 +1,65 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<div class="uk-container" data-template="single.twig">
+
+  <nav id="BreadsNav" class="uk-navbar-container uk-navbar-transparent theme-border-bottom" uk-navbar>
+    <div class="uk-navbar-left">
+      <div class="uk-navbar-item min-height-40 pull-left-15">
+        {{ function('yoast_breadcrumb', '<div id="breadcrumbs">','</div>') }}
+      </div>
+    </div>
+  </nav>
+  
+  <div class="uk-section uk-section-small">
+  
+    <div class="uk-grid-large" uk-grid>
+      
+      <div class="uk-width-2-3@m">
+
+        <div id="ArchiveTitle">
+          <h1 class="uk-article-title archive-title uk-margin-remove-bottom">{{ title }}</h1>
+        </div>
+        
+        <div id="PostArchive" class="uk-section uk-section-small uk-section-default">
+          <div class="archive-posts">
+            {% for post in posts %}
+              {% include 'tease.twig' %}
+            {% endfor %}
+            {% if posts is empty %}
+              <p class="uk-text-emphasis">No posts found.</p>
+            {% endif %}
+          </div>
+          {% if posts > 4 %}
+            {% include 'pagination.twig' %}
+          {% endif %}
+          {% if is_paginated %}
+          <div class="scroll-loaders">
+            <div class="page-load-status">
+              <div class="loader-ellips infinite-scroll-request">
+                <span class="loader-ellips__dot"></span>
+                <span class="loader-ellips__dot"></span>
+                <span class="loader-ellips__dot"></span>
+                <span class="loader-ellips__dot"></span>
+              </div>
+              <p class="infinite-scroll-last">No more Posts</p>
+              <p class="infinite-scroll-error">No posts to load</p>
+            </div>
+  
+            <button class="view-more-button uk-button uk-button-primary uk-align-center">Load More Posts</button>
+  
+          </div>
+          {% endif %}
+        </div>
+      
+      </div>
+      
+      {% include 'sidebar.twig' %}
+      
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock  %}

@@ -1,0 +1,26 @@
+{
+  "name": "project-organic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "infinite-scroll": "^3.0.6",
+    "uikit": "^3.2.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "browser-sync": "^2.26.7",
+    "cssnano": "^4.1.10",
+    "expose-loader": "^0.7.5",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "node-sass": "^4.12.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  },
+  "scripts": {
+    "gulp": "./node_modules/.bin/gulp"
+  }
+}

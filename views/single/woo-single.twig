@@ -1,0 +1,49 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<div data-template="woo-single.twig">
+
+{% include 'breads.twig' %}
+
+{% include 'site-notice.twig' %}
+
+  <div class="uk-container">
+  
+    {% do action('woocommerce_before_main_content') %}
+    
+    {% do action('woocommerce_before_single_product') %}
+  
+  </div>
+
+  <div class="uk-container uk-container-small">
+    
+    <div class="uk-section uk-section-small">
+        
+      <div id="product-{{post.id}}" itemscope itemtype="http://schema.org/Product" class="single-product-details uk-grid-small {{ post.class }}" uk-grid>
+
+        <div class="entry-images uk-width-1-3@s">
+          <div>
+            {% do action('woocommerce_before_single_product_summary') %}
+          </div>
+        </div>
+
+        <div class="uk-width-2-3@s">
+          {% do action('woocommerce_single_product_summary') %}
+          Product/Delivery type: <span class="uk-text-primary">{{shipping_class}}</span> 
+        </div>
+
+        <meta itemprop="url" content="{{ post.link }}" />
+
+      </div>
+        
+    </div>
+    
+    {% do action('woocommerce_after_single_product_summary') %}
+
+    {% do action('woocommerce_after_single_product') %}
+  
+  </div>
+
+</div>
+
+{% endblock  %}
