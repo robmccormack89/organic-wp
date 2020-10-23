@@ -1,0 +1,12 @@
+footer.uk-section.uk-section-small {
+    background-image: url(https://organicforhealth.ie/wp-content/themes/organicwp-theme/assets/images/veg.jpg);
+}
+footer.uk-section.uk-section-small:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #299169f2;
+}

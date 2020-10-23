@@ -1,0 +1,38 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<div data-template="about.twig">
+  
+    {% include 'breads.twig' %}
+
+    {% include 'site-notice.twig' %}
+      
+    <div class="uk-section uk-section-small">
+      
+        <div class="uk-container uk-container-small">
+          
+            <article id="page-{{post.ID}}" class=" uk-article {{post.class}}">
+              
+                <h1 class="uk-article-title page-title uk-text-uppercase uk-margin-medium-bottom uk-heading-line"><span>{{post.title}}</span></h1>
+
+                <div class="the-content uk-margin-bottom">
+                  
+                    <p><img class="about-logo-image" src="/wp-content/uploads/2018/11/organicforhealth-logo-t-1-100x100.png" alt="">We are small family run business there’s me, Samantha and our two children Rachel and William Jr. We believe the only way to health is to supply the body with nutrient rich food that have been grown without the use of any synthetic chemicals. That is why anything we sell or grow is organic.</p>
+                    <p>Our goal is to have happy healthy customers and to give them the best quality and value, you can get. So if there is ever any problem with anything you get from us please let us know and we will replace or refund it.</p>
+                    <p>Thanks to all our customers so far for supporting us we really appreciate it and we hope that you will become one of our happy healthy customers too.</p>
+                    <p>Best regards,
+                    <br>
+                    <span class="uk-text-bold uk-text-primary">William Leonard</span>
+                    </p>
+
+                </div>
+            
+            </article>
+          
+        </div>
+
+    </div>
+  
+</div>
+
+{% endblock  %}

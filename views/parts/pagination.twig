@@ -1,23 +1,36 @@
 <div class="uk-padding pagi uk-hidden">
-<ul class="uk-pagination uk-flex-center">
-    {% if pagination.prev %}
-    <li>
-        <a href="{{pagination.prev.link}}" class="prev {{pagination.prev.link|length ? '' : 'invisible'}}"><i uk-icon="icon: chevron-left"></i> Previous Page</a>
-    </li>
-    {% endif %}
-    {% for page in pagination.pages %}
-    <li>
-        {% if page.link %}
-            <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
-        {% else %}
-            <span class="{{page.class}}">{{page.title}}</span>
+    <ul class="uk-pagination uk-flex-center">
+        {% if pagination.prev %}
+        <li>
+            <a href="{{pagination.prev.link}}" class="prev {{pagination.prev.link|length ? '' : 'invisible'}}"><i uk-icon="icon: chevron-left"></i> Previous Page</a>
+        </li>
         {% endif %}
-    </li>
-    {% endfor %}
-    {% if pagination.next %}
-    <li>
-        <a href="{{pagination.next.link}}" class="next {{pagination.next.link|length ? '' : 'invisible'}}">Next Page <i uk-icon="icon: chevron-right"></i></a>
-    </li>
-    {% endif %}
-</ul>
+        {% for page in pagination.pages %}
+        <li>
+            {% if page.link %}
+                <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
+            {% else %}
+                <span class="{{page.class}}">{{page.title}}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+        {% if pagination.next %}
+        <li>
+            <a href="{{pagination.next.link}}" class="next {{pagination.next.link|length ? '' : 'invisible'}}">Next Page <i uk-icon="icon: chevron-right"></i></a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+<div class="scroll-loaders uk-section uk-section-small padding-remove-top uk-section-default">
+    <div class="page-load-status">
+        <div class="loader-ellips infinite-scroll-request">
+            <span class="loader-ellips__dot"></span>
+            <span class="loader-ellips__dot"></span>
+            <span class="loader-ellips__dot"></span>
+            <span class="loader-ellips__dot"></span>
+        </div>
+        <p class="infinite-scroll-last">No more Products</p>
+        <p class="infinite-scroll-error">No products to load</p>
+    </div>
+    <button class="view-more-button uk-button uk-button-primary uk-align-center uk-margin-remove-top">Load More Products</button>
 </div>

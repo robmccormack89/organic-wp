@@ -5,8 +5,8 @@ $global-link-color: #299169;
 $global-link-hover-color: #116444;
 $global-muted-background: #f7fbf9;
 $global-muted-color: #5c5c5c;
-// $container-large-max-width: 1400px;
-// $logo-font-size: 2.2rem;
+$global-darker-bg-primary: #20865f;
+$global-dark-bg-black: #1f7b58;
 
 // 2. Import variables & mixins froim uikit. You can also use the default styling scss files, I have used the theme ones.
 @import "node_modules/uikit/src/scss/variables-theme.scss";

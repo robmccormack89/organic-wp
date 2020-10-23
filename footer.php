@@ -4,8 +4,8 @@
  *
  * @package Organic_Theme
  */
-
-$timberContext = $GLOBALS['timberContext'];
+ 
+$timberContext = $GLOBALS['timberContext']; // @codingStandardsIgnoreFile
 if ( ! isset( $timberContext ) ) {
 	throw new \Exception( 'Timber context not set in footer.' );
 }

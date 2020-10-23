@@ -1,0 +1,56 @@
+/* UIKit based resonsive breakpoints */
+@media only screen and (max-width:479px) {
+  
+    .home-slider .uk-position-center {
+        top: 50%;
+        left: 50%;
+        width: 85%;
+    }
+
+    .slider-section.uk-section-small {
+        padding-top: 20px;
+    }
+  
+}
+
+@media only screen and (max-device-width:767px) {
+
+    .woocommerce-page div.product div.images, .woocommerce div.product div.images {
+        width: 100%;
+    }
+    
+    .single-product-images img {
+        max-width: 150px!important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+  
+}
+
+@media only screen and (min-device-width:480px) and (max-device-width:767px) {
+  
+}
+
+@media only screen and (min-device-width:768px) and (max-device-width:959px) {
+  
+    .slider-image {
+       height: 370px;
+    }
+
+}
+
+@media only screen and (min-device-width:960px) and (max-device-width:1199px) {
+  
+    .slider-image {
+       height: 370px;
+    }
+  
+}
+
+@media only screen and (min-width:1200px) {
+  
+    .slider-image {
+       height: 400px;
+    }
+  
+}

@@ -1,40 +1,78 @@
 <?php
+/**
+ * The template for making woocommerce work with timber/twig. sets the templates & context for woo's archive & singular views
+ *
+ * @package Organic_Theme
+ */
 
+// make sure timber is activated first
 if ( ! class_exists( 'Timber' ) ) {
     echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
-
     return;
 }
 
-$context            = Timber::context();
+// get the main context
+$context = Timber::context();
+// get the shop sidebar widgets
 $context['sidebar'] = Timber::get_widgets( 'shop-sidebar' );
 
-
+// if is single product
 if ( is_singular( 'product' ) ) {
-    $context['post']    = Timber::get_post();
-    $product            = wc_get_product( $context['post']->ID );
+  
+    // get the main post object
+    $context['post'] = Timber::query_post();
+    // get the product object via the post object id
+    $product = wc_get_product( $context['post']->ID );
+    // set the product object as variable
     $context['product'] = $product;
+    // gets shipping class & sets variable
     $context['shipping_class'] = $product->get_shipping_class();
-    
     // Restore the context and loop back to the main query loop.
     wp_reset_postdata();
-
+    // render singular woo template
     Timber::render( 'woo-single.twig', $context );
+    
 } else {
-    $posts = Timber::get_posts();
+  
+    // get the main posts query
+    $posts = new Timber\PostQuery();
+    // set main query as products cariable 
     $context['products'] = $posts;
-    $context['grid_list'] = get_query_var('grid_list');
+    
+    $query_var = get_query_var('grid-list');
+    
+    if ( $query_var == 'grid-view' || $query_var == '' ) {
+        $context['list_active_class'] = 'not-active';
+        $context['grid_active_class'] = 'uk-active'; 
+        $context['grid_list_layout_class'] = 'uk-child-width-1-5@m';
+        $context['tease_template'] = 'tease-product.twig';    
+    } elseif ( $query_var == 'list-view' ) {
+        $context['grid_active_class'] = 'not-active';
+        $context['list_active_class'] = 'uk-active';
+        $context['grid_list_layout_class'] = 'uk-child-width-1-1@m'; 
+        $context['tease_template'] = 'tease-product-list.twig';   
+    }
 
+
+    // if is product category archive
     if ( is_product_category() ) {
+        // get the queried object
         $queried_object = get_queried_object();
         $term_id = $queried_object->term_id;
+        // get the category term
         $context['category'] = get_term( $term_id, 'product_cat' );
+        // and set the archive title
         $context['title'] = single_term_title( '', false );
+        // then Restore the context and loop back to the main query loop.
+        wp_reset_postdata();
     };
     
+    // if is shop page
     if ( is_shop() ) {
-      $context['title'] = 'Shop';
+        // set shop page archive title
+        $context['title'] = 'Shop';
     };
 
+    // render archive woo template
     Timber::render( 'woo-archive.twig', $context );
 }

@@ -1,18 +1,18 @@
 /* Global Custom Variables. What ever u want to use across the partialized files below */
 $theme_border: 1px solid #e5e5e5;
 $theme_border_light: 1px solid rgba(255,255,255,.2);
-$theme_solid_border: 2px solid $global-primary-background;
-// $dark_style_colour: #222;
-// $dark_style_muted_colour: #333;
-// $dark_style_link_colour: hsla(0,0%,100%,.5);
-// $dark_style_link_hover_colour: hsla(0,0%,100%,.7);
-// $third_colour: #A92F79;
-// $third_colour_dark: #74144E;
+$theme_solid_border: 2px solid 1px solid #e5e5e591;
 
 // import your custom sass styles. you can partialize it how u like
-@import "assets/sass/partials/general.scss";
-// @import "assets/sass/partials/dark.scss";
 @import "assets/sass/partials/fonts.scss";
-// @import "assets/sass/partials/colours.scss";
+@import "assets/sass/partials/footer.scss";
+@import "assets/sass/partials/general.scss";
+@import "assets/sass/partials/header.scss";
+@import "assets/sass/partials/loader.scss";
+@import "assets/sass/partials/pages.scss";
+@import "assets/sass/partials/responsive.scss";
+@import "assets/sass/partials/uikit.scss";
+@import "assets/sass/partials/utility.scss";
+@import "assets/sass/partials/woo.scss";
 @import "assets/sass/woo/woocommerce.scss";
 @import "assets/sass/woo/woocommerce-layout.scss";

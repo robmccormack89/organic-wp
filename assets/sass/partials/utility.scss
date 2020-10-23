@@ -1,0 +1,120 @@
+/* theme borders */
+.theme-border {
+   border: $theme_border
+}
+.theme-border-top {
+   border-top: $theme_border
+}
+.theme-border-bottom {
+   border-bottom: $theme_border
+}
+.theme-border-left {
+   border-left: $theme_border
+}
+.theme-border-right {
+   border-right: $theme_border
+}
+.theme-border-solid {
+   border: $theme_solid_border
+}
+.theme-border-solid-top {
+   border-top: $theme_solid_border
+}
+.theme-border-solid-bottom {
+   border-bottom: $theme_solid_border
+}
+.theme-border-solid-left {
+   border-left: $theme_solid_border
+}
+.theme-border-solid-right {
+   border-right: $theme_solid_border
+}
+
+/* utility classes */
+.padding-10 {
+    padding: 10px;
+}
+.padding-15 {
+    padding: 15px;
+}
+.padding-left-40 {
+    padding-left: 40px;
+}
+.padding-top-20 {
+    padding-top: 20px;
+}
+.padding-10-20-0-20 {
+    padding:10px 20px 0px 20px;
+}
+.height-content {
+    min-height: fit-content!important;
+}
+.pull-right-30 {
+    margin-right: -30px;
+}
+.pull-right-15 {
+    margin-right: -15px;
+}
+.pull-right-10 {
+    margin-right: -10px;
+}
+.pull-left-15 {
+    margin-left: -15px;
+}
+.pull-left-10 {
+    margin-left: -10px;
+}
+.push-left-7 {
+    margin-left: 7px;
+}
+.darker-bg-primary {
+    background-color: $global-darker-bg-primary;
+}
+.dark-bg-black {
+    background: $global-dark-bg-black;
+}
+.padding-20 {
+    padding: 20px;
+}
+.padding-20-0 {
+    padding: 20px 0;
+}
+.padding-top-30 {
+    padding-top: 30px;
+}
+.padding-bottom-30 {
+    padding-bottom: 30px;
+}
+.padding-remove-bottom {
+    padding-bottom: 0;
+}
+.padding-remove-top {
+    padding-top: 0;
+}
+.padding-0-10 {
+    padding: 0 10px;
+}
+.padding-top-20 {
+    padding-top: 20px;
+}
+.padding-bottom-20 {
+    padding-bottom: 20px;
+}
+.padding-0-0-0-20 {
+    padding: 0 0 0 20px;
+}
+.font-1-5 {
+    font-size:1.5rem!important;
+}
+.font-2 {
+    font-size:2rem;
+}
+.min-height-40 {
+    min-height: 40px;
+}
+.width-49 {
+    width: 49%;
+}
+.margin-left-2 {
+    margin-left: 2%;
+}

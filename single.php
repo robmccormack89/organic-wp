@@ -5,11 +5,9 @@
  * @package Organic_Theme
  */
 
-$context = Timber::get_context();
-$context['post'] = new Timber\Post();
-$context['pagination'] = Timber::get_pagination();
-$context['paged'] = $paged;
-
+$context = Timber::context();
+$post = Timber::query_post();
+$context['post'] = $post;
 
 if ( post_password_required( $post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
