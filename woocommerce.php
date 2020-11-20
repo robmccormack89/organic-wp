@@ -69,8 +69,23 @@ if ( is_singular( 'product' ) ) {
     
     // if is shop page
     if ( is_shop() ) {
+      
         // set shop page archive title
         $context['title'] = 'Shop';
+        
+        $additional_products = wc_get_products( array(
+          'status' => 'publish',
+          'limit' => -1,
+          'category' => 'fruit',
+          'meta_query' => array(
+            array(
+              'key' => '_stock_status',
+              'value' => 'instock'
+            ),
+          )
+        ));
+        $context['more_products'] = $additional_products;  
+        
     };
 
     // render archive woo template

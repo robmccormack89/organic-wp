@@ -1,65 +1,64 @@
 <!DOCTYPE html>
 <html {{site.language_attributes}}>
 
-    <head>
-        <meta charset="{{site.charset}}" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- additional styles per template -->
-        {% block spec_styles %}
-        {% endblock %}
-        <!-- /additional styles per template -->
-        
-        <!-- wp header -->
-        {{ function('wp_head') }}
-        <!-- /wp header -->
-        
-        {% include 'styles.twig' %}
-        
-    </head>
+  <head>
     
-    <!-- body classes go here -->
-    <body class="{{ body_class }}" data-template="base.twig">
+    <meta charset="{{site.charset}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- styles per template -->
+    {% block spec_styles %}
+    {% endblock %}
+    <!-- /styles per template -->
+    
+    <!-- wp header -->
+    {{ function('wp_head') }}
+    <!-- /wp header -->
+    
+    {% include 'styles.twig' %}
       
-        <!-- main site wrapper -->
-        <div id="SiteWrapper" class="site-wrapper">
-          
-            <!-- header -->
-            {% block header %}
-                {% include 'header.twig' %}
-            {% endblock %}
-            <!-- /header -->
-            
-            {% block main %}
-            <!-- content -->
-            <main id="MainContent">
-                {% block content %}
-                <p>Sorry, Nothing to Display!!</p>
-                {% endblock %}
-            </main>
-            <!-- /content -->
-            {% endblock %}
+  </head>
 
-            <!-- footer -->
-            {% block footer %}
-                {% include 'footer.twig' %}
-            {% endblock %}
-            <!-- /footer -->
-          
-        </div>
-        <!-- /main site wrapper -->
-        
-        <!-- wp footer -->
-        {{ function('wp_footer') }}
-        <!-- /wp footer -->
-        
-        <!-- additional scripts per template -->
-        {% block spec_scripts %}
-        {% endblock %}
-        <!-- /additional scripts per template -->
+  <body class="{{ body_class }}" data-template="base.twig">
+    
+    <!-- main site wrapper -->
+    <div id="SiteWrapper" class="site-wrapper">
       
-    </body>
-    <!-- /body -->
+    <!-- header -->
+    {% block header %}
+      {% include 'header.twig' %}
+    {% endblock %}
+    <!-- /header -->
+    
+    {% block main %}
+      <!-- content -->
+      <main id="MainContent">
+      {% block content %}
+        <p>Sorry, Nothing to Display!!</p>
+      {% endblock %}
+      </main>
+      <!-- /content -->
+    {% endblock %}
+
+    <!-- footer -->
+    {% block footer %}
+      {% include 'footer.twig' %}
+    {% endblock %}
+    <!-- /footer -->
+      
+    </div>
+    <!-- /main site wrapper -->
+    
+    <!-- wp footer -->
+    {{ function('wp_footer') }}
+    <!-- /wp footer -->
+    
+    <!-- scripts per template -->
+    {% block spec_scripts %}
+    {% endblock %}
+    <!-- /scripts per template -->
+    
+  </body>
     
 </html>
 

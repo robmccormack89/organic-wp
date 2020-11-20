@@ -1,0 +1,23 @@
+<div id="FiltersMenu" uk-offcanvas="overlay: true; flip: true">
+  <div class="uk-offcanvas-bar filter-offcanvas">
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <aside>
+      <ul class="uk-nav uk-nav-default">
+        <li class="uk-nav-header uk-text-bold uk-margin-small-bottom">MENU</li>
+        <li><a href="{{ function ('add_query_arg', 'product_cat', 'fruit', '') }}">Fruit</a></li>
+        <li class="uk-parent">
+          <a href="#">Groceries</a>
+          <ul class="uk-nav-sub">
+            <li><a href="#">Baking</a></li>
+            <li><a href="#">Bread & Cereal</a></li>
+            <li><a href="#">Butters & Jam</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Juices</a></li>
+        <li><a href="#">Vegetables</a></li>
+        <li class="uk-nav-divider"></li>
+        <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Item</a></li>
+      </ul>
+    </aside>
+  </div>
+</div>

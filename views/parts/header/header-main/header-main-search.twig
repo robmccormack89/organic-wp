@@ -1,43 +1,8 @@
-<!-- <div id="AjaxSearchForm" class="uk-navbar-item uk-navbar-item height-content pull-right-30" hidden>
-  
-    <form class="pure-ajax-search-form" role="search" method="get" action="{{site.url}}" hidden>
-        <div class="pure-ajax-search-form-input-container uk-light">
-            <input class="uk-search-input uk-input uk-form-width-medium" type="search" placeholder="Search for anything..." id="SearchDesktop" name="s" autocomplete="off">
-        </div>
-        <div uk-dropdown="mode: click; pos: bottom-justify" id="dropdown" class="pure-ajax-search-form-dropdown uk-padding-remove">
-            <div>
-                <div id="results_content">
-                  
-                    <div id="pre_search">
-                        type something to search...
-                    </div>
-                    
-                    <div id="search_preloader" style="display:none;">
-                        fetching the results...
-                    </div>
-                    
-                    <div id="search_results" style="display:none;">
-                        the results go here...
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </form>
-    
-    <form class="search-autocomplete-form navbar-form" role="search" method="get" action="{{site.url}}">
-        <div class="form-group uk-light">
-            <input type="text" name="s" class="form-control search-autocomplete uk-search-input uk-input uk-form-width-medium" placeholder="Search">
-        </div>
-    </form>
-    
-</div> -->
-
-<div id="SimpleSearchForm" class="uk-navbar-item height-content pull-right-30">
-    <form role="search" method="get" action="{{site.url}}">
-        <div class="uk-inline uk-light">
-            <a class="uk-form-icon uk-form-icon-flip uk-link-reset"><i class="fas fa-search fa-lg"></i></a>
-            <input class="uk-input uk-form-width-medium mark-this-value" type="text" placeholder="Search for products" id="SearchDesktop" name="s" autocomplete="off">
-        </div>
-    </form>
+<div id="SimpleSearchForm" class="uk-navbar-item height-content pull-right-30" data-template="header-main-search.twig">
+  <form role="search" method="get" action="{{site.url}}">
+    <div class="uk-inline uk-light">
+      <a class="uk-form-icon uk-form-icon-flip uk-link-reset"><i class="fas fa-search fa-lg"></i></a>
+      <input class="uk-input uk-form-width-medium mark-this-value" type="text" placeholder="Search for products" id="SearchDesktop" name="s" autocomplete="off">
+    </div>
+  </form>
 </div>

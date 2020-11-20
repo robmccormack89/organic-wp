@@ -3,63 +3,63 @@
 
 <div data-template="single.twig">
 
-    {% include 'breads.twig' %}
+  {% include 'breads.twig' %}
 
-    <div class="uk-container">
-      
-      <div class="uk-section uk-section-small">
-      
-          <div class="uk-grid-large" uk-grid>
-            
-            {% if is_left_sidebar %}
-                {% include 'sidebar-left.twig' %}
-            {% endif %}
-            
-            <article id="single-{{post.ID}}" class=" uk-article {{ article_width_class }} {{post.class}}">
+  <div class="uk-container">
+    
+    <div class="uk-section uk-section-small">
+    
+      <div class="uk-grid-large" uk-grid>
+        
+        {% if is_left_sidebar %}
+        {% include 'sidebar-left.twig' %}
+        {% endif %}
+        
+        <article id="single-{{post.ID}}" class=" uk-article {{ article_width_class }} {{post.class}}">
 
-                <div id="SingleTitle">
-                    <h1 class="uk-article-title page-title">{{ post.title }}</h1>
-                    {% if post.post_type == "post" %}
-                    <p class="uk-article-meta uk-margin-small-top">
-                        Written on {{post.date | date}}. Posted in
-                        {% for category in post.categories %}
-                        
-                            {% if not loop.last %}
-                            <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
-                            {% endif %}
-                            
-                            {% if loop.last %}
-                            <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
-                            {% endif %}
-                            
-                        {% endfor %}
-                    </p>
-                    {% endif %}
-                </div>
-                
-                {% if post.thumbnail %}
-                <figure>
-                    <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
-                </figure>
-                {% endif %}
-                
-                <div id="SingleContent">
-                    <div class="uk-margin-bottom">
-                        {{ post.content }}
-                    </div>
-                </div>
-            
-            </article>
-            
-            {% if is_right_sidebar %}
-                {% include 'sidebar.twig' %}
+          <div id="SingleTitle">
+            <h1 class="uk-article-title page-title">{{ post.title }}</h1>
+            {% if post.post_type == "post" %}
+            <p class="uk-article-meta uk-margin-small-top">
+              Written on {{post.date | date}}. Posted in
+              {% for category in post.categories %}
+              
+              {% if not loop.last %}
+                <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
+              {% endif %}
+              
+              {% if loop.last %}
+                <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+              {% endif %}
+                  
+              {% endfor %}
+            </p>
             {% endif %}
-            
           </div>
-
+          
+          {% if post.thumbnail %}
+          <figure>
+            <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
+          </figure>
+          {% endif %}
+          
+          <div id="SingleContent">
+            <div class="uk-margin-bottom">
+              {{ post.content }}
+            </div>
+          </div>
+        
+        </article>
+        
+        {% if is_right_sidebar %}
+        {% include 'sidebar.twig' %}
+        {% endif %}
+        
       </div>
 
     </div>
+
+  </div>
     
 </div>
 

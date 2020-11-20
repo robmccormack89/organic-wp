@@ -1,4 +1,4 @@
-<tr>
-    <td class="uk-table-shrink"><img class="uk-preserve-width" data-src="{{ post.thumbnail.src }}" alt="" uk-img></td>
-    <td><a class="uk-link-muted" title="{{post.title}}" href="{{post.link}}">{{post.title}}</a></td>
+<tr data-template="tease-ajax.twig">
+  <td class="uk-table-shrink"><img class="uk-preserve-width" data-src="{{ post.thumbnail.src }}" alt="" uk-img></td>
+  <td><a class="uk-link-muted" title="{{post.title}}" href="{{post.link}}">{{post.title}}</a></td>
 </tr>

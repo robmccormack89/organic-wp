@@ -17,6 +17,10 @@ Timber::$dirname = array(
     'views/singular',
     'views/woo',
     'views/woo/parts',
+    'views/woo/parts/archive',
+    'views/woo/parts/related',
+    'views/woo/parts/single',
+    'views/woo/parts/tease',
 );
 
 /**

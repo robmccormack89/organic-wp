@@ -1,23 +1,25 @@
-<div id="HeaderMain" class="header-main uk-section uk-section-small uk-background-primary uk-visible@m">
-    <div class="uk-container">
-        <div class="desktop-header-grid" uk-grid>
-          
-            {% include 'header-main-logo.twig' %}
-            
-            <div class="search-navs-right uk-width-1-2">
+<div id="HeaderMain" class="header-main uk-section uk-section-small uk-background-primary uk-visible@m" data-template="header-main.twig">
+  <div class="uk-container">
+    <div class="desktop-header-grid" uk-grid>
+      
+      {% include 'header-main-logo.twig' %}
+      
+      <div class="search-navs-right uk-width-1-2">
+        
+        {% include 'header-main-account.twig' %}
+        
+        <nav class="search-cart uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+          <div class="uk-navbar-right">
               
-                {% include 'header-main-account.twig' %}
-                
-                <nav class="search-cart uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
-                    <div class="uk-navbar-right">
-                        
-                        {% include 'header-main-search.twig' %}
-                        
-                        {% include 'header-main-cart.twig' %}
-                        
-                    </div>
-                </nav>
-            </div>
-        </div>
+            {% include 'header-main-search.twig' %}
+            
+            {% include 'header-main-cart.twig' %}
+              
+          </div>
+        </nav>
+        
+      </div>
+        
     </div>
+  </div>
 </div>
