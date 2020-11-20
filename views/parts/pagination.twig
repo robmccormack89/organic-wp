@@ -32,5 +32,16 @@
         <p class="infinite-scroll-last">No more Products</p>
         <p class="infinite-scroll-error">No products to load</p>
     </div>
-    <button class="view-more-button uk-button uk-button-primary uk-align-center uk-margin-remove-top">Load More Products</button>
 </div>
+
+<script>
+  var infScroll = new InfiniteScroll( '.archive-posts', {
+    path: '.next',
+    append: '.item',
+    // button: '.view-more-button',
+    // using button, disable loading on scroll 
+    // scrollThreshold: false,
+    status: '.page-load-status',
+    hideNav: '.pagi'
+  });
+</script>

@@ -1,0 +1,12 @@
+#content.loading > * {
+    opacity:0.2;
+}
+
+#content.loading:before {
+    content: "Loading New Posts";
+    padding: 22px;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}

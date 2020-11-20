@@ -26,9 +26,9 @@
                       <a href="{{ function ('add_query_arg', 'grid-list', 'grid-view', '') }}" class="grid-toggle uk-button uk-button-default uk-button-small padding-0-10 uk-margin-small-right {{ grid_active_class }}"><span uk-icon="grid"></span></a>
                       <a href="{{ function ('add_query_arg', 'grid-list', 'list-view', '') }}" class="list-toggle uk-button uk-button-default uk-button-small padding-0-10 {{ list_active_class }}"><span uk-icon="icon: list"></span></a>
                   </div> -->
-                  <!-- <div class="uk-navbar-item min-height-40">
-                    <a class="uk-button uk-button-primary uk-button-small" href="#offcanvas-flip-reveal" uk-toggle><i class="fas fa-bars"></i> Filter by Category</a>
-                  </div> -->
+                  <div class="uk-navbar-item min-height-40">
+                    <a class="uk-button uk-button-default uk-button-small" href="#offcanvas-flip-reveal" uk-toggle><i class="fas fa-bars"></i> Category</a>
+                  </div>
               </div>
               {% endif %}
           </nav>
@@ -41,21 +41,27 @@
                       {% do action('woocommerce_before_shop_loop') %}
                   </div>
               </div>
-              <!-- <div class="uk-navbar-right pull-right-15">
+              <div class="uk-navbar-right pull-right-15">
                 <div class="uk-navbar-item min-height-40">
                   <a class="uk-button uk-button-default uk-button-small" href="#offcanvas-flip-reveal" uk-toggle>Filter</a>
                 </div>
-              </div> -->
+              </div>
           </nav>
       </div>
   </div>
 
-  <!-- <div id="offcanvas-flip-reveal" uk-offcanvas="mode: reveal; flip: true">
+  <div id="offcanvas-flip-reveal" uk-offcanvas="mode: reveal; flip: true">
       <div class="uk-offcanvas-bar uk-light dark-bg-black">
           <button class="uk-offcanvas-close" type="button" uk-close></button>
-          {% include 'sidebar-filters.twig' %}
+          <aside>
+          {% if sidebar_filters %}
+          	{{ sidebar_filters }}
+          {% else %}
+          Add the filters to the Woo Filters Area.
+          {% endif %}
+          </aside>
       </div>
-  </div> -->
+  </div>
 
   {% do action('woocommerce_archive_description') %}
 
@@ -76,8 +82,8 @@
   
   {% do action('woocommerce_after_shop_loop') %}
 
-  {% if is_search and is_paginated %}
-    {% include 'pagination.twig' %}
+  {% if is_paginated %}
+  {% include 'pagination.twig' with { pagination: posts.pagination({show_all: true, mid_size: 3, end_size: 2}) } %}
   {% endif %}
 
   {% do action('woocommerce_after_main_content') %}

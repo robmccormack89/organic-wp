@@ -138,12 +138,6 @@ function theme_woo_form_field_args( $args, $key, $value = null ) {
 }
 add_filter('woocommerce_form_field_args','theme_woo_form_field_args',10,3);
 
-// add woo_login_form action for custom login form template
-function get_login_form() {
-    get_template_part( 'template-parts/form-login' );
-}
-add_action( 'woo_login_form', 'get_login_form' );
-
 // add list product price
 function get_list_product_price() {
 
@@ -322,5 +316,7 @@ remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wr
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 ); // remove unnecessary wrapper div
 // cart
 remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' ); // remove cross sells from cart page -TEMPORARY
+
+remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
 
    

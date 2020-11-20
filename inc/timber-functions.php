@@ -9,12 +9,14 @@
 Timber::$dirname = array(
     'views/',
     'views/archive',
-    'views/pages',
     'views/parts',
-    'views/parts/comments',
-    'views/parts/sidebars',
+    'views/parts/footer',
+    'views/parts/header',
+    'views/parts/header/header-main',
+    'views/parts/tease',
     'views/singular',
     'views/woo',
+    'views/woo/parts',
 );
 
 /**
@@ -61,132 +63,134 @@ class OrganicTheme extends TimberSite
     {
         // Register widget areas
         if (function_exists('register_sidebar')) {
-          register_sidebar(array(
-              'name' => esc_html__('Left Sidebar Area', 'organic-theme'),
-              'id' => 'sidebar-left',
-              'description' => esc_html__('Sidebar Area for Left Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
-              'before_widget' => '',
-              'after_widget' => '',
-              'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-              'after_title' => '</span></h3>'
-          ));
-            register_sidebar(array(
-                'name' => esc_html__('Right Sidebar Area', 'organic-theme'),
-                'id' => 'sidebar-right',
-                'description' => esc_html__('Sidebar Area for Right Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-                'after_title' => '</span></h3>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Woo Cart Area', 'organic-theme'),
-                'id' => 'sidebar-woo-cart',
-                'description' => esc_html__('Sidebar Area for Woo Cart Area, best to add the Woo Cart Widget here.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-                'after_title' => '</span></h3>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Woo Sidebar Area', 'organic-theme'),
-                'id' => 'sidebar-woo',
-                'description' => esc_html__('Sidebar Area for Woocommerce.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-                'after_title' => '</span></h3>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Woo Filters Area', 'organic-theme'),
-                'id' => 'sidebar-woo-filters',
-                'description' => esc_html__('Sidebar Area for Woocommerce Filters.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-                'after_title' => '</span></h3>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Mega Menu Area', 'organic-theme'),
-                'id' => 'sidebar-megamenu',
-                'description' => esc_html__('Mega Menu area for Woocommerce Category Navigation.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '',
-                'after_title' => ''
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Main Footer Area', 'organic-theme'),
-                'id' => 'sidebar-footer',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="widget-title">',
-                'after_title' => '</h4>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Footer Area 1', 'organic-theme'),
-                'id' => 'sidebar-footer-1',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-                'after_title' => '</h4>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Footer Area 2', 'organic-theme'),
-                'id' => 'sidebar-footer-2',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-                'after_title' => '</h4>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Footer Area 3', 'organic-theme'),
-                'id' => 'sidebar-footer-3',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-                'after_title' => '</h4>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Footer Area 4', 'organic-theme'),
-                'id' => 'sidebar-footer-4',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-                'after_title' => '</h4>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Footer Area 5', 'organic-theme'),
-                'id' => 'sidebar-footer-5',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-                'after_title' => '</h4>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Footer Bottom Left Area', 'organic-theme'),
-                'id' => 'sidebar-footer-left',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="widget-title">',
-                'after_title' => '</h4>'
-            ));
-            register_sidebar(array(
-                'name' => esc_html__('Footer Bottom Right Area', 'organic-theme'),
-                'id' => 'sidebar-footer-right',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-                'before_widget' => '',
-                'after_widget' => '',
-                'before_title' => '<h4 class="widget-title">',
-                'after_title' => '</h4>'
-            ));
+          
+            // register_sidebar(array(
+            //     'name' => esc_html__('Left Sidebar Area', 'organic-theme'),
+            //     'id' => 'sidebar-left',
+            //     'description' => esc_html__('Sidebar Area for Left Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
+            //     'before_widget' => '',
+            //     'after_widget' => '',
+            //     'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
+            //     'after_title' => '</span></h3>'
+            // ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Right Sidebar Area', 'organic-theme'),
+            //       'id' => 'sidebar-right',
+            //       'description' => esc_html__('Sidebar Area for Right Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
+            //       'after_title' => '</span></h3>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Woo Cart Area', 'organic-theme'),
+            //       'id' => 'sidebar-woo-cart',
+            //       'description' => esc_html__('Sidebar Area for Woo Cart Area, best to add the Woo Cart Widget here.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
+            //       'after_title' => '</span></h3>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Woo Sidebar Area', 'organic-theme'),
+            //       'id' => 'sidebar-woo',
+            //       'description' => esc_html__('Sidebar Area for Woocommerce.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
+            //       'after_title' => '</span></h3>'
+            //   ));
+              register_sidebar(array(
+                  'name' => esc_html__('Woo Filters Area', 'organic-theme'),
+                  'id' => 'sidebar-woo-filters',
+                  'description' => esc_html__('Sidebar Area for Woocommerce Filters.', 'organic-theme'),
+                  'before_widget' => '',
+                  'after_widget' => '',
+                  'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
+                  'after_title' => '</span></h3>'
+              ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Mega Menu Area', 'organic-theme'),
+            //       'id' => 'sidebar-megamenu',
+            //       'description' => esc_html__('Mega Menu area for Woocommerce Category Navigation.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '',
+            //       'after_title' => ''
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Main Footer Area', 'organic-theme'),
+            //       'id' => 'sidebar-footer',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Footer Area 1', 'organic-theme'),
+            //       'id' => 'sidebar-footer-1',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Footer Area 2', 'organic-theme'),
+            //       'id' => 'sidebar-footer-2',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Footer Area 3', 'organic-theme'),
+            //       'id' => 'sidebar-footer-3',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Footer Area 4', 'organic-theme'),
+            //       'id' => 'sidebar-footer-4',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Footer Area 5', 'organic-theme'),
+            //       'id' => 'sidebar-footer-5',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Footer Bottom Left Area', 'organic-theme'),
+            //       'id' => 'sidebar-footer-left',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            //   register_sidebar(array(
+            //       'name' => esc_html__('Footer Bottom Right Area', 'organic-theme'),
+            //       'id' => 'sidebar-footer-right',
+            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+            //       'before_widget' => '',
+            //       'after_widget' => '',
+            //       'before_title' => '<h4 class="widget-title">',
+            //       'after_title' => '</h4>'
+            //   ));
+            
         }
     }
 
@@ -205,6 +209,7 @@ class OrganicTheme extends TimberSite
     {
         // set site context
         $context['site'] = $this;
+        
         // main menu args
         $main_menu_args = array(
             'depth' => 2,
@@ -215,10 +220,12 @@ class OrganicTheme extends TimberSite
         // checks for if the menus are present
         $context['has_menu_main'] = has_nav_menu( 'main' );
         $context['has_menu_mobile'] = has_nav_menu( 'mobile' );
+        
         // get the cutomizer logo option & set variable
         $theme_logo_id = get_theme_mod( 'custom_logo' );
         $theme_logo_url = wp_get_attachment_image_url( $theme_logo_id , 'full' );
         $context['theme_logo_url'] = $theme_logo_url;
+        
         // check to see if is paginated; see theme-functions.php
         $context['is_paginated'] = is_paginated();
         // check if is search archive
@@ -226,30 +233,23 @@ class OrganicTheme extends TimberSite
         // checks to see if is cart or if is checkout
         $context['is_cart'] = is_cart();
         $context['is_checkout'] = is_checkout();
+        
+        
         // get the sidebar widget areas
-        $context['sidebar_left'] = Timber::get_widgets('Left Sidebar Area');
-        $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');
-        $context['sidebar_footer'] = Timber::get_widgets('Main Footer Area');
-        $context['sidebar_cart'] = Timber::get_widgets('Woo Cart Area');
+        // $context['sidebar_left'] = Timber::get_widgets('Left Sidebar Area');
+        // $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');
+        // $context['sidebar_footer'] = Timber::get_widgets('Main Footer Area');
+        // $context['sidebar_cart'] = Timber::get_widgets('Woo Cart Area');
         $context['sidebar_filters'] = Timber::get_widgets('Woo Filters Area');
-        $context['sidebar_woo'] = Timber::get_widgets('Woo Sidebar Area');
-        $context['sidebar_megamenu'] = Timber::get_widgets('Mega Menu Area');
-        $context['sidebar_footer_1'] = Timber::get_widgets('Footer Area 1');
-        $context['sidebar_footer_2'] = Timber::get_widgets('Footer Area 2');
-        $context['sidebar_footer_3'] = Timber::get_widgets('Footer Area 3');
-        $context['sidebar_footer_4'] = Timber::get_widgets('Footer Area 4');
-        $context['sidebar_footer_5'] = Timber::get_widgets('Footer Area 5');
-        $context['sidebar_footer_left'] = Timber::get_widgets('Footer Bottom Left Area');
-        $context['sidebar_footer_right'] = Timber::get_widgets('Footer Bottom Right Area');
-        // set the article_width_classs variable
-        if ( is_page_template( 'page-templates/no-sidebar-template.php' ) ) {
-            $context['article_width_class'] = 'uk-width-1-1';
-        } else {
-            $context['article_width_class'] = 'uk-width-2-3@s';
-        };
-        // checks to see if it should be left sidebar, or right sidebar; depends on preferred template setup
-        $context['is_left_sidebar'] = is_page_template( 'page-templates/left-sidebar-template.php' );
-        $context['is_right_sidebar'] = is_single() || is_page() && !is_page_template(array('page-templates/left-sidebar-template.php', 'page-templates/no-sidebar-template.php'));
+        // $context['sidebar_woo'] = Timber::get_widgets('Woo Sidebar Area');
+        // $context['sidebar_megamenu'] = Timber::get_widgets('Mega Menu Area');
+        // $context['sidebar_footer_1'] = Timber::get_widgets('Footer Area 1');
+        // $context['sidebar_footer_2'] = Timber::get_widgets('Footer Area 2');
+        // $context['sidebar_footer_3'] = Timber::get_widgets('Footer Area 3');
+        // $context['sidebar_footer_4'] = Timber::get_widgets('Footer Area 4');
+        // $context['sidebar_footer_5'] = Timber::get_widgets('Footer Area 5');
+        // $context['sidebar_footer_left'] = Timber::get_widgets('Footer Bottom Left Area');
+        // $context['sidebar_footer_right'] = Timber::get_widgets('Footer Bottom Right Area');
 
         return $context;
     }
@@ -294,17 +294,62 @@ class OrganicTheme extends TimberSite
         add_image_size('organic-theme-cart-image', 80, 80, true);
         // add woo theme supports
         add_theme_support( 'woocommerce' );
-        // add_theme_support( 'wc-product-gallery-zoom' );
-        // add_theme_support( 'wc-product-gallery-lightbox' );
-        // add_theme_support( 'wc-product-gallery-slider' );
+        add_theme_support( 'wc-product-gallery-zoom' );
+        add_theme_support( 'wc-product-gallery-lightbox' );
+        add_theme_support( 'wc-product-gallery-slider' );
+        // stop the br tag madness in the content editor/s
+        remove_filter( 'the_content', 'wpautop' );
+        remove_filter( 'the_excerpt', 'wpautop' );
     }
     
     // enqueue theme assets
     public function organic_theme_enqueue_assets()
-    {
-        wp_enqueue_style('organic-theme-css', get_template_directory_uri() . '/assets/css/base.css');
-        wp_enqueue_script('organic-theme-js', get_template_directory_uri() . '/assets/js/main/main.js', '', '', false);
-        wp_enqueue_style('organic-theme-styles', get_stylesheet_uri());
+    {   
+        // jquery stuff
+        wp_enqueue_script( 'jquery' );
+      	// wp_enqueue_script( 'jquery-ui-autocomplete' );
+      	// wp_register_style( 'jquery-ui-styles','http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
+      	// wp_enqueue_style( 'jquery-ui-styles' );
+      
+        // custom scripts
+        wp_enqueue_script(
+            'global',
+            get_template_directory_uri() . '/assets/js/scripts.js',
+            array( 'jquery' ),
+            '1.0.0',
+            true
+        );
+        wp_localize_script(
+            'global',
+            'global',
+            array(
+                'ajax' => admin_url( 'admin-ajax.php' ),
+            )
+        );
+        // font awesome
+        wp_enqueue_style(
+            'fontawesome-theme-css',
+            get_template_directory_uri() . '/assets/css/all.min.css'
+        );
+        // theme assets
+        wp_enqueue_script(
+            'organic-theme-js',
+            get_template_directory_uri() . '/assets/js/main/main.js',
+            '',
+            '3.1.5',
+            false
+        );
+        wp_localize_script(
+            'organic-theme-js',
+            'myAjax', array('ajaxurl' => admin_url( 'admin-ajax.php'))
+        );
+        wp_enqueue_style(
+            'organic-theme-css',
+            get_template_directory_uri() . '/assets/css/base.css'
+        );
+        wp_enqueue_style(
+            'organic-theme-styles', get_stylesheet_uri()
+        );
     }
     
     // register theme widget

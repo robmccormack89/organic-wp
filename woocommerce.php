@@ -44,7 +44,7 @@ if ( is_singular( 'product' ) ) {
     if ( $query_var == 'grid-view' || $query_var == '' ) {
         $context['list_active_class'] = 'not-active';
         $context['grid_active_class'] = 'uk-active'; 
-        $context['grid_list_layout_class'] = 'uk-child-width-1-5@m';
+        $context['grid_list_layout_class'] = 'uk-child-width-1-4@m';
         $context['tease_template'] = 'tease-product.twig';    
     } elseif ( $query_var == 'list-view' ) {
         $context['grid_active_class'] = 'not-active';

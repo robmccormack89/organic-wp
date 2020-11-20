@@ -4,3 +4,4 @@ vendor/
 compilation_cache/
 .git
 .ftpconfig
+package-lock.json

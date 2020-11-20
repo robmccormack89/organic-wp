@@ -5,6 +5,9 @@
  * @package Organic_Theme
 */
 
+// stuff to say we need timber activated!! see TGM Plugin activation library for php
+require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
+
 // load Theme functions
 require get_template_directory() . '/inc/theme-functions.php';
 

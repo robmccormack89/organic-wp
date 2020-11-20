@@ -78,18 +78,10 @@ span.logo-title-text {
     max-width: 100px!important;
 }
 .uk-offcanvas-bar.uk-offcanvas-bar-animation.uk-offcanvas-slide.dark-bg-black {
-    background-image: url(https://organicforhealth.ie/wp-content/themes/organicwp-theme/assets/images/veg.jpg);
+    background-image: url(https://organicforhealth.ie/wp-content/themes/organicwp-theme/assets/images/veg_offcanvas.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-}
-.uk-offcanvas-bar.uk-offcanvas-bar-animation.uk-offcanvas-slide.dark-bg-black:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    top: 0;
-    background-color: #299169f2;
-    right: 0;
+    background-color: #fff0;
 }
 .uk-offcanvas-bar {
     left: -320px;

@@ -1,0 +1,20 @@
+<div class="">
+      
+    {% if pages is not empty %}
+    <table class="the-search-table uk-table uk-table-hover uk-table-divider uk-table-justify uk-table-middle uk-margin-remove">
+        <tbody>
+              {% for post in pages %}
+              {% include 'tease-ajax.twig' %}
+              {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="uk-text-emphasis uk-margin-remove">Sorry your search cannot find anything... Please Try again</p>
+    {% endif %}
+    
+
+</div>
+
+<div class="" hidden>
+    <a class="uk-button uk-button-text uk-text-center uk-align-center" href="{{ site.url }}?s={{ query_string }}">View All</a>
+</div>

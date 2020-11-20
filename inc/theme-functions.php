@@ -5,6 +5,104 @@
  * @package Organic_Theme
  */
  
+ //ajax search
+function new_ajax_search() {
+
+  $query = $_POST['query'];
+
+  $data = array(
+    'result' => 0,
+    'response' => ''
+  );
+
+  if (!empty($query)) {
+
+    $data['result'] = 1;
+
+    $cat_args = array(
+      'name'     => $query,
+    );
+    $product_categories = get_terms( 'product_cat', $cat_args );
+
+    $products = wc_get_products( array(
+      'status' => 'publish',
+      'limit' => -1,
+      'search_term' => $query,
+      'meta_query' => array(
+          array(
+              'key' => '_stock_status',
+              'value' => 'instock'
+          ),
+      )
+    ));
+    
+    $products_in_cat = wc_get_products(array(
+      'status' => 'publish',
+      'category' => $query,
+      'limit' => -1,
+
+    ));
+    
+    $the_new_args = array(
+        'posts_per_page' => -1,
+        'post_type' => 'product',
+        'orderby' => 'title',
+        'tax_query' => array(
+            'relation' => 'AND',
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $query
+            ),
+        ),
+    );
+    $the_new_query = new WP_Query( $the_new_args )
+
+    $query_string_upper = ucwords($query);
+
+    if (!empty($product_categories) || !empty($products) || !empty($products_in_cat) ) {
+
+      $response = '<ul class="">';
+
+      if (!empty($product_categories)) {
+        foreach ($product_categories as $product_cateory) {
+          $response .= '<li><a class="uk-link-text" href="' . get_term_link($product_cateory) . '">' . $product_cateory->name . ' <span class="uk-text-meta ajax-search-meta">Category</span></a></li>';
+        }
+      }
+
+      if (!empty($products)) {
+        foreach ($products as $product) {
+          $response .= '<li><a class="uk-link-text" href="' . get_permalink($product->id) . '">' . $product->name . ' <span class="uk-text-meta ajax-search-meta">Product</span></a></li>';
+        }
+      }
+      
+      if (!empty($products_in_cat)) {
+        foreach ($products_in_cat as $product_in_cat) {
+          $response .= '<li><a class="uk-link-text" href="' . get_permalink($product_in_cat->id) . '">' . $product_in_cat->name . ' ('.$query_string_upper.') <span class="uk-text-meta ajax-search-meta">Product</span></a></li>';
+        }
+      }
+      
+      if (!empty($the_new_query)) {
+        foreach ($the_new_query as $item) {
+          $response .= echo $item;
+        }
+      }
+
+      $response .= '</ul>';
+
+    }
+
+    $data['response'] = $response;
+
+  }
+
+  echo json_encode($data);
+
+  die();
+}
+add_action( 'wp_ajax_new_ajax_search', 'new_ajax_search' );
+add_action( 'wp_ajax_nopriv_new_ajax_search', 'new_ajax_search' );
+
 // check to see if page is a paginated page
 function is_paginated() {
    global $wp_query;
@@ -16,14 +114,25 @@ function is_paginated() {
 }
 
 // Remove pages from search results
-function exclude_pages_from_search($query) {
+function limit_searches_to_products($query) {
   
     if ( $query->is_main_query() && is_search() ) {
         $query->set( 'post_type', 'product' );
     }
     return $query;
 }
-add_filter( 'pre_get_posts','exclude_pages_from_search' );
+add_filter( 'pre_get_posts','limit_searches_to_products' );
+
+// Add support for 'search_term' query var (Add to functions file)
+function support_search_term_query_var( $query, $query_vars ) {
+    if( empty( $query_vars['search_term'] ) ) {
+        return $query;
+    }
+
+    $query['s'] = $query_vars['search_term'];
+    return $query;
+ }
+ add_filter( 'woocommerce_product_data_store_cpt_get_products_query', 'support_search_term_query_var', 10, 2 );
 
 // add custom url paramater key
 function custom_query_vars_filter($vars) {
@@ -36,13 +145,9 @@ add_filter( 'query_vars', 'custom_query_vars_filter' );
 function filter_wpseo_breadcrumb_separator($this_options_breadcrumbs_sep) {
     return '<i class="fas fa-angle-right fa-xs uk-padding-small uk-padding-remove-vertical"></i>';
 };
-// add the filter
 add_filter('wpseo_breadcrumb_separator', 'filter_wpseo_breadcrumb_separator', 10, 1);
 
-// stuff to say we need timber activated!! see TGM Plugin activation library for php
-require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
-add_action('tgmpa_register', 'organic_theme_register_required_plugins');
-
+// register the required plugins. see TGM Plugin activation library for php
 function organic_theme_register_required_plugins() {
     $plugins = array(
         array(
@@ -65,3 +170,4 @@ function organic_theme_register_required_plugins() {
     );
     tgmpa($plugins, $config);
 }
+add_action('tgmpa_register', 'organic_theme_register_required_plugins');

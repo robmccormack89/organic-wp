@@ -4,10 +4,18 @@
     <head>
         <meta charset="{{site.charset}}" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- additional styles per template -->
+        {% block spec_styles %}
+        {% endblock %}
+        <!-- /additional styles per template -->
+        
         <!-- wp header -->
         {{ function('wp_head') }}
         <!-- /wp header -->
-        <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/all.min.css">
+        
+        {% include 'styles.twig' %}
+        
     </head>
     
     <!-- body classes go here -->
@@ -44,14 +52,14 @@
         <!-- wp footer -->
         {{ function('wp_footer') }}
         <!-- /wp footer -->
+        
+        <!-- additional scripts per template -->
+        {% block spec_scripts %}
+        {% endblock %}
+        <!-- /additional scripts per template -->
       
     </body>
     <!-- /body -->
-    
-    {% if is_paginated %}
-    <script src="/wp-content/themes/organicwp-theme/assets/js/main/scroll.js"></script>
-    {% endif %}
-    <script src="/wp-content/themes/organicwp-theme/assets/js/main/custom.js"></script>
     
 </html>
 

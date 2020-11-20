@@ -1,0 +1,285 @@
+{% extends 'base.twig' %}
+
+{% block spec_styles %}
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- ajax search -->
+<style>
+  .search-results-ajax {
+      position: absolute;
+      width: 100%;
+      background-color: #fff;
+      border-left: 1px solid #e6e6e6;
+      border-right: 1px solid #e6e6e6;
+      z-index: 9999999;
+      -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.1);
+      box-shadow: 0 3px 6px rgba(0,0,0,.1);
+  }
+  .search-results-ajax ul {
+      padding: 0;
+      margin: 10px 0;
+  }
+  .search-results-ajax ul li {
+      list-style: none;
+  }
+  .search-results-ajax ul li a {
+      display: block;
+      padding: 8px 15px;
+  }
+  .search-results-ajax ul li a:hover {
+      background-color: #f5f5f5;
+      color: #116444;
+  }
+  .search-results-ajax ul li a, .search-results-ajax ul li a:hover {
+      text-decoration: none;
+  }
+  .search-results-ajax ul li a span.uk-text-meta.ajax-search-meta {
+      float: right;
+      font-size: 11px;
+  }
+  .search-results-ajax ::-webkit-scrollbar-track
+  {
+  	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  	background-color: #F5F5F5;
+  	border-radius: 10px;
+  }
+  .search-results-ajax ::-webkit-scrollbar
+  {
+  	width: 10px;
+  	background-color: #F5F5F5;
+  }
+  .search-results-ajax ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #20845e;
+  }
+</style>
+
+<!-- swiper -->
+<style>
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div data-template="about.twig">
+  
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=24');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-primary uk-light uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide One</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=25');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-default uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Two</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=26');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-primary uk-light uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Three</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=27');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-default uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Four</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=28');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-primary uk-light uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Five</h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <!-- <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
+  </div>
+  
+  {% include 'breads.twig' %}
+
+  {% include 'site-notice.twig' %}
+    
+  <div class="uk-section uk-section-small">
+    
+    <div class="uk-container uk-container-small">
+      
+      <article id="page-{{post.ID}}" class=" uk-article {{post.class}}">
+        
+        <h1 class="uk-article-title page-title uk-margin-medium-bottom">Search Form</h1>
+
+        <div class="the-content uk-margin-bottom">
+          
+          <div class="top-search-bar">
+            <form id="form_validate_search" class="form_search_main uk-width-1-1 uk-inline" role="search" method="get" action="{{site.url}}" accept-charset="utf-8" novalidate="novalidate">
+              <div class="uk-search uk-search-default uk-width-1-1">
+                <input type="text" name="search" maxlength="300" pattern=".*\S+.*" id="input_search" class="form-control uk-input uk-search-input uk-form-width-large" value="" placeholder="Search..." required="" autocomplete="off"
+                  aria-invalid="true">
+              </div>
+              <div id="response_search_results" class="search-results-ajax uk-height-max-medium uk-overflow-auto"></div>
+            </form>
+          </div>
+            
+        </div>
+      
+      </article>
+      
+    </div>
+
+  </div>
+  
+</div>
+
+{% endblock  %}
+
+{% block spec_scripts %}
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- latest ajax -->
+<script>
+
+  jQuery(function($) {
+
+    $(document).on("input", "#input_search",  _.debounce(function() {
+      
+      var input_value = $(this).val();
+      var query = input_value;
+      var req;
+      
+      if (query.length < 2) {
+        $('#response_search_results').hide();
+        return false;
+      }
+      
+      if (req != null) req.abort();
+
+      req = $.ajax({
+        type: 'post',
+        url: myAjax.ajaxurl,
+        data: {
+          action: 'new_ajax_search',
+          query: query
+        },
+        success: function(response){
+          
+          if(!response) {
+              alert('empty');
+              $('#response_search_results').hide();
+              return;
+          }
+          
+          var obj = JSON.parse(response);
+          
+          if (obj.result == 1) {
+            document.getElementById("response_search_results").innerHTML = obj.response;
+            $('#response_search_results').show();
+          }
+          
+          $('#response_search_results ul li a').wrapInTag({
+            words: [input_value]
+          });
+          
+        },
+        error: function (request, status, error) {
+            $('#response_search_results').hide();
+        }
+        
+      });
+    }, 500));
+
+    $(document).on('click', function (e) {
+        if ($(e.target).closest(".top-search-bar").length === 0) {
+            $("#response_search_results").hide();
+        }
+    });
+
+    $.fn.wrapInTag = function (opts) {
+        function getText(obj) {
+            return obj.textContent ? obj.textContent : obj.innerText;
+        }
+
+        var tag = opts.tag || 'strong',
+            words = opts.words || [],
+            regex = RegExp(words.join('|'), 'gi'),
+            replacement = '<' + tag + '>$&</' + tag + '>';
+        $(this).contents().each(function () {
+            if (this.nodeType === 3) {
+                $(this).replaceWith(getText(this).replace(regex, replacement));
+            } else if (!opts.ignoreChildNodes) {
+                $(this).wrapInTag(opts);
+            }
+        });
+    };
+      
+  });
+
+</script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    centeredSlides: true,
+    // autoplay: {
+    //   delay: 4000,
+    //   disableOnInteraction: true,
+    // },
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'progressbar',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
+{% endblock %}
