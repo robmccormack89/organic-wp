@@ -37,8 +37,8 @@
     border-radius: 10px;
   }
   .search-results-ajax::-webkit-scrollbar {
-  	width: 10px;
-  	background-color: #F5F5F5;
+    width: 10px;
+    background-color: #F5F5F5;
   }
   .search-results-ajax::-webkit-scrollbar-thumb {
     border-radius: 10px;
