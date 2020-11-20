@@ -1,44 +1,42 @@
 <style>
   .search-results-ajax {
-      position: absolute;
-      width: 100%;
-      background-color: #fff;
-      border-left: 1px solid #e6e6e6;
-      border-right: 1px solid #e6e6e6;
-      z-index: 9999999;
-      -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.1);
-      box-shadow: 0 3px 6px rgba(0,0,0,.1);
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    z-index: 9999999;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.1);
+    box-shadow: 0 3px 6px rgba(0,0,0,.1);
   }
   .search-results-ajax ul {
-      padding: 0;
-      margin: 10px 0;
+    padding: 0;
+    margin: 10px 0;
   }
   .search-results-ajax ul li {
-      list-style: none;
+    list-style: none;
   }
   .search-results-ajax ul li a {
-      display: block;
-      padding: 8px 15px;
+    display: block;
+    padding: 8px 15px;
   }
   .search-results-ajax ul li a:hover {
-      background-color: #f5f5f5;
-      color: #116444;
+    background-color: #f5f5f5;
+    color: #116444;
   }
   .search-results-ajax ul li a, .search-results-ajax ul li a:hover {
-      text-decoration: none;
+    text-decoration: none;
   }
   .search-results-ajax ul li a span.uk-text-meta.ajax-search-meta {
-      float: right;
-      font-size: 11px;
+    float: right;
+    font-size: 11px;
   }
-  .search-results-ajax::-webkit-scrollbar-track
-  {
-  	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  	background-color: #F5F5F5;
-  	border-radius: 10px;
+  .search-results-ajax::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
   }
-  .search-results-ajax::-webkit-scrollbar
-  {
+  .search-results-ajax::-webkit-scrollbar {
   	width: 10px;
   	background-color: #F5F5F5;
   }
@@ -184,9 +182,9 @@ add_action( 'wp_ajax_nopriv_theme_ajax_search', 'theme_ajax_search' );
        success: function(response){
          
          if(!response) {
-             alert('empty');
-             $('#response_search_results').hide();
-             return;
+           alert('empty');
+           $('#response_search_results').hide();
+           return;
          }
          
          var obj = JSON.parse(response);
@@ -202,34 +200,33 @@ add_action( 'wp_ajax_nopriv_theme_ajax_search', 'theme_ajax_search' );
          
        },
        error: function (request, status, error) {
-           $('#response_search_results').hide();
+         $('#response_search_results').hide();
        }
        
      });
    }, 500));
 
    $(document).on('click', function (e) {
-       if ($(e.target).closest(".top-search-bar").length === 0) {
-           $("#response_search_results").hide();
-       }
+     if ($(e.target).closest(".top-search-bar").length === 0) {
+       $("#response_search_results").hide();
+     }
    });
 
    $.fn.wrapInTag = function (opts) {
-       function getText(obj) {
-           return obj.textContent ? obj.textContent : obj.innerText;
+     function getText(obj) {
+       return obj.textContent ? obj.textContent : obj.innerText;
+     }
+     var tag = opts.tag || 'strong',
+       words = opts.words || [],
+       regex = RegExp(words.join('|'), 'gi'),
+       replacement = '<' + tag + '>$&</' + tag + '>';
+     $(this).contents().each(function () {
+       if (this.nodeType === 3) {
+         $(this).replaceWith(getText(this).replace(regex, replacement));
+       } else if (!opts.ignoreChildNodes) {
+         $(this).wrapInTag(opts);
        }
-
-       var tag = opts.tag || 'strong',
-           words = opts.words || [],
-           regex = RegExp(words.join('|'), 'gi'),
-           replacement = '<' + tag + '>$&</' + tag + '>';
-       $(this).contents().each(function () {
-           if (this.nodeType === 3) {
-               $(this).replaceWith(getText(this).replace(regex, replacement));
-           } else if (!opts.ignoreChildNodes) {
-               $(this).wrapInTag(opts);
-           }
-       });
+     });
    };
      
  });
