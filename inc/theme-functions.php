@@ -8,19 +8,21 @@
  //ajax search
 function new_ajax_search() {
 
-  $query = $_POST['query'];
-
   $data = array(
     'result' => 0,
     'response' => ''
   );
+  
+  $query = $_POST['query'];
+  $query_string_upper = ucwords($query);
 
   if (!empty($query)) {
 
     $data['result'] = 1;
 
     $cat_args = array(
-      'name'     => $query,
+      'fields' => 'all',
+      'name__like' => $query, 
     );
     $product_categories = get_terms( 'product_cat', $cat_args );
 
@@ -29,36 +31,38 @@ function new_ajax_search() {
       'limit' => -1,
       'search_term' => $query,
       'meta_query' => array(
-          array(
-              'key' => '_stock_status',
-              'value' => 'instock'
-          ),
+        array(
+          'key' => '_stock_status',
+          'value' => 'instock'
+        ),
       )
     ));
     
-    $products_in_cat = wc_get_products(array(
-      'status' => 'publish',
-      'category' => $query,
-      'limit' => -1,
-
+    $matching_terms = get_terms( array(
+      'taxonomy' => 'product_cat',
+      'fields' => 'slugs',
+      'name__like' => $query, 
     ));
-    
-    $the_new_args = array(
-        'posts_per_page' => -1,
-        'post_type' => 'product',
-        'orderby' => 'title',
-        'tax_query' => array(
-            'relation' => 'AND',
-            array(
-                'taxonomy' => 'product_cat',
-                'field' => 'slug',
-                'terms' => $query
-            ),
+    $products_in_cat_args = array(
+      'posts_per_page' => -1,
+      'post_type' => 'product',
+      'orderby' => 'title',
+      'meta_query' => array(
+        array(
+          'key' => '_stock_status',
+          'value' => 'instock'
         ),
+      ),
+      'tax_query' => array(
+        'relation' => 'AND',
+        array(
+          'taxonomy' => 'product_cat',
+          'field' => 'slug',
+          'terms' => $matching_terms
+        ),
+      ),
     );
-    $the_new_query = new WP_Query( $the_new_args )
-
-    $query_string_upper = ucwords($query);
+    $products_in_cat = new Timber\PostQuery($products_in_cat_args);
 
     if (!empty($product_categories) || !empty($products) || !empty($products_in_cat) ) {
 
@@ -78,13 +82,7 @@ function new_ajax_search() {
       
       if (!empty($products_in_cat)) {
         foreach ($products_in_cat as $product_in_cat) {
-          $response .= '<li><a class="uk-link-text" href="' . get_permalink($product_in_cat->id) . '">' . $product_in_cat->name . ' ('.$query_string_upper.') <span class="uk-text-meta ajax-search-meta">Product</span></a></li>';
-        }
-      }
-      
-      if (!empty($the_new_query)) {
-        foreach ($the_new_query as $item) {
-          $response .= echo $item;
+          $response .= '<li><a class="uk-link-text" href="' . get_permalink($product_in_cat->id) . '">' . $product_in_cat->title . ' ('.$query_string_upper.') <span class="uk-text-meta ajax-search-meta">Product</span></a></li>';
         }
       }
 

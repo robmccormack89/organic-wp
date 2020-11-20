@@ -234,7 +234,6 @@ class OrganicTheme extends TimberSite
         $context['is_cart'] = is_cart();
         $context['is_checkout'] = is_checkout();
         
-        
         // get the sidebar widget areas
         // $context['sidebar_left'] = Timber::get_widgets('Left Sidebar Area');
         // $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');
