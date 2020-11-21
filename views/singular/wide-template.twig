@@ -1,37 +1,32 @@
-{% extends 'base.twig' %}
+{% extends "base.twig" %}
+
 {% block content %}
 
-<div data-template="wide-template.twig">
+<div class="uk-container" data-template="wide-template.twig">
   
   {% include 'breads.twig' %}
-
-  {% include 'site-notice.twig' %}
     
   <div class="uk-section uk-section-small">
-    
-    <div class="uk-container">
       
-      <article id="page-{{post.ID}}" class=" uk-article {{post.class}}">
+    <article id="page-{{post.ID}}" class=" uk-article {{post.class}}">
+      
+      <h1 class="uk-article-title page-title">{{post.title}}</h1>
+      
+      <hr class="uk-divider-small">
+      
+      <div class="article-content">
         
-        <h1 class="uk-article-title page-title uk-margin-medium-bottom">{{post.title}}</h1>
+        {% if post.thumbnail %}
+        <figure>
+          <img data-src="{{ post.thumbnail.src('organic-theme-wide-template-featured-image') }}" width="1000" height="500" alt="{{ post.thumbnail.alt }}" uk-img>
+        </figure>
+        {% endif %}
+        
+        {{post.content}}
 
-        <div class="the-content uk-margin-bottom">
-          
-          <p>
-            {% if post.thumbnail %}
-            <figure>
-              <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
-            </figure>
-            {% endif %}
-          </p>
-          
-          {{post.content}}
-
-        </div>
-      
-      </article>
-      
-    </div>
+      </div>
+    
+    </article>
 
   </div>
   

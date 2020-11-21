@@ -1,14 +1,11 @@
-<div id="MainProductArchive" class="uk-section uk-section-small uk-section-default padding-remove-top" data-template="product-archive.twig">
-  <div id="MainProductArchive" class="uk-article">
-    <div class="uk-margin-bottom">
-      <div id="ProductGrid" class="archive-posts uk-child-width-1-2 {{grid_list_layout_class}} uk-grid-small" uk-grid="masonry: true">
-      {% for post in products %}
-        {% include [tease_template] %}
-      {% endfor %}
-      {% if products is empty %}
-        {% do action('woocommerce_no_products_found') %}
-      {% endif %}
-      </div>
-    </div>
+<div id="MainProductArchive" data-template="product-archive.twig">
+  <div id="ProductGrid" class="archive-posts products uk-child-width-1-2 {{grid_list_layout_class}} uk-grid-small uk-margin-large-bottom" uk-grid="masonry: true">
+  {% for post in products %}
+    {% include [tease_template] %}
+  {% endfor %}
+  {% if products is empty %}
+    {% do action('woocommerce_no_products_found') %}
+  {% endif %}
   </div>
 </div>
+{% include 'pagination.twig' with { pagination: products.pagination({show_all: true, mid_size: 3, end_size: 2}) } %}

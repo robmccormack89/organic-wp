@@ -1,41 +1,34 @@
 {% extends 'base.twig' %}
-{% block content %}
 
+{% block spec_styles %}
 <style>
   .uk-container-xsmall {
     max-width: 500px!important;
   }
 </style>
+{% endblock %}
 
-<div data-template="woo-single.twig">
+{% block content %}
+
+<div class="uk-container" data-template="woo-single.twig">
 
   {% include 'breads.twig' %}
 
-  {% include 'site-notice.twig' %}
-
-  <div class="uk-container">
+  {% do action('woocommerce_before_single_product') %}
   
-    {% do action('woocommerce_before_main_content') %}
-    
-    {% do action('woocommerce_before_single_product') %}
-  
-  </div>
+  <section class="uk-section uk-section-small">
 
-  <div class="uk-container uk-container-small">
-    
-    <div class="uk-section uk-section-small">
+    <div class="uk-container uk-container-small">
         
       <div id="product-{{post.id}}" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}" uk-grid>
 
-        <div class="entry-images uk-width-1-2@s single-product-images">
-          <div>
-            {% do action('woocommerce_before_single_product_summary') %}
-          </div>
+        <div class="uk-width-1-2@s entry-images single-product-images">
+          {% do action('woocommerce_before_single_product_summary') %}
         </div>
 
-        <div class="uk-width-1-2@s">
+        <div class="uk-width-1-2@s product-info">
           {% do action('woocommerce_single_product_summary') %}
-          Product/Delivery type: <span class="uk-text-primary">{{shipping_class}}</span> 
+          <p hidden>Product/Delivery type: <span class="uk-text-primary">{{shipping_class}}</span></p>
         </div>
 
         <meta itemprop="url" content="{{ post.link }}" />
@@ -44,11 +37,11 @@
         
     </div>
     
-    {% do action('woocommerce_after_single_product_summary') %}
+  </section>
 
-    {% do action('woocommerce_after_single_product') %}
-  
-  </div>
+  {% do action('woocommerce_after_single_product_summary') %}
+
+  {% do action('woocommerce_after_single_product') %}
 
 </div>
 

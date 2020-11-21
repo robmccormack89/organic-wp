@@ -5,6 +5,68 @@
  * @package Organic_Theme
  */
  
+ 
+function render_more_products() {
+  
+  $query = $_POST['cat_slug'];
+  $query_string = implode($query);
+  
+  // Static base - making it dynamic is highly recommended
+  $base = '/shop/?product_cat='.$query_string;
+  $orig_req_uri = $_SERVER['REQUEST_URI'];
+  // Overwrite the REQUEST_URI variable
+  $_SERVER['REQUEST_URI'] = $base;
+  
+  global $paged;
+  if (!isset($paged) || !$paged){
+    $paged = 1;
+  }
+  $context = Timber::context();
+
+  $additional_products = new Timber\PostQuery( array(
+   
+    'posts_per_page' => 8,
+    'paged' => $paged,
+    'orderby' => 'menu_order',
+    'order'   => 'ASC',
+    'post_type' => 'product',
+    'post_status' => 'publish',
+    'meta_query' => array(
+       array(
+         'key' => '_stock_status',
+         'value' => 'instock'
+       ),
+    ),
+    'tax_query' => array(
+      'relation' => 'AND',
+      array(
+        'taxonomy' => 'product_cat',
+        'field' => 'slug',
+        'terms' => $query,
+      ),
+    ),
+
+  ));
+
+  $context['products'] = $additional_products;
+   
+  Timber::render('product-archive.twig', $context);
+
+  // Restore the original REQUEST_URI - in case anything else would resort on it
+  $_SERVER['REQUEST_URI'] = $orig_req_uri;
+
+  die();
+
+}
+add_action( 'wp_ajax_render_more_products', 'render_more_products' );
+add_action( 'wp_ajax_nopriv_render_more_products', 'render_more_products' );
+ 
+ // Remove tags support from posts
+function myprefix_unregister_tags() {
+  unregister_taxonomy_for_object_type('post_tag', 'post');
+}
+add_action('init', 'myprefix_unregister_tags');
+ 
  //ajax search
 function new_ajax_search() {
 

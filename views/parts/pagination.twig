@@ -1,5 +1,5 @@
 <div data-template="pagination.twig">
-  {% if is_paginated %}
+  {% if pagination.pages %}
   <div class="uk-padding pagi uk-hidden">
     <ul class="uk-pagination uk-flex-center">
       {% if pagination.prev %}
@@ -31,8 +31,8 @@
         <span class="loader-ellips__dot"></span>
         <span class="loader-ellips__dot"></span>
       </div>
-      <p class="infinite-scroll-last">No more Products</p>
-      <p class="infinite-scroll-error">No products to load</p>
+      <p class="infinite-scroll-last">No more items</p>
+      <p class="infinite-scroll-error">No items to load</p>
     </div>
   </div>
   <script>

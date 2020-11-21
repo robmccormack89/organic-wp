@@ -1,0 +1,12 @@
+<div id="MainProductArchive" data-template="product-archive.twig">
+  <div id="ProductGrid" class="archive-posts products uk-child-width-1-2 uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true">
+  {% for post in posts %}
+    {% include 'tease-product-ajax.twig' %}
+  {% endfor %}
+  {% if posts is empty %}
+    {% do action('woocommerce_no_products_found') %}
+  {% endif %}
+  </div>
+</div>
+
+{% include 'pagination.twig' with { pagination: posts.pagination({show_all: true, mid_size: 3, end_size: 2}) } %}

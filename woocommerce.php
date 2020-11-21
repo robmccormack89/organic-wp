@@ -38,21 +38,6 @@ if ( is_singular( 'product' ) ) {
     $posts = new Timber\PostQuery();
     // set main query as products cariable 
     $context['products'] = $posts;
-    
-    $query_var = get_query_var('grid-list');
-    
-    if ( $query_var == 'grid-view' || $query_var == '' ) {
-        $context['list_active_class'] = 'not-active';
-        $context['grid_active_class'] = 'uk-active'; 
-        $context['grid_list_layout_class'] = 'uk-child-width-1-4@m';
-        $context['tease_template'] = 'tease-product.twig';    
-    } elseif ( $query_var == 'list-view' ) {
-        $context['grid_active_class'] = 'not-active';
-        $context['list_active_class'] = 'uk-active';
-        $context['grid_list_layout_class'] = 'uk-child-width-1-1@m'; 
-        $context['tease_template'] = 'tease-product-list.twig';   
-    }
-
 
     // if is product category archive
     if ( is_product_category() ) {
@@ -69,23 +54,8 @@ if ( is_singular( 'product' ) ) {
     
     // if is shop page
     if ( is_shop() ) {
-      
         // set shop page archive title
         $context['title'] = 'Shop';
-        
-        $additional_products = wc_get_products( array(
-          'status' => 'publish',
-          'limit' => -1,
-          'category' => 'fruit',
-          'meta_query' => array(
-            array(
-              'key' => '_stock_status',
-              'value' => 'instock'
-            ),
-          )
-        ));
-        $context['more_products'] = $additional_products;  
-        
     };
 
     // render archive woo template

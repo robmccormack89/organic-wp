@@ -289,34 +289,31 @@ function theme_woo_script_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'theme_woo_script_styles', 99 );
 
-// archive
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 ); // reorder catalog in ProductToolbar from 3rd
+// cart
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' ); // remove cross sells from cart page - TEMPORARY
+// remove default woo breadcrumbs (archive)
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+// remove woo product result count (archive)
 remove_action( 'woocommerce_before_shop_loop' , 'woocommerce_result_count', 20 );
+// remove  woo shop toolbar pagination (archive)
 remove_action( 'woocommerce_before_shop_loop', 'storefront_woocommerce_pagination', 30 );
-add_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 ); // reorder catalog in ProductToolbar to 1st
-// single product
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 ); // remove upsells -TEMPORARY
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 ); // remove related -TEMPORARY
+// remove main default woo pagination (archive)
+remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
+// remove single product sales flash (single)
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
-add_action( 'woocommerce_after_single_product', 'woocommerce_upsell_display', 15 ); // remove upsells -TEMPORARY
-add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_products', 20 ); // remove related -TEMPORARY
+// remove unneccesary default woo wrapper (archive)
+remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 ); // wrapper start
+remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 ); // wrapper end
 // tease product
 remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open' ); // remove unnecessary link open html 
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close' ); // remove unnecessary link close html 
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail' ); // remove standard product image
 remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title' ); // remove standard product title
-// woo notices
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 ); // takes notices out of ProductToolbar
-remove_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 ); // takes notices out of ProductToolbar
-add_action( 'woocommerce_before_main_content', 'woocommerce_output_all_notices', 40 ); // put notices back here, where breadcrumbs are
-add_action( 'woocommerce_before_main_content', 'wc_print_notices', 50 ); // put notices back here, where breadcrumbs are
-// general
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 ); // remove unnecessary wrapper div
-remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 ); // remove unnecessary wrapper div
-// cart
-remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' ); // remove cross sells from cart page -TEMPORARY
-
-remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
+// reorder catalog in ProductToolbar from 3rd to 1st
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 ); // unset catalog ordering
+add_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 ); // and reset it as first
+// reposition woo notices on archives
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 ); // take notices out of ProductToolbar
+add_action( 'woocommerce_before_main_content', 'woocommerce_output_all_notices', 40 ); // and put theme back here, where breadcrumbs are
 
    

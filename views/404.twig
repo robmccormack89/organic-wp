@@ -2,35 +2,32 @@
 
 {% block content %}
 
-<div data-template="404.twig">
+<div class="uk-container" data-template="404.twig">
   
   {% include 'breads.twig' %}
     
   <div class="uk-section uk-section-small">
-    
-    <div class="uk-container">
       
-      <article id="page-404" class="uk-article">
+    <article class="uk-article">
+      
+      <h1 class="uk-article-title page-title">This page or item doesnt exist</h1>
+      
+      <hr class="uk-divider-small">
+
+      <div class="article-content">
         
-        <h1 class="uk-article-title page-title uk-text-uppercase uk-margin-medium-bottom"><span>This page or item doesnt exist</span></h1>
+        <p>Sorry, we couldn't find what you're looking for. You can try searching for something using the Search Form below.</p>
 
-        <div class="the-content uk-margin-bottom">
-          
-          <p>Sorry, we couldn't find what you're looking for.</p>
-          <p>
-            <div class="">
-              <form class="uk-search uk-search-default uk-width-1-1 search-form" role="search" method="get" action="{{site.url}}">
-                <span uk-search-icon></span>
-                <input class="uk-search-input" name="s" type="search" placeholder="Search...">
-              </form>
-            </div>
-          </p>
+        <form class="uk-search uk-search-default uk-width-1-1 search-form" role="search" method="get" action="{{site.url}}">
+          <span uk-search-icon></span>
+          <input class="uk-search-input" name="s" type="search" placeholder="Search this website...">
+        </form>
+        
+        <a class="uk-button uk-button-text uk-margin-large-top" href="/">Back to Home</a>
 
-        </div>
-      
-      </article>
-      
-    </div>
+      </div>
+    
+    </article>
 
   </div>
   

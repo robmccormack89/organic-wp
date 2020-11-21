@@ -67,133 +67,6 @@ class OrganicTheme extends TimberSite
     {
         // Register widget areas
         if (function_exists('register_sidebar')) {
-          
-            // register_sidebar(array(
-            //     'name' => esc_html__('Left Sidebar Area', 'organic-theme'),
-            //     'id' => 'sidebar-left',
-            //     'description' => esc_html__('Sidebar Area for Left Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
-            //     'before_widget' => '',
-            //     'after_widget' => '',
-            //     'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-            //     'after_title' => '</span></h3>'
-            // ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Right Sidebar Area', 'organic-theme'),
-            //       'id' => 'sidebar-right',
-            //       'description' => esc_html__('Sidebar Area for Right Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-            //       'after_title' => '</span></h3>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Woo Cart Area', 'organic-theme'),
-            //       'id' => 'sidebar-woo-cart',
-            //       'description' => esc_html__('Sidebar Area for Woo Cart Area, best to add the Woo Cart Widget here.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-            //       'after_title' => '</span></h3>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Woo Sidebar Area', 'organic-theme'),
-            //       'id' => 'sidebar-woo',
-            //       'description' => esc_html__('Sidebar Area for Woocommerce.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-            //       'after_title' => '</span></h3>'
-            //   ));
-              register_sidebar(array(
-                  'name' => esc_html__('Woo Filters Area', 'organic-theme'),
-                  'id' => 'sidebar-woo-filters',
-                  'description' => esc_html__('Sidebar Area for Woocommerce Filters.', 'organic-theme'),
-                  'before_widget' => '',
-                  'after_widget' => '',
-                  'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
-                  'after_title' => '</span></h3>'
-              ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Mega Menu Area', 'organic-theme'),
-            //       'id' => 'sidebar-megamenu',
-            //       'description' => esc_html__('Mega Menu area for Woocommerce Category Navigation.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '',
-            //       'after_title' => ''
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Main Footer Area', 'organic-theme'),
-            //       'id' => 'sidebar-footer',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Footer Area 1', 'organic-theme'),
-            //       'id' => 'sidebar-footer-1',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Footer Area 2', 'organic-theme'),
-            //       'id' => 'sidebar-footer-2',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Footer Area 3', 'organic-theme'),
-            //       'id' => 'sidebar-footer-3',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Footer Area 4', 'organic-theme'),
-            //       'id' => 'sidebar-footer-4',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Footer Area 5', 'organic-theme'),
-            //       'id' => 'sidebar-footer-5',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Footer Bottom Left Area', 'organic-theme'),
-            //       'id' => 'sidebar-footer-left',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
-            //   register_sidebar(array(
-            //       'name' => esc_html__('Footer Bottom Right Area', 'organic-theme'),
-            //       'id' => 'sidebar-footer-right',
-            //       'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
-            //       'before_widget' => '',
-            //       'after_widget' => '',
-            //       'before_title' => '<h4 class="widget-title">',
-            //       'after_title' => '</h4>'
-            //   ));
             
         }
     }
@@ -238,21 +111,19 @@ class OrganicTheme extends TimberSite
         $context['is_cart'] = is_cart();
         $context['is_checkout'] = is_checkout();
         
-        // get the sidebar widget areas
-        // $context['sidebar_left'] = Timber::get_widgets('Left Sidebar Area');
-        // $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');
-        // $context['sidebar_footer'] = Timber::get_widgets('Main Footer Area');
-        // $context['sidebar_cart'] = Timber::get_widgets('Woo Cart Area');
-        $context['sidebar_filters'] = Timber::get_widgets('Woo Filters Area');
-        // $context['sidebar_woo'] = Timber::get_widgets('Woo Sidebar Area');
-        // $context['sidebar_megamenu'] = Timber::get_widgets('Mega Menu Area');
-        // $context['sidebar_footer_1'] = Timber::get_widgets('Footer Area 1');
-        // $context['sidebar_footer_2'] = Timber::get_widgets('Footer Area 2');
-        // $context['sidebar_footer_3'] = Timber::get_widgets('Footer Area 3');
-        // $context['sidebar_footer_4'] = Timber::get_widgets('Footer Area 4');
-        // $context['sidebar_footer_5'] = Timber::get_widgets('Footer Area 5');
-        // $context['sidebar_footer_left'] = Timber::get_widgets('Footer Bottom Left Area');
-        // $context['sidebar_footer_right'] = Timber::get_widgets('Footer Bottom Right Area');
+        $query_var = get_query_var('grid-list');
+        
+        if ( $query_var == 'grid-view' || $query_var == '' ) {
+          $context['list_active_class'] = 'not-active';
+          $context['grid_active_class'] = 'uk-active'; 
+          $context['grid_list_layout_class'] = 'uk-child-width-1-4@m';
+          $context['tease_template'] = 'tease-product.twig';    
+        } elseif ( $query_var == 'list-view' ) {
+          $context['grid_active_class'] = 'not-active';
+          $context['list_active_class'] = 'uk-active';
+          $context['grid_list_layout_class'] = 'uk-child-width-1-1@m'; 
+          $context['tease_template'] = 'tease-product-list.twig';   
+        }
 
         return $context;
     }
@@ -292,6 +163,7 @@ class OrganicTheme extends TimberSite
         ));
         // add custom thumbs sizes.
         add_image_size('organic-theme-featured-image-archive', 800, 300, true);
+        add_image_size('organic-theme-wide-template-featured-image', 1000, 500, true);
         add_image_size('organic-theme-woocommerce', 600, 600, true);
         add_image_size('organic-theme-woo-archive-grid', 260, 260, true);
         add_image_size('organic-theme-cart-image', 80, 80, true);

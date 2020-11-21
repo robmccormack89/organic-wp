@@ -30,34 +30,31 @@ $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $product_tabs ) ) : ?>
 
-
-	<div class="">
-		<div>
-			
-			<ul class="uk-tab" data-uk-tab="{connect:'#my-id'}">
-				<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-			    <li class="tab_id_<?php echo $product_tab['callback']; ?>"><a href=""><?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?></a></li>
-				<?php endforeach; ?>
-		  </ul>
+<div class="uk-section uk-section-small">
+	<div>
 		
-		  <ul id="my-id" class="uk-switcher">
-				<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-			    <li class="tab_id_<?php echo $product_tab['callback']; ?>">
-						<div class="tab-content uk-card uk-background-muted uk-card-body uk-card-small">
-							<?php
-							if ( isset( $product_tab['callback'] ) ) {
-								call_user_func( $product_tab['callback'], $key, $product_tab );
-							}
-							?>
-						</div>
-					</li>
-				<?php endforeach; ?>
-		  </ul>
+		<ul class="uk-tab" data-uk-tab="{connect:'#my-id'}">
+			<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
+		    <li class="tab_id_<?php echo $product_tab['callback']; ?>"><a href=""><?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?></a></li>
+			<?php endforeach; ?>
+	  </ul>
+	
+	  <ul id="my-id" class="uk-switcher">
+			<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
+		    <li class="tab_id_<?php echo $product_tab['callback']; ?>">
+					<div class="tab-content uk-card uk-background-muted uk-card-body uk-card-small">
+						<?php
+						if ( isset( $product_tab['callback'] ) ) {
+							call_user_func( $product_tab['callback'], $key, $product_tab );
+						}
+						?>
+					</div>
+				</li>
+			<?php endforeach; ?>
+	  </ul>
 
-		</div>
-
-		<?php do_action( 'woocommerce_product_after_tabs' ); ?>
-		
 	</div>
+	<?php do_action( 'woocommerce_product_after_tabs' ); ?>
+</div>
 
 <?php endif; ?>

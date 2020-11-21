@@ -1,66 +1,53 @@
-{% extends 'base.twig' %}
+{% extends "base.twig" %}
+
 {% block content %}
 
-<div data-template="single.twig">
-
+<div class="uk-container" data-template="single.twig">
+  
   {% include 'breads.twig' %}
-
-  <div class="uk-container">
     
-    <div class="uk-section uk-section-small">
+  <div class="uk-section uk-section-small">
     
-      <div class="uk-grid-large" uk-grid>
+    <div class="uk-container uk-container-small">
+      
+      <article id="single-{{post.ID}}" class="uk-article {{post.class}}">
         
-        {% if is_left_sidebar %}
-        {% include 'sidebar-left.twig' %}
-        {% endif %}
+        <h1 class="uk-article-title page-title">{{post.title}}</h1>
         
-        <article id="single-{{post.ID}}" class=" uk-article {{ article_width_class }} {{post.class}}">
-
-          <div id="SingleTitle">
-            <h1 class="uk-article-title page-title">{{ post.title }}</h1>
-            {% if post.post_type == "post" %}
-            <p class="uk-article-meta uk-margin-small-top">
-              Written on {{post.date | date}}. Posted in
-              {% for category in post.categories %}
-              
-              {% if not loop.last %}
-                <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
-              {% endif %}
-              
-              {% if loop.last %}
-                <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
-              {% endif %}
-                  
-              {% endfor %}
-            </p>
+        <p class="uk-article-meta">
+          Written on {{post.date | date}}. Posted in
+          {% for category in post.categories %}
+          
+            {% if not loop.last %}
+            <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
             {% endif %}
-          </div>
+          
+            {% if loop.last %}
+            <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+            {% endif %}
+            
+          {% endfor %}
+        </p>
+        
+        <div class="article-content">
           
           {% if post.thumbnail %}
           <figure>
             <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
           </figure>
+          <figcaption class="uk-text-muted">{{ post.thumbnail.caption }}</figcaption>
           {% endif %}
           
-          <div id="SingleContent">
-            <div class="uk-margin-bottom">
-              {{ post.content }}
-            </div>
-          </div>
-        
-        </article>
-        
-        {% if is_right_sidebar %}
-        {% include 'sidebar.twig' %}
-        {% endif %}
-        
-      </div>
+          {{post.content}}
 
+        </div>
+      
+      </article>
+      
     </div>
 
   </div>
-    
+  
 </div>
 
 {% endblock  %}
