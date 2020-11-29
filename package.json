@@ -4,8 +4,6 @@
   "main": "index.js",
   "dependencies": {
     "debounce": "^1.2.0",
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "infinite-scroll": "^3.0.6",
     "uikit": "^3.5.9"
   },
   "devDependencies": {

@@ -5,3 +5,4 @@ compilation_cache/
 .git
 .ftpconfig
 package-lock.json
+notes.txt
