@@ -30,7 +30,7 @@ $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $product_tabs ) ) : ?>
 
-<div class="uk-section uk-section-small">
+<div id="the-tabs" class="uk-section uk-section-small">
 	<div>
 		
 		<ul class="uk-tab" data-uk-tab="{connect:'#my-id'}">

@@ -1,0 +1,177 @@
+{% extends 'base.twig' %}
+
+{% block spec_styles %}
+
+  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/shop.css" />
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="uk-container" data-template="shop-archive.twig">
+    
+    {% include 'breads.twig' %}
+
+    {% do action('woocommerce_before_main_content') %}
+    
+    {% do action('woocommerce_archive_description') %}
+    
+    <div id="ajax-filters-container">
+      <div  id="MainProductArchive" class="uk-margin-top" data-template="product-archive.twig">
+      	
+      	<div id="ToolbarNav" class="uk-section uk-section-small" hidden>
+      	  <div id="ShopArchiveTitle" class="uk-text-left">
+      	    <h1 class="woocommerce-products-header__title page-title uk-margin-remove-bottom font-2">{{ title }}</h1>
+      	  </div>
+      	</div>
+      	
+      	<div uk-grid>
+      		
+      		<div class="uk-width-1-4@m">
+      			<aside id="ProductFilters">
+      				<ul uk-accordion="multiple: true">
+      					<li class="uk-open">
+      						<a class="uk-accordion-title uk-text-bold" href="#">Sort by:</a>
+      						<div class="uk-accordion-content">
+      							{% do action('woocommerce_before_shop_loop') %}
+      						</div>
+      					</li>
+      			    <li class="uk-open">
+      		        <a class="uk-accordion-title uk-text-bold" href="#">Categories</a>
+      		        <div class="uk-accordion-content">
+      							<ul class="uk-nav uk-nav-default uk-height-medium uk-overflow-auto uk-margin-small-bottom cat-list">		
+
+      				        {% for cat in product_cats_for_filters %}
+      				        
+      				          {% if function ('product_cat_has_children', cat.term_id) %}
+      				          
+      				            <li class="uk-parent">
+      											
+      				              <a href="{{ function ('add_query_arg_product_cats_for_filters', cat.slug) }}" class="{% if product_cat_var == cat.slug %}active{% endif %}" data-type="product_cat" data-name="{{ cat.name }}" data-pjax>
+      												
+      				                <input class="uk-radio" type="radio" {% if product_cat_var == cat.slug %}checked{% endif %}>
+      												
+      												{{ cat.name }}
+      												
+      				                <ul class="uk-nav-sub">
+      													
+      				                  {% for sub_cat in function ('subs_product_cats_for_filters', cat.term_id) %}
+      				                    <li>
+      				                      <a href="{{ function ('add_query_arg_product_cats_for_filters', sub_cat.slug) }}" class="{% if product_cat_var == cat.slug %}active{% endif %}" data-name="{{ sub_cat.name }}" data-type="product_cat" data-pjax>
+      				                        <input class="uk-radio" type="radio" {% if product_cat_var == sub_cat.slug %}checked{% endif %}> {{ sub_cat.name }}
+      				                      </a>
+      				                    </li>
+      				                  {% endfor %}
+      													
+      				                </ul>
+      												
+      				              </a>
+      											
+      				            </li>
+      				            
+      				          {% else %}
+      				          
+      				            <li>
+      				              <a href="{{ function ('add_query_arg_product_cats_for_filters', cat.slug) }}" class="{% if product_cat_var == cat.slug %}active{% endif %}" data-type="product_cat" data-name="{{ cat.name }}" data-pjax>
+      				                <input class="uk-radio" type="radio" {% if product_cat_var == cat.slug %}checked{% endif %}> {{ cat.name }}
+      				              </a>
+      				            </li>
+      				            
+      				          {% endif %}
+      									
+      				        {% endfor %}
+      								
+      								{% if product_cats_for_filters is empty %}
+      					        <li>Add some products to some categories</li>
+      					      {% endif %}
+      								
+      				      </ul>
+      							<a class="uk-link-text uk-text-primary uk-text-small filters-reset-link" href="{{ function ('remove_query_arg_product_cats_for_filters') }}" data-pjax>Reset</a>
+      		        </div>
+      			    </li>
+      				</ul>
+      	    </aside>
+      		</div>
+      		
+      		<div class="uk-width-3-4@m">
+      			
+      			<div id="ToolbarNav" class="uk-margin-bottom" data-template="shop-toolbar.twig">
+      			  
+      			  <div class="desktop-toolbar uk-visible@s">
+      			    <nav id="ShopToolbar" class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+      						
+      						<div id="ShopToolbarLeft" class="uk-navbar-left pull-left-15">
+      							{% if product_sort_var_exists %}
+      							<div class="uk-navbar-item min-height-40">
+      								<a href="{{ function ('remove_query_arg', ['orderby', '_pjax'])|e('esc_url') }}" data-pjax>
+                        <span class="uk-badge">Sorting - <span class="filter-badge badge-sort"></span>
+                          <span uk-icon="icon: close;ratio: 0.8;" class="uk-margin-small-left uk-icon"></span>
+                        </span>
+                      </a>
+      							</div>
+      							{% endif %}
+      							{% if product_cat_var %}
+      								<div class="uk-navbar-item min-height-40">
+      									<a href="{{ function ('remove_query_arg_product_cats_for_filters') }}" data-pjax>
+                          <span class="uk-badge">Category - <span class="filter-badge badge-cat"></span>
+                            <span uk-icon="icon: close;ratio: 0.8;" class="uk-margin-small-left uk-icon"></span>
+                          </span>
+                        </a>
+      								</div>
+      							{% endif %}
+      							{% if product_gridlist_var_exists %}
+      							<div class="uk-navbar-item min-height-40">
+      								<a href="{{ function ('remove_query_arg', ['grid_list', '_pjax'])|e('esc_url') }}" data-pjax>
+                        <span class="uk-badge">Shop View - <span class="filter-badge badge-view"></span>
+                          <span uk-icon="icon: close;ratio: 0.8;" class="uk-margin-small-left uk-icon"></span>
+                        </span>
+                      </a>
+      							</div>
+      							{% endif %}
+      						</div>
+      						
+      			      <div id="ShopToolbarRight" class="uk-navbar-right pull-right-15">
+      			        <div id="GridList" class="uk-navbar-item min-height-40">
+      			          <a href="{{ add_query_arg_grid_view }}" data-type="grid_list" data-name="Grid View" class="grid-toggle uk-button uk-button-default uk-button-small padding-0-10 uk-margin-small-right {{ grid_active_class }}" data-pjax><span uk-icon="grid"></span></a>
+      			          <a href="{{ add_query_arg_list_view }}" data-type="grid_list" data-name="List View" class="list-toggle uk-button uk-button-default uk-button-small padding-0-10 {{ list_active_class }}" data-pjax><span uk-icon="icon: list"></span></a>
+      			        </div>
+      			      </div>
+      			    </nav>
+      			  </div>
+      			  
+      			</div>
+      			
+      			<div id="ProductGrid" class="archive-posts products uk-child-width-1-2 uk-child-width-1-{{columns}}@m uk-grid-small uk-margin-medium-bottom" uk-grid="masonry: true">
+      		    
+      		    {% for post in products %}
+      		      {% include tease_template %}
+      		    {% endfor %}
+      		    {% if products is empty %}
+      		      {% do action('woocommerce_no_products_found') %}
+      		    {% endif %}
+      		    
+      			</div>
+      			{% include 'pagination.twig' with { pagination : products.pagination( { show_all: true, mid_size: 3, end_size: 2 } ) } %}
+      		</div>
+      		
+      	</div>
+      </div>
+    </div>
+
+    {% do action('woocommerce_after_shop_loop') %}
+
+    {% do action('woocommerce_after_main_content') %}
+    
+  </div>
+
+{% endblock  %}
+
+{% block spec_scripts %}
+
+  <!-- load in pjax jquery plugin -->
+  <script src="/wp-content/themes/organicwp-theme/assets/js/jquery.pjax.min.js"></script>
+
+  <!-- jquery.ajax filters js with pjax -->
+  <script src="/wp-content/themes/organicwp-theme/assets/js/shop.js"></script>
+
+{% endblock %}

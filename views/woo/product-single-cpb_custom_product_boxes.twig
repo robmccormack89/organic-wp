@@ -1,0 +1,30 @@
+{% extends 'base.twig' %}
+
+{% block spec_styles %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="uk-container" data-template="product-single-cpb_custom_product_boxes.twig">
+
+    {% include 'breads.twig' %}
+
+    {% do action('woocommerce_before_single_product') %}
+    
+    <section class="uk-section uk-section-small">
+      <div class="single-product-container uk-container">
+        <div id="product-{{post.id}}" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
+          <form method="post" name="" enctype="multipart/form-data" class="cart">  
+            {% do action('cpb_custom_product_boxes_page_layout', post.id) %}
+          </form>
+        </div>
+      </div>
+    </section>
+
+    {# do action('woocommerce_after_single_product_summary') #}
+
+    {# do action('woocommerce_after_single_product') #}
+
+  </div>
+
+{% endblock  %}

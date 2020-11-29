@@ -1,0 +1,141 @@
+{% extends 'base.twig' %}
+
+{% block spec_styles %}
+
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="screen"/>
+
+<!-- swiper -->
+<style>
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div data-template="page-slider.twig">
+  
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=24');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-primary uk-light uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide One</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=25');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-default uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Two</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=26');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-primary uk-light uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Three</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=27');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-default uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Four</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="swiper-slide" style="background-position: center;background-image: url('https://source.unsplash.com/random?sig=28');background-size: cover;background-repeat: no-repeat;">
+        <div class="uk-overlay-primary uk-light uk-width-1-1">
+          <div class="uk-section uk-secton-large uk-flex uk-flex-center uk-flex-middle">
+            <h1>Slide Five</h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  
+  {% include 'breads.twig' %}
+
+  {% include 'site-notice.twig' %}
+    
+  <div class="uk-section uk-section-small">
+    
+    <div class="uk-container uk-container-small">
+      
+      <article id="page-{{post.ID}}" class=" uk-article {{post.class}}">
+        
+        <h1 class="uk-article-title page-title uk-margin-medium-bottom">Testing</h1>
+
+        <div class="the-content uk-margin-bottom">
+          
+          Content
+            
+        </div>
+      
+      </article>
+      
+    </div>
+
+  </div>
+  
+</div>
+
+{% endblock  %}
+
+{% block spec_scripts %}
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    centeredSlides: true,
+    // autoplay: {
+    //   delay: 4000,
+    //   disableOnInteraction: true,
+    // },
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'progressbar',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
+{% endblock %}

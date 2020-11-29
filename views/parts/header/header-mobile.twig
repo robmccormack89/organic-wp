@@ -1,16 +1,18 @@
-<div id="HeaderMobile" class="header-mobile uk-background-primary uk-hidden@m" data-template="header-mobile.twig">
-  <div uk-sticky="sel-target: .my-sticky-nav; cls-active: uk-navbar-sticky">
-    <nav class="my-sticky-nav uk-container uk-light" uk-navbar>
+<div id="HeaderMobile" class="header-mobile uk-hidden@m theme-bg" data-template="header-mobile.twig">
+  
+  <div uk-sticky="sel-target: .sticky-mobile-nav; cls-active: uk-navbar-sticky theme-bg">
+    <nav class="sticky-mobile-nav uk-container uk-light" uk-navbar>
+      
       <div class="uk-navbar-left">
-        <a class="uk-navbar-toggle uk-navbar-item uk-text-emphasis" data-uk-toggle href="#offcanvas-nav"><i class="fas fa-bars fa-lg"></i><span class="uk-flex-last push-left-7">Menu</span></a>
-        <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
-          <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide dark-bg-black">
-            <a uk-toggle="target: #offcanvas-nav" class="close-icon-header"><i class="fas fa-times fa-2x"></i></a>
+        <a class="uk-navbar-toggle uk-navbar-item uk-text-emphasis" uk-toggle href="#mobile-offcanvas-nav"><i class="fas fa-bars fa-lg"></i><span class="uk-flex-last push-left-7">Menu</span></a>
+        <div id="mobile-offcanvas-nav" class="mobile-slide-navbar" uk-offcanvas="flip: true; overlay: true">
+          <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+            <a uk-toggle="target: #mobile-offcanvas-nav" class="close-icon-header"><i class="fas fa-times fa-2x"></i></a>
             <ul class="uk-nav-default uk-nav-parent-icon uk-position-relative" uk-nav>
               {% if has_menu_mobile %}
               <li class="uk-nav-header uk-text-uppercase uk-text-bold uk-margin-small-bottom">MENU</li>
-              {% for item in menu_mobile.get_items %}
-              {% if item.get_children %}
+                {% for item in menu_mobile.get_items %}
+                  {% if item.get_children %}
               <li class="{{ item.classes | join(' ') }} uk-parent"><a href="{{ item.link }}">{{ item.title }}</a>
                 <ul class="uk-nav-sub">
                 {% for child in item.get_children %}
@@ -18,10 +20,10 @@
                 {% endfor %}
                 </ul>
               </li>
-              {% else %}
+                  {% else %}
               <li class="{{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
-              {% endif %}
-              {% endfor %}
+                  {% endif %}
+                {% endfor %}
               {% endif %}
               <li class="uk-nav-divider"></li>
               <li>
@@ -31,38 +33,43 @@
                     <input class="uk-input uk-form-width-medium" type="text" placeholder="Search for products" id="SearchMobile" name="s" autocomplete="off">
                   </div>
                 </form>
-            </li>
+              </li>
             </ul>
           </div>
         </div>
       </div>
+      
       <div class="uk-navbar-right">
 
-          {% if not user %}
-          <div class="uk-navbar-item">
-              <a href="/my-account">Login / Register</a>
+        {% if not user %}
+          <div class="uk-navbar-item account-links">
+            <a href="/my-account">Login / Register</a>
           </div>
-          {% else %}
-          <div class="uk-navbar-item">
-              <a href="/my-account">My Account</a>
+        {% else %}
+          <div class="uk-navbar-item account-links">
+            <a href="/my-account">My Account</a>
           </div>
-          {% endif %}
-        
-          {% if is_cart or is_checkout  %}
+        {% endif %}
+      
+        {% if is_cart or is_checkout  %}
           <div class="uk-navbar-item">
-              <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false"><i class="fas fa-shopping-cart fa-2x"></i></a>
-              {% do action('cart_ajax_result_count') %}
+            <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false"><i class="fas fa-shopping-cart fa-2x"></i></a>
+            {% do action('cart_ajax_result_count') %}
           </div>
-          {% else %}
+        {% else %}
           <div class="uk-navbar-item">
-              <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false" href="#modal-overflow" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i></a>
-              {% do action('cart_ajax_result_count') %}
+            <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false" href="#MiniCartModal" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i></a>
+            {% do action('cart_ajax_result_count') %}
           </div>
-          {% endif %}
+        {% endif %}
+          
       </div>
+      
     </nav>
   </div>
-  <div class="uk-section uk-text-center uk-light padding-bottom-20 header-mobile-title-section">
+  
+  <div class="uk-section uk-text-center uk-light header-mobile-title-section">
     <a class="uk-logo uk-text-bold uk-text-emphasis font-1-5" title="{{ site.title }}" href="{{ site.url }}">{{ site.title }}</a>
   </div>
+  
 </div>

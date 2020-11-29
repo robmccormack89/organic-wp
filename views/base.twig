@@ -10,41 +10,91 @@
     {{ function('wp_head') }}
     <!-- /wp header -->
     
-    {% include 'styles.twig' %}
-    
     <!-- styles per template -->
     {% block spec_styles %}
     {% endblock %}
     <!-- /styles per template -->
+    
+    <style>
+      /* product boxes */
+      .cpb_product_boxes_custom .cpb-boxes .cpb-inner {
+        background: #f7fbf9;
+        border: none;    
+      }
+      .cpb_product_boxes_custom .cpb-boxes .cpb-inner:hover:before {
+        background: rgb(32 134 95 / 18%);
+      }
+      .cpb_product_boxes_custom .cpb-items .cpb-inner:hover .cpb-item-image:before {
+        background-position: center 50%;
+      }
+      .cpb-custom-product-boxes-items .cpb-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: unset;
+        margin-left: -15px;
+      }
+      .right-boxes .uk-card {
+        background: #fff;
+        box-shadow: 0 14px 25px rgba(0,0,0,.16);
+      }
+      .cpb-boxes .uk-grid-column-small>*, .cpb-boxes.uk-grid-small>* {
+        padding-left: 5px;
+      }
+      .cpb-boxes.uk-grid-small>.uk-grid-margin {
+        margin-top: 5px;
+      }
+      span.cpb_category_filters_item {
+        margin: 0 25px 0 0px;
+      }
+      span.woocommerce-Price-amount {
+        font-weight: 700;
+      }
+      .cpb_product_boxes_custom .cpb-boxes .cpb-inner:hover:before {
+        opacity: 1;
+        cursor: pointer;
+        z-index: 100;
+        background-image: url(https://organicforhealth.ie/wp-content/plugins/custom-product-boxes/assets/images/remove-icon-light.png);
+        background-position: center 45%!important;
+        background-repeat: no-repeat!important;
+        background-size: 50px!important;
+      }
+      .woocommerce .cpb-item-image img {
+        border: 4px double #e8e8e8;
+      }
+    </style>
+    
+    <!-- load infinite scroll in head so inline scipts for pagination can work with infinite scroll -->
+    <script src="/wp-content/themes/organicwp-theme/assets/js/infinite-scroll.pkgd.min.js"></script>
       
   </head>
 
-  <body class="{{ body_class }}" data-template="base.twig">
+  <body class="{{ body_class }} no-overflow" data-template="base.twig">
+    <div class="theme-preload"></div>
     
     <!-- main site wrapper -->
     <div id="SiteWrapper" class="site-wrapper">
       
-    <!-- header -->
-    {% block header %}
-      {% include 'header.twig' %}
-    {% endblock %}
-    <!-- /header -->
-    
-    {% block main %}
-      <!-- content -->
-      <main id="MainContent">
-      {% block content %}
-        <p>Sorry, Nothing to Display!!</p>
+      <!-- header -->
+      {% block header %}
+        {% include 'header.twig' %}
       {% endblock %}
-      </main>
-      <!-- /content -->
-    {% endblock %}
+      <!-- /header -->
+      
+      {% block main %}
+        <!-- content -->
+        <main id="MainContent">
+          {% block content %}
+            <p>Sorry, Nothing to Display!!</p>
+          {% endblock %}
+        </main>
+        <!-- /content -->
+      {% endblock %}
 
-    <!-- footer -->
-    {% block footer %}
-      {% include 'footer.twig' %}
-    {% endblock %}
-    <!-- /footer -->
+      <!-- footer -->
+      {% block footer %}
+        {% include 'footer.twig' %}
+      {% endblock %}
+      <!-- /footer -->
       
     </div>
     <!-- /main site wrapper -->

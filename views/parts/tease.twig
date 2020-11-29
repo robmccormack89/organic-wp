@@ -6,10 +6,10 @@
     <p class="uk-article-meta">Written on {{post.date | date}}. Posted in
     {% for category in post.categories %}
       {% if not loop.last %}
-      <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
+        <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
       {% endif %}
       {% if loop.last %}
-      <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+        <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
       {% endif %}
     {% endfor %}
     </p>
@@ -21,6 +21,5 @@
     </a>
   </figure>
   {% endif %}
-  <p hidden>{{ post.preview.read_more('') }}</p>
   <a href="{{post.link}}" title="Read More" class="uk-button uk-button-default">Read More</a>
 </article>

@@ -1,6 +1,16 @@
-<header id="SiteHeader" data-template="header.twig">
+<header id="SiteHeader" class="site-header" data-template="header.twig">
     
-  {% include 'header-top.twig' %}
+  <div id="HeaderTop" class="top-bar header-top uk-text-center uk-light theme-bg-darker">
+    <div class="uk-container">
+
+      {% if header_top %}
+        {{header_top}}
+      {% else %}
+        Header Top Widget Area
+      {% endif %}
+      
+    </div>
+  </div>
   
   {% include 'header-main.twig' %}
   
@@ -8,6 +18,14 @@
   
   {% include 'header-mobile.twig' %}
   
-  {% include 'header-modals.twig' %}
+  <div id="MiniCartModal" class="minicart-modal" uk-modal>
+    <div class="uk-modal-dialog">
+      <div class="uk-modal-body height-content" uk-overflow-auto>
+        <div class="widget_shopping_cart_content">
+          {% do action('custom_mini_cart') %}
+        </div>
+      </div>
+    </div>
+  </div>
     
 </header>

@@ -1,12 +1,14 @@
 <?php
 /**
- * The default template for displaying all single posts
- *
- * @package Organic_Theme
- */
+* The default template for displaying all single posts
+*
+* @package Organic_Theme
+*/
 
 $context = Timber::context();
+
 $post = Timber::query_post();
+
 $context['post'] = $post;
 
 if ( post_password_required( $post->ID ) ) {

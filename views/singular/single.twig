@@ -2,52 +2,52 @@
 
 {% block content %}
 
-<div class="uk-container" data-template="single.twig">
-  
-  {% include 'breads.twig' %}
+  <div class="uk-container" data-template="single.twig">
     
-  <div class="uk-section uk-section-small">
-    
-    <div class="uk-container uk-container-small">
+    {% include 'breads.twig' %}
       
-      <article id="single-{{post.ID}}" class="uk-article {{post.class}}">
+    <div class="uk-section uk-section-small">
+      
+      <div class="uk-container uk-container-small">
         
-        <h1 class="uk-article-title page-title">{{post.title}}</h1>
-        
-        <p class="uk-article-meta">
-          Written on {{post.date | date}}. Posted in
-          {% for category in post.categories %}
+        <article id="single-{{post.ID}}" class="uk-article {{post.class}}">
           
-            {% if not loop.last %}
-            <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
-            {% endif %}
+          <h1 class="uk-article-title page-title">{{post.title}}</h1>
           
-            {% if loop.last %}
-            <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+          <p class="uk-article-meta">
+            Written on {{post.date | date}}. Posted in
+            {% for category in post.categories %}
+            
+              {% if not loop.last %}
+                <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
+              {% endif %}
+            
+              {% if loop.last %}
+                <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+              {% endif %}
+              
+            {% endfor %}
+          </p>
+          
+          <div class="article-content">
+            
+            {% if post.thumbnail %}
+              <figure>
+                <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
+              </figure>
+              <figcaption class="uk-text-muted">{{ post.thumbnail.caption }}</figcaption>
             {% endif %}
             
-          {% endfor %}
-        </p>
+            {{post.content}}
+
+          </div>
         
-        <div class="article-content">
-          
-          {% if post.thumbnail %}
-          <figure>
-            <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
-          </figure>
-          <figcaption class="uk-text-muted">{{ post.thumbnail.caption }}</figcaption>
-          {% endif %}
-          
-          {{post.content}}
+        </article>
+        
+      </div>
 
-        </div>
-      
-      </article>
-      
     </div>
-
+    
   </div>
-  
-</div>
 
 {% endblock  %}

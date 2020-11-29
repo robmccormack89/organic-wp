@@ -1,9 +1,9 @@
 <?php
 /**
- * The template for displaying general archive pages
- *
- * @package Organic_Theme
- */
+* The template for displaying general archive pages
+*
+* @package Organic_Theme
+*/
 
 $templates = array( 'archive.twig', 'index.twig' );
 
@@ -13,6 +13,7 @@ $context['pagination'] = Timber::get_pagination();
 $context['paged'] = $paged;
 
 $context['title'] = 'Archive';
+
 if ( is_day() ) {
 	$context['title'] = 'Day: '.get_the_date( 'D M Y' );
 } else if ( is_month() ) {

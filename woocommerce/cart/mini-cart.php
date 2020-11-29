@@ -23,9 +23,9 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 <?php if ( ! WC()->cart->is_empty() ) : ?>
 
-	<div class="cart-list-box theme-border-bottom">
-		<div class="cart-list-area padding-15">
-			<ul class="woocommerce-mini-cart cart_list product_list_widget uk-list uk-margin-remove <?php echo esc_attr( $args['list_class'] ); ?>">
+	<div class="cart-list-box">
+		<div class="cart-list-area">
+			<ul class="woocommerce-mini-cart cart_list product_list_widget uk-list uk-list-striped uk-margin-remove <?php echo esc_attr( $args['list_class'] ); ?>">
 				<?php
 				do_action( 'woocommerce_before_mini_cart_contents' );
 
@@ -93,7 +93,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 		</div>
 	</div>
 
-	<div class="woocommerce-mini-cart__total total theme-border-bottom">
+	<div class="woocommerce-mini-cart__total total">
 		<div class="cart-subtotal-area padding-15">
 			<?php
 			/**
@@ -124,11 +124,11 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 <?php endif; ?>
 
+<?php do_action( 'woocommerce_after_mini_cart' ); ?>
+
 <script>
 	jQuery(function($){
 		$("div.cart-buttons-area .button:first-child").addClass("uk-button uk-button-primary uk-button-small uk-width-1-1");
 		$(".button.checkout").addClass("uk-button uk-button-link uk-width-1-1");
 	});
 </script>
-
-<?php do_action( 'woocommerce_after_mini_cart' ); ?>

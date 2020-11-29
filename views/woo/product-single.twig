@@ -1,0 +1,40 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+  <div class="uk-container" data-template="product-single.twig">
+
+    {% include 'breads.twig' %}
+
+    {% do action('woocommerce_before_single_product') %}
+    
+    <section class="uk-section uk-section-small">
+
+      <div class="single-product-container uk-container uk-container-small">
+          
+        <div id="product-{{post.id}}" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}" uk-grid>
+
+          <div class="uk-width-1-2@s entry-images single-product-images">
+            {% do action('woocommerce_before_single_product_summary') %}
+          </div>
+          
+          <div class="uk-width-1-2@s product-info">
+            {% do action('woocommerce_single_product_summary') %}
+            <p hidden>Product/Delivery type: <span class="uk-text-primary">{{shipping_class}}</span></p>
+          </div>
+
+          <meta itemprop="url" content="{{ post.link }}" />
+
+        </div>
+          
+      </div>
+      
+    </section>
+
+    {% do action('woocommerce_after_single_product_summary') %}
+
+    {% do action('woocommerce_after_single_product') %}
+
+  </div>
+
+{% endblock  %}

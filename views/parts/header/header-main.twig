@@ -1,0 +1,52 @@
+<div id="HeaderMain" class="header-main uk-section uk-section-small uk-visible@m theme-bg" data-template="header-main.twig">
+  <div class="uk-container">
+    <div class="desktop-header-grid" uk-grid>
+      
+      <div class="logo-left uk-width-1-2 uk-inline uk-light">
+        <a class="uk-logo uk-text-bold uk-text-emphasis uk-position-center-left padding-left-40" title="{{ site.title }}" href="{{ site.url }}"><img data-src="/wp-content/themes/organicwp-theme/assets/images/organicforhealth-logo.png" uk-img=""> <span class="uk-margin-small-left">{{ site.title }}</span></a>
+      </div>
+      
+      <div class="search-navs-right uk-width-1-2">
+        
+        <div class="account-links uk-text-right uk-margin-small-bottom uk-light" data-template="header-main-account.twig">
+          {% if not user %}
+            <a href="/my-account">Login / Register</a>
+          {% else %}
+            <a href="/my-account">My Account</a>
+          {% endif %}
+        </div>
+        
+        <nav class="search-cart uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+          <div class="uk-navbar-right">
+              
+            <div id="SimpleSearchForm" class="uk-navbar-item height-content pull-right-30" data-template="header-main-search.twig">
+              <form role="search" method="get" action="{{site.url}}" hidden>
+                <div class="uk-inline uk-light">
+                  <a class="uk-form-icon uk-form-icon-flip uk-link-reset"><i class="fas fa-search fa-lg"></i></a>
+                  <input class="uk-input uk-form-width-medium mark-this-value" type="text" placeholder="Search..." id="SearchDesktop" name="s" autocomplete="off">
+                  <input type="hidden" name="post_type" value="post">
+                </div>
+              </form>
+              {{function ('get_product_search_form')}}
+            </div>
+            
+            {% if is_cart or is_checkout  %}
+              <div class="uk-navbar-item height-content pull-right-15">
+                <a class="cart-icon uk-margin-left uk-light" href="/basket" aria-expanded="false"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                {% do action('cart_ajax_result_count') %}
+              </div>
+            {% else %}
+              <div class="uk-navbar-item height-content pull-right-15">
+                <a class="cart-icon uk-margin-left uk-light" aria-expanded="false" href="#MiniCartModal" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i></a>
+                {% do action('cart_ajax_result_count') %}
+              </div>
+            {% endif %}
+              
+          </div>
+        </nav>
+        
+      </div>
+        
+    </div>
+  </div>
+</div>

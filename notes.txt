@@ -1,0 +1,53 @@
+new content & settings:
+
+  - Home Banner Slides
+    - Min One Slide to be brought over; New slides can be added later for campaign etc.
+  - Mega Menus
+    - Create 1 shop mega menu with product cats list & highlighted image sections to start
+  - Widget Areas
+    - Header & footer widgets to be filled in
+  - Rework Menus  
+    - New Menus
+  - Sorting Categories
+    - Rework product categories in more logical way with parent->child
+  - Category images
+    - Set new product category thumbnail images
+  - Select product categories to show on homepage
+    - Do this from product categories area
+  - Pick product to show on homepage
+    - Will be build your own box
+  - Custom Product Boxes
+  - WooCommerce Subscriptions
+  - Woocommerce Add-to-Cart Custom Redirect
+  - Regenerate Thumbnails
+  - HTML Editor Syntax Highlighter
+  - Advanced Custom Fields PRO
+  - Deliveries only to Mullingar & Navan
+  - Blog
+  
+  
+Scripts & styles contexts
+
+  - front page
+  - woo archives
+  - woo singles
+  - site wide
+  
+  
+
+Widget areas
+
+Home banner slides
+
+Home info slides
+
+Home pick categories
+
+Home pick product
+
+Header Mega Menu
+
+Custom Product Box/s
+
+New category images
+

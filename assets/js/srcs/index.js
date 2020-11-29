@@ -1,16 +1,15 @@
+// require debounce & make available in window
 window._ = require('debounce');
 
-// import uikit
+// import uikit & icons
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 
-// loads the Icon plugin
+// use the Icon plugin
 UIkit.use(Icons);
 
-// The following line makes it finally work:
+// Make uikit available in window for inline scripts
 window.UIkit = UIkit;
 
-// require ('./ajax-search.js');
-
 // load infinite scroll
-window.InfiniteScroll = require('infinite-scroll');
+// window.InfiniteScroll = require('infinite-scroll');

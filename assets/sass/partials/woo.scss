@@ -1,172 +1,238 @@
-/* woo */
+// woocommerce
 
 .is-active a {
-    background-color: #299169!important;
-    color: #fff!important;
+  background-color: #299169!important;
+  color: #fff!important;
 }
 .list-img {
-    height: 100% !important;
-    width: 100%;
-    object-fit: cover;
+  height: 100% !important;
+  width: 100%;
+  object-fit: cover;
 }
-.product-accordion-item { 
-  padding-bottom:10px
+.product-accordion-item {
+  padding-bottom: 10px;
 }
-.product-accordion>:nth-child(n+2) {
-    margin-top: 10px;
+.product-accordion > :nth-child(n+2) {
+  margin-top: 10px;
 }
 .product-accordion {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 .quantity {
-    display: inline-block;
+  display: inline-block;
 }
 .quantity input {
-    max-width: 50px;
+  max-width: 50px;
 }
 .reset_variations {
-    position: absolute;
-    margin-left: 5px;
-    margin-top: 5px;
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 .woocommerce-variation-add-to-cart {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
-// woo archives
+// archives
+#ajax-filters-wrap {
+  position: relative;
+}
+.loader-ajax:before {
+  height: 1em;
+  width: 1em;
+  display: block;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  content: "";
+  -webkit-animation: spin 1s ease-in-out infinite;
+  animation: spin 1s ease-in-out infinite;
+  background: url(/wp-content/themes/organicwp-theme/assets/images/loader.svg) 50%;
+  background-size: cover;
+  line-height: 1;
+  text-align: center;
+  font-size: 2em;
+  color: #000;
+}
+.filter-offcanvas.uk-offcanvas-bar {
+  background: #353535;
+}
 .term-description {
-    background-color: #f7fbf9;
-    padding: 20px;
-    margin-bottom: 20px;
+  background-color: #f7fbf9;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .term-description p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 .woocommerce-ordering .uk-select:not([multiple]):not([size]) {
-    height: 30px;
+  height: 30px;
 }
 
-// woo mini-cart
+// mini-cart
 .cart-list-box .checkout.uk-button-link {
-    line-height: 28px;
-    color: #18202e;
+  line-height: 28px;
+  color: #18202e;
 }
 .cart-list-box .buttons .uk-button {
   font-weight: 700;
-} 
-.cart-list-box .cart_list, .total {
-    font-size: 13px;
 }
-.cart-list-box .mini-cart-link a.uk-link-reset, .cart-list-box .total strong {
-    font-weight: 700;
-    color: #18202e!important;
+.cart-list-box .cart_list,
+.total {
+  font-size: 13px;
+}
+.cart-list-box .mini-cart-link a.uk-link-reset,
+.cart-list-box .total strong {
+  font-weight: 700;
+  color: #18202e!important;
 }
 .cart-list-box .remove {
-    font-weight: 700;
-    font-size: 1.5em;
-    height: 1em;
-    width: 1em;
-    text-align: center;
-    line-height: 1;
-    color: red!important;
+  font-weight: 700;
+  font-size: 1.5em;
+  height: 1em;
+  width: 1em;
+  text-align: center;
+  line-height: 1;
+  color: red!important;
 }
 .cart-list-box .woocommerce-mini-cart img {
-    width: 50px;
-    padding: 1px;
-    border-radius: 100%;
-    border: 1px solid #c5c5c5;
+  width: 50px;
+  padding: 1px;
+  border-radius: 100%;
+  border: 1px solid #c5c5c5;
 }
 .cart_item span.woocommerce-Price-amount {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 .mini-cart-quantity .woocommerce-Price-amount {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 .woocommerce-mini-cart__total {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
-.uk-table td.product-thumbnail, .uk-table td.cart-image-wrap  {
-    min-width: 50px;
+.uk-table td.cart-image-wrap,
+.uk-table td.product-thumbnail {
+  min-width: 50px;
 }
-.uk-table td.remove-button-wrap, .uk-table td.product-remove  {
-    min-width: 20px;
-}
-
-// woo mix & match
-.mnm_table .product-quantity {
-    text-align: center;
-    width: auto;
-}
-.mnm_table .qty {
-    width: 100%;
-    text-align: center;
-}
-.mnm_table .mnm_image {
-    min-width: 100px;
-    max-width: 100px;
-    padding-right: 0;
-}
-.mnm_image img {
-    max-width: 70px;
+.uk-table td.product-remove,
+.uk-table td.remove-button-wrap {
+  min-width: 20px;
 }
 
-// woo prices
-.grid-item ins>span.woocommerce-Price-amount, .grid-item span.woocommerce-Price-amount, span.woocommerce-Price-amount, .price .amount {
-    background-color: #fff;
-    font-size: 1.5rem;
-    color: #299169;
+// prices
+.grid-item ins > span.woocommerce-Price-amount,
+.grid-item span.woocommerce-Price-amount,
+.price .amount,
+span.woocommerce-Price-amount {
+  background-color: #fff;
+  font-size: 1.5rem;
+  color: #299169;
 }
-.grid-item del>span.woocommerce-Price-amount {
-    font-size: 1rem;
+.grid-item del > span.woocommerce-Price-amount {
+  font-size: 1rem;
 }
-.list-item span.woocommerce-Price-amount, .list-item ins>span.woocommerce-Price-amount {
-    background-color: #fff;
-    font-size: 1.6rem;
-    color: #299169;
+.list-item ins > span.woocommerce-Price-amount,
+.list-item span.woocommerce-Price-amount {
+  background-color: #fff;
+  font-size: 2.1rem;
+  color: #299169;
 }
-.list-item del>span.woocommerce-Price-amount {
-    font-size: 1.4rem;
+.list-item del > span.woocommerce-Price-amount {
+  font-size: 1.4rem;
 }
 .price {
-    font-size: 1.2rem;
-    font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
-// woo tease product
-a.added_to_cart.wc-forward {
-    display: none;
+// tease
+.tease-product .uk-card {
+  box-shadow: 0 0 2px 1px #b3b3b31f;
+}
+.tease-product-image {
+  border: 3px double #e8e8e8;
 }
 .tease-product-title .uk-card-title {
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
-.tease-product-buttons .uk-button.loading:after {
-    font-family: WooCommerce;
-    content: "\e01c";
-    vertical-align: top;
-    font-weight: 400;
-    position: absolute;
-    margin-left: .53em;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+.tease-product a.added_to_cart.wc-forward, .list-item a.added_to_cart.wc-forward {
+  display: none;
 }
 .tease-product-buttons .uk-button {
   text-transform: capitalize;
 }
-.tease-product-buttons .uk-button.loading {
-    padding-right: 2.5rem;
-}
 .tease-product-buttons .uk-button-default {
-    border: 3px double #e5e5e5;
-    border-radius: 0px!important;
+  border: 3px double #e5e5e5;
+  border-radius: 0px!important;
 }
 .tease-product-buttons .uk-button-default:hover {
-    border: 3px double #299169;
+  border: 3px double #299169;
+  color: #299169;
 }
-.tease-product-buttons .uk-button-default:hover {
-    color: #299169;
+.tease-product-buttons .uk-button.loading {
+  padding-right: 2.5rem;
 }
-.grid-item .uk-card {
-    box-shadow: 0px 0px 2px 1px #b3b3b31f;
+.tease-product-buttons .uk-button.loading:after {
+  font-family: WooCommerce;
+  content: "\e01c";
+  vertical-align: top;
+  font-weight: 400;
+  position: absolute;
+  margin-left: 0.53em;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+// single
+.single-product-container.uk-container-xsmall {
+  max-width: 500px!important;
+}
+.single-product .product_meta {
+  margin-top: 30px;
+}
+.single-product .woocommerce-product-details__short-description {
+  padding-bottom: 30px;
+}
+.single-product .woocommerce-product-details__short-description > p {
+  margin-bottom: 0;
+}
+
+// tabs
+.tab-content.uk-card.uk-background-muted.uk-card-body.uk-card-small {
+  font-size: 0.9rem;
+}
+.single-product h2.yikes-custom-woo-tab-title {
+  display: none;
+}
+.single-product .tab-content > p {
+  margin-top: 0;
+}
+.single-product img.allergies-img {
+  max-width: 20px;
+  margin-right: 5px;
+}
+.single-product .uk-card-small .uk-card-body,
+.single-product .uk-card-small.uk-card-body {
+  padding: 15px;
+}
+.single-product .tab-content .uk-table-small td,
+.single-product .tab-content .uk-table-small th {
+  padding: 4px 0;
+}
+.single-product .uk-tab > .uk-active > a {
+  color: #333;
+  border-color: #299169;
+}
+.single-product .uk-tab > * > a {
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  padding: 5px 10px;
+  color: #929292;
+  border-bottom: 1px solid transparent;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  transition: color 0.1s ease-in-out;
 }

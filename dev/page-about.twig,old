@@ -1,0 +1,66 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<div class="uk-container" data-template="test.twig">
+  
+  {% include 'breads.twig' %}
+  
+  <div id="ToolbarNav" class="uk-section uk-section-small" data-template="shop-toolbar.twig">
+    
+    <div class="desktop-toolbar uk-visible@s">
+      <nav id="ShopToolbar" class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div id="ShopToolbarLeft" class="uk-navbar-left pull-left-15">
+          <div id="ShopArchiveTitle" class="uk-navbar-item min-height-40">
+            <h1 class="woocommerce-products-header__title page-title uk-margin-remove-bottom font-2">Test</h1>
+          </div>
+        </div>
+        <div id="ShopToolbarRight" class="uk-navbar-right pull-right-15">
+          <div id="SortByDrop" class="uk-navbar-item min-height-40">
+            <span class="uk-margin-small-right">Sort by:</span>
+          </div>
+          <div id="GridList" class="uk-navbar-item min-height-40">
+            <a href="#" class="grid-toggle uk-button uk-button-default uk-button-small padding-0-10 uk-margin-small-right"><span uk-icon="grid"></span></a>
+            <a href="#" class="list-toggle uk-button uk-button-default uk-button-small padding-0-10"><span uk-icon="icon: list"></span></a>
+          </div>
+          <div id="FilterButton" class="uk-navbar-item min-height-40">
+            <a class="uk-button uk-button-default uk-button-small" href="#" uk-toggle>
+              <i class="fas fa-bars uk-margin-small-right"></i>
+              <span class="uk-text-capitalize font-400">Filter</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+    <div class="mobile-toolbar uk-hidden@s">
+      <h1 class="woocommerce-products-header__title page-title font-1.5">Shop</h1>
+      <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-left pull-left-15">
+          <div class="uk-navbar-item min-height-40">
+            Sort by:
+          </div>
+        </div>
+        <div class="uk-navbar-right pull-right-15">
+          <div class="uk-navbar-item min-height-40">
+            <a class="uk-button uk-button-default uk-button-small" href="#" uk-toggle>Filter</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+  </div>
+    
+  <div id="ajax-filters-wrap">
+    <div class="uk-margin-large-bottom">Content</div>
+  </div>
+  
+</div>
+
+{% endblock  %}
+
+{% block spec_scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js" integrity="sha512-7G7ueVi8m7Ldo2APeWMCoGjs4EjXDhJ20DrPglDQqy8fnxsFQZeJNtuQlTT0xoBQJzWRFp4+ikyMdzDOcW36kQ==" crossorigin="anonymous"></script>
+
+{% endblock %}

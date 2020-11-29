@@ -1,0 +1,96 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+<div class="uk-container" data-template="woo-archive.twig">
+  
+  {% include 'breads.twig' %}
+
+  {% do action('woocommerce_before_main_content') %}
+
+  {% include 'shop-toolbar.twig' %}
+
+  {% do action('woocommerce_archive_description') %}
+
+  <div id="ajax-filters-wrap">
+
+    {% include 'product-archive-list.twig' %}
+  </div>
+
+  {% do action('woocommerce_after_shop_loop') %}
+
+  {% do action('woocommerce_after_main_content') %}
+  
+</div>
+
+{% include 'shop-filters-menu.twig' %}
+
+{% endblock  %}
+
+{% block spec_scripts %}
+
+<!-- ajax products filters -->
+<script>
+  jQuery(function($) {
+    $('#cat_selector').change(function(){
+      
+      var cat_slug = $('#cat_selector input[type=radio]:checked').map(function(){
+        return this.value;
+      }).get();
+      
+      var cols = $('#cols').val();
+      
+      var columns = $('#columns').val();
+      
+      var grid_var = $('#grid_var').val();
+      
+      var results = $('#ajax-filters-wrap');
+      
+      var str1 = "https://organicforhealth.ie/shop/?product_cat=";
+      var str2 = cat_slug;
+      var new_url = str1.concat(str2);
+      
+      if (grid_var = 'grid-view' || grid_var == 'list-view') { 
+        
+        var str1 = "https://organicforhealth.ie/shop/?product_cat=";
+        var str2 = cat_slug;
+        var str3 = "&grid-list=";
+        var str4 = grid_var;
+        var new_url = str1.concat(str2, str3, str4);
+        
+      }
+
+      loader = '<div id="ajax_loader" class="loader-ajax uk-margin-bottom" style="height: 300px;"></div>';
+      
+      if(cat_slug != '') {
+        $.ajax({
+          type: 'post',
+          url: myAjax.ajaxurl,
+          data: {
+            action: 'render_more_products',
+            cat_slug: cat_slug,
+            cols: cols,
+            columns: columns,
+            grid_var: grid_var,
+          },
+          beforeSend: function () {
+            results.html(loader);
+          },
+          success:function(response) {
+            window.history.pushState("Details", "Title", new_url);
+            UIkit.offcanvas('#FiltersMenu').hide();
+            results.html(response);
+          },
+          error: function() {
+            alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
+          },
+        });
+      } else {
+        // do something
+      }
+
+    });
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<input class="form-check-input" type="hidden" name="cols" id="cols" value="{{cols}}">
+<input class="form-check-input" type="hidden" name="columns" id="columns" value="{{columns}}">
+<input class="form-check-input" type="hidden" name="grid_var" id="grid_var" value="{{grid_query_var}}">
+
+<div id="MainProductArchive" data-template="product-archive.twig">
+	<div id="ProductGrid" class=" hello archive-posts products uk-child-width-1-2 uk-child-width-1-{{columns}}@m uk-grid-small uk-margin-large-bottom" uk-grid="masonry: true">
+    
+    {% for post in products %}
+      {% include 'tease-product-list.twig' %}
+    {% endfor %}
+    {% if products is empty %}
+      {% do action('woocommerce_no_products_found') %}
+    {% endif %}
+    
+	</div>
+</div>
+{% include 'pagination.twig' with { pagination : products.pagination( { show_all: true, mid_size: 3, end_size: 2 } ) } %}

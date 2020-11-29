@@ -19,9 +19,9 @@
         <div class="article-content">
           
           {% if post.thumbnail %}
-          <figure>
-            <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
-          </figure>
+            <figure>
+              <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
+            </figure>
           {% endif %}
           
           {{post.content}}

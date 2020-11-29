@@ -1,85 +1,162 @@
 {% extends 'base.twig' %}
+
+{% block spec_styles %}
+
+  <!-- load in swiper-js css -->
+  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/front.css" />
+
+{% endblock %}
+
 {% block content %}
 
-<div data-template="front-page.twig">
-  
-  <article id="page-{{post.ID}}" class="{{post.class}}">
-    
-      <div class="slider-section" hidden>
-        <div>
-          <div class="home-slider uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
-            <ul class="uk-slider-items uk-grid uk-grid-match uk-grid-collapse">
-              <li class="uk-width-1-1">
-                <div class="uk-inline">
-                  <img class="slider-image" data-src="/wp-content/themes/organicwp-theme/assets/images/fresh-carrots.jpg" alt="" uk-img>
-                  <div class="uk-overlay uk-overlay-primary uk-light uk-position-center uk-text-center uk-animation-fade uk-container">
-                    <h2>Welcome to Organic for Health</h2>
-                    <p>We grow as much seasonal fruit and vegetables on our 14 acre farm as me and my family are able to. We also source the finest organic produce to sell at our markets and now online, so you can get the best quality food delivered straight to you door at the best value for your money.</p>
-                    <p class="uk-text-emphasis">Healthy Fields ➜ Healthy Foods ➜ Healthy Families</p>
-                    <a href="/shop" class="uk-button uk-button-default">Visit the Shop</a>
+  <div id="single-{{post.ID}}" class="front-page {{post.class}}" data-template="front-page.twig">
+
+    <div id="slideshow_banner" class="swiper-container">
+      <div class="swiper-wrapper">
+        
+        {% for slide in home_slides %}
+          {% if slide.thumbnail %}
+            {% set thumb = slide.thumbnail.src|resize(1920, 370) %}
+          {% else %}
+            {% set thumb = 'https://via.placeholder.com/1920x370.png?text=Add+a+featured+image' %}
+          {% endif %}
+          
+          <div class="swiper-slide" style="background-position: center;background-image: url('{{ thumb }}');background-size: cover;background-repeat: no-repeat;">
+            <div class="uk-overlay-primary uk-light uk-width-1-1">
+              <div class="uk-section uk-secton-large">
+                <div class="uk-container uk-text-left">
+                  <div class="uk-width-1-2@m">
+                    {{slide.content}}
                   </div>
                 </div>
-              </li>
-            </ul>
-            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="home-cats uk-section uk-section-small" hidden>
-        
-        {% include 'site-notice.twig' %}
-        
-        <div class="uk-container padding-top-30 padding-bottom-30"><hr class="uk-divider-icon"></div>
-      
-        <div class="uk-container">
-          
-          <h2 class="uk-text-center">Shop by Category</h2>
-          
-          <div class="uk-child-width-1-2 uk-child-width-1-4@s uk-text-center uk-grid-small" uk-grid>
-
-          {% for item in shopcats %}
-            <div>
-              <a class="uk-link-reset uk-text-primary" id="{{ item.term_id }}" href="{{product_category_base}}/{{ item.slug }}">
-              <div class="uk-card uk-card-small uk-card-body uk-card-hover uk-background-muted">
-                {{ item.name }}
               </div>
+            </div>
+          </div>
+        {% endfor %}
+        
+        {% if home_slides is empty %}
+          <div class="swiper-slide" style="background-position: center;background-image: url('https://via.placeholder.com/1920x370');background-size: cover;background-repeat: no-repeat;">
+            <div class="uk-overlay-primary uk-light uk-width-1-1">
+              <div class="uk-section uk-secton-large">
+                <div class="uk-container uk-text-left">
+                  <div class="uk-width-1-2@m">
+                    <h4 class="uk-margin-small-bottom uk-h5">Slide One</h4>
+                    <h2 class="uk-margin-small-top uk-h1">Example Slider</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud.</p>
+                    <a href="#" class="uk-button uk-button-primary uk-border-rounded">Get started</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+      
+    <div class="home-info-section uk-section uk-section-small uk-padding-small uk-section-muted">
+      <div class="uk-container">
+        <div id="slideshow_info" class="swiper-container">
+          <div class="swiper-wrapper">
+            
+            {% for slide in info_home_slides %}
+              <div class="swiper-slide">
+                <a href="{{slide.info_slide_link_url}}" class="uk-link-reset">
+                  <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                      {{slide.info_slide_icon_html}}
+                    </div>
+                    <div class="uk-width-expand">
+                      <h4 class="uk-h5 uk-margin-remove-bottom">{{slide.title}}</h4>
+                      <p class="uk-margin-remove uk-text-small">{{slide.content}}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+            
+            {% if info_home_slides is empty %}
+            <div class="swiper-slide">
+              <a href="#" class="uk-link-reset">
+                <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                  <div class="uk-width-auto"><i class="fas fa-hand-point-up fa-2x"></i></div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h5 uk-margin-remove-bottom">Add some Home Info Slides</h4>
+                    <p class="uk-margin-remove uk-text-small">Add some Home Info Slides in the Dashboard</p>
+                  </div>
+                </div>
               </a>
             </div>
+            {% endif %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="home-cats-section uk-section uk-section-default">
+      <div class="uk-container">
+        
+        <h3 class="uk-text-center uk-margin-medium-bottom">{{homepage_product_category_section_title}}</h3>
+        
+        <div class="home-cats-grid uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-{{homepage_product_category_columns}}@m uk-text-center uk-grid-small" uk-grid>
+          
+          {% for item in shopcats %}
+          
+            {% set thumbnail_id = function ('get_term_meta', item.term_id, 'thumbnail_id', true ) %}
+            {% set cat_thumb = function ('wp_get_attachment_url', thumbnail_id) %}
+            
+            {% if cat_thumb %}
+              {% set cat_thumb_url = cat_thumb|resize(650, 360) %}
+            {% else %}
+              {% set cat_thumb_url = 'https://via.placeholder.com/650x360' %}
+            {% endif %}
+          
+            <a id="{{ item.term_id }}" href="{{product_category_base}}/{{ item.slug }}" class="uk-link-reset">
+              <div class="uk-inline uk-border-rounded uk-overflow-hidden">
+                <img src="{{ cat_thumb_url }}" class="uk-border-rounded" alt="">
+                <div class="uk-overlay-primary uk-position-cover uk-border-rounded">
+                  <div class="uk-position-center">
+                    <p class="uk-h3">{{ item.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
           {% endfor %}
           
-          </div>
+          {% if home_slides is empty %}
+            <p class="uk-text-center">Add Some Product Categories with Products</p>
+          {% endif %}
           
         </div>
-
+        
       </div>
-      
-      <div class="uk-container" hidden><hr class="uk-divider-icon"></div>
-      
-      <div class="uk-section uk-section-small" hidden>
-        <div class="uk-container">
-          
-          <h2 class="uk-text-center">Try our Subscription Boxes</h2>
-            
-          <div uk-slider>
-            <div class="uk-position-relative uk-visible-toggle" tabindex="-1">
-              <div class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-4@m uk-grid uk-grid-small">
-              {% for post in subscription_products %}
-                {% include 'tease-product.twig' %}
-              {% endfor %}
-              </div>
-              <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-              <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-            </div>
-            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
-          </div>
-          
-        </div>
+    </div>
+    
+    <div class="uk-section uk-section-small uk-section-muted" hidden>
+      <div class="uk-container">
+        {{dump(somevar)}}
       </div>
-  
-  </article>
-  
-</div>
+    </div>
+    
+    <div class="home-product-section uk-section uk-section-small uk-section-default" hidden>
+      <div class="uk-container">
+        {{ function('do_shortcode', product_select_shortcode_id) }}
+      </div>
+    </div>
+    
+  </div>
 
 {% endblock  %}
+
+{% block spec_scripts %}
+
+  <!-- load in swiper-js js -->
+  <script src="/wp-content/themes/organicwp-theme/assets/js/swiper-bundle.min.js"></script>
+
+  <script src="/wp-content/themes/organicwp-theme/assets/js/front.js"></script>
+
+{% endblock %}

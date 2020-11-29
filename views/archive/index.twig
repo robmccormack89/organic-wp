@@ -2,31 +2,32 @@
 
 {% block content %}
 
-<div class="uk-container" data-template="index.twig">
-  
-  {% include 'breads.twig' %}
+  <div class="uk-container" data-template="index.twig">
     
-  <div class="uk-section uk-section-small">
-    <div class="uk-container uk-container-small">
-    
-      <h1 class="archive-title uk-h2">{{ title }}</h1>
+    {% include 'breads.twig' %}
       
-      <hr class="uk-divider-small">
+    <div class="uk-section uk-section-small">
+      <div class="uk-container uk-container-small">
+      
+        <h1 class="archive-title uk-h2">{{ title }}</h1>
         
-      <div class="archive-posts posts uk-grid-small" uk-grid="">
-      {% for post in posts %}
-        {% include 'tease.twig' %}
-      {% endfor %}
-      {% if posts is empty %}
-        <p class="uk-text-emphasis">No posts found.</p>
-      {% endif %}
-      </div>
-      
-      {% include 'pagination.twig' %}
+        <hr class="uk-divider-small">
+          
+        <div class="archive-posts posts uk-grid-small" uk-grid>
+          {% for post in posts %}
+            {% include 'tease.twig' %}
+          {% endfor %}
+        </div>
+        
+        {% include 'pagination.twig' %}
+        
+        {% if posts is empty %}
+          <p class="uk-text-emphasis">No posts found.</p>
+        {% endif %}
 
+      </div>
     </div>
+      
   </div>
-    
-</div>
 
 {% endblock  %}

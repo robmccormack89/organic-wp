@@ -1,0 +1,33 @@
+/* swiper-js css */
+
+/* general swiper css */
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+/* banner slider */
+:root {
+  --swiper-theme-color: #ffeb3bad;
+}
+.swiper-slide .uk-section.uk-secton-large {
+  padding: 80px 0;
+}
+@media only screen and (max-device-width:767px) {
+  .swiper-slide .uk-section.uk-secton-large {
+    padding: 50px 0;
+  }
+}
+/* info slider */
+#slideshow_info .uk-h5 {
+  font-size: 18px;
+}
+/* other */
+.front-page .related, .front-page .upsells {
+  display: none;
+}
+.front-page .woocommerce-message {
+  margin-bottom: 20px;
+}
+.front-page .uk-tab, .front-page #my-id {
+  display: none;
+}

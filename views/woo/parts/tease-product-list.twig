@@ -1,0 +1,54 @@
+{{ fn('timber_set_product', post) }}
+
+<article id="product-{{ post.id }}" {{ fn('post_class', ['entry', 'list-item', 'item'] ) }} data-template="tease-product-list.twig">
+	<div class="uk-card uk-card-hover uk-card-body uk-padding-small theme-border uk-grid-match uk-grid-collapse" uk-grid>
+		{% do 
+			action( 'woocommerce_before_shop_loop_item' ) %}
+		<div class="uk-width-1-5">
+			<a class="single-product-image-link" href="{{ post.link }}">
+				<img data-src="{{ post.thumbnail.src|resize(236, 293) }}" class="tease-product-image" alt="{{ post.thumbnail.alt }}" uk-img>
+			</a>
+		</div>
+		<div class="uk-width-expand">
+
+      <div class="uk-margin-left padding-15">
+  			<div class="uk-position-relative uk-inline uk-width-1-1 tease-list-content">
+          
+  				{% do action( 'woocommerce_before_shop_loop_item_title' ) %}
+
+  				{% do action( 'woocommerce_shop_loop_item_title' ) %}
+            
+          <div class="labels-wrap">
+            <span class="uk-label uk-text-capitalize">100% Organic</span>
+          </div>
+          
+  				<h3 class="uk-card-title uk-article-title uk-margin-top">
+  					<a class="uk-link-heading" href="{{ post.link }}">{{ post.title }}</a>
+  				</h3>
+          
+          <p class="uk-article-meta">{{ post.terms( {query:{taxonomy:'product_cat', orderby:'name', order: 'ASC'}} )|join(', ') }}</p>
+          
+          {% if post.preview %}
+            <p hidden>{{ post.preview.read_more.length(8).force.read_more('') }}</p>
+          {% endif %}
+          
+          <div class="uk-text-right uk-position-top-right">
+            <div class="">
+              {% do action( 'woocommerce_after_shop_loop_item_title' ) %}
+            </div>
+          </div>
+
+  				<div class="uk-position-bottom-left">
+  					<a href="{{ post.link }}">View this product</a>
+  				</div>
+          
+  				<div class="tease-product-buttons uk-position-bottom-right">
+  					{% do	action( 'woocommerce_after_shop_loop_item' ) %}
+  				</div>
+          
+  			</div>
+    	</div>
+
+		</div>
+	</div>
+</article>

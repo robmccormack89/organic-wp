@@ -1,0 +1,49 @@
+<div id="FiltersMenu" uk-offcanvas="overlay: true; flip: true">
+  <div class="uk-offcanvas-bar filter-offcanvas">
+    
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+    
+    <aside>
+      
+      <ul class="uk-nav uk-nav-default">
+        <li class="uk-nav-header uk-margin-bottom uk-text-bold">Filter</li>
+        {% for cat in product_cats_for_filters %}
+        
+          {% if function ('get_term_children', cat.term_id, 'product_cat') %}
+          
+            <li class="uk-parent {% if product_cat_var == cat.slug %}uk-active{% endif %}">
+              <a
+                href="{{ function ('add_query_arg', {'product_cat': cat.slug, '_pjax': false})|e('esc_url') }}" data-pjax>
+                {{ cat.name }}
+                <ul class="uk-nav-sub">
+                  {% for sub in function ('get_terms', 'product_cat', {'parent': cat.term_id, 'orderby': 'slug', 'hide_empty': true}) %}
+                    <li class="{% if product_cat_var == sub.slug %}uk-active{% endif %}">
+                      <a href="{{ function ('add_query_arg', {'product_cat': sub.slug, '_pjax': false})|e('esc_url') }}" data-pjax>
+                        {{ sub.name }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </a>
+            </li>
+            
+          {% else %}
+          
+            <li class="{% if product_cat_var == cat.slug %}uk-active{% endif %}">
+              <a href="{{ function ('add_query_arg', {'product_cat': cat.slug, '_pjax': false})|e('esc_url') }}" data-pjax>
+                {{ cat.name }}
+              </a>
+            </li>
+            
+          {% endif %}
+        {% endfor %}
+      </ul>
+      
+      {% if product_cats_for_filters is empty %}
+        empty
+      {% endif %}
+      
+    </aside>
+    
+  </div>
+</div>

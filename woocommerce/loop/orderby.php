@@ -19,13 +19,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$orderby_sort = '';
+
+// get the query var for orderby, custom ajax sorting
+if (isset($_GET['orderby'])) {
+  $orderby_sort = $_GET['orderby'];
+} else {
+  $orderby_sort = '';
+}
+
 ?>
-<form class="woocommerce-ordering" method="get">
-	<select name="orderby" class="orderby uk-select" aria-label="<?php esc_attr_e( 'Shop order', 'woocommerce' ); ?>">
-		<?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
-			<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?php echo esc_html( $name ); ?></option>
-		<?php endforeach; ?>
-	</select>
-	<input type="hidden" name="paged" value="1" />
-	<?php wc_query_string_form_fields( null, array( 'orderby', 'submit', 'paged', 'product-page' ) ); ?>
-</form>
+<ul class="uk-nav uk-nav-default uk-margin-small-bottom ajax-ordering">
+<?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
+	<li>
+		<a href="<?php echo esc_url(add_query_arg(array('orderby' => esc_attr($id),'_pjax' => false))); ?>" class="<?php if ($orderby_sort == esc_attr($id)) { echo 'active'; } ?>" data-type="orderby" data-name="<?php echo esc_html( $name );?>" data-pjax>
+			<input class="uk-radio " type="radio" <?php if ($orderby_sort == esc_attr($id)) { echo 'checked'; } ?>>
+			<?php echo esc_html( $name ); ?>
+		</a>
+	</li>
+<?php endforeach; ?>
+</ul>
+<a class="uk-link-text uk-text-primary uk-text-small filters-reset-link" href="<?php echo esc_url(remove_query_arg(array( 'orderby', '_pjax'))); ?>" data-pjax>Reset</a>

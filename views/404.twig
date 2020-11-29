@@ -2,35 +2,35 @@
 
 {% block content %}
 
-<div class="uk-container" data-template="404.twig">
-  
-  {% include 'breads.twig' %}
+  <div class="uk-container" data-template="404.twig">
     
-  <div class="uk-section uk-section-small">
+    {% include 'breads.twig' %}
       
-    <article class="uk-article">
-      
-      <h1 class="uk-article-title page-title">This page or item doesnt exist</h1>
-      
-      <hr class="uk-divider-small">
-
-      <div class="article-content">
+    <div class="uk-section uk-section-small">
         
-        <p>Sorry, we couldn't find what you're looking for. You can try searching for something using the Search Form below.</p>
-
-        <form class="uk-search uk-search-default uk-width-1-1 search-form" role="search" method="get" action="{{site.url}}">
-          <span uk-search-icon></span>
-          <input class="uk-search-input" name="s" type="search" placeholder="Search this website...">
-        </form>
+      <article class="uk-article">
         
-        <a class="uk-button uk-button-text uk-margin-large-top" href="/">Back to Home</a>
+        <h1 class="uk-article-title page-title">This page or item doesnt exist</h1>
+        
+        <hr class="uk-divider-small">
 
-      </div>
+        <div class="article-content">
+          
+          <p>Sorry, we couldn't find what you're looking for. You can try searching for something using the Search Form below.</p>
+
+          <form class="uk-search uk-search-default uk-width-1-1 search-form" role="search" method="get" action="{{site.url}}">
+            <span uk-search-icon></span>
+            <input class="uk-search-input" name="s" type="search" placeholder="Search this website...">
+          </form>
+          
+          <a class="uk-button uk-button-text uk-margin-large-top" href="/">Back to Home</a>
+
+        </div>
+      
+      </article>
+
+    </div>
     
-    </article>
-
   </div>
-  
-</div>
 
 {% endblock  %}

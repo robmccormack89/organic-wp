@@ -24,7 +24,7 @@
  // Get related products
  $related_limit               = wc_get_loop_prop( 'columns' );
  $related_ids                 = wc_get_related_products( $context['post']->id, $related_limit );
- $upsell_ids = $product->get_upsells();
+ $upsell_ids = $product->get_upsell_ids();
  $context['up_sells'] =  Timber::get_posts( $upsell_ids );
 
 Timber::render(  'up-sells.twig' , $context );
