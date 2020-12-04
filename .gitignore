@@ -6,3 +6,4 @@ compilation_cache/
 .ftpconfig
 package-lock.json
 notes.txt
+dev/
