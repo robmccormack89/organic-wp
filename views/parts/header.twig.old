@@ -107,7 +107,7 @@
                   {% set the_menu = function('get_post', item.select_mega_menu ) %}
                 
                   <div uk-drop="pos: bottom-justify; boundary: .boundary-align; boundary-align: true;offset: 0" class="theme-border-bottom">
-                    <div class="uk-padding-small uk-background-default">
+                    <div class="uk-padding uk-background-default">
                       <div class="uk-container">
                         
                         {{the_menu.post_content}}

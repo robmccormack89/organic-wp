@@ -17,6 +17,18 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 */
 
 /* general css */
+
+.mega-menu-images img {
+  max-height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.woocommerce-error {
+  list-style: none;
+  padding-left: 0;
+}
+
 .mega-menu-links .uk-nav-default {
   font-size: .9rem;
 }
