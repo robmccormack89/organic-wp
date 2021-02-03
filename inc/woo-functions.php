@@ -37,6 +37,10 @@ if(class_exists('Timber'))
   
 }
 
+add_action('woocommerce_before_cart_contents', 'monarch_checkout_message');
+
+function monarch_checkout_message( ) {
+echo '<div class=""><p><span class="uk-label uk-text-capitalize uk-text-bold">To avail of our delivery options, dont forget to enter your eircode in the shipping calulator below by clicking change address. Delivery limited to n91 & c15 eircodes</span></p></div>'; }
 
 
 /**
@@ -44,28 +48,28 @@ if(class_exists('Timber'))
 */
 
 // unset a shipping method for a package based on the shipping class(es) of it's contents
-function hide_shipping_method_based_on_shipping_class( $rates, $package )
-{
-  
-  if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-    return;
-  }
-
-  foreach( $package['contents'] as $package_item ){ // Look at the shipping class of each item in package
-    
-    $product_id = $package_item['product_id']; // Grab product_id
-    $_product   = wc_get_product( $product_id ); // Get product info using that id
-
-    if( $_product->get_shipping_class_id() == 56 ){ // If we DO find this shipping class ID
-      unset($rates['flat_rate:13']); // Then remove this shipping method
-      break; // Stop the loop, since we've already removed the shipping method from this package
-    }
-   
-  }
-  return $rates;
-  
-}
-add_filter( 'woocommerce_package_rates', 'hide_shipping_method_based_on_shipping_class', 10, 2 );
+// function hide_shipping_method_based_on_shipping_class( $rates, $package )
+// {
+// 
+//   if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+//     return;
+//   }
+// 
+//   foreach( $package['contents'] as $package_item ){ // Look at the shipping class of each item in package
+// 
+//     $product_id = $package_item['product_id']; // Grab product_id
+//     $_product   = wc_get_product( $product_id ); // Get product info using that id
+// 
+//     if( $_product->get_shipping_class_id() == 56 ){ // If we DO find this shipping class ID
+//       unset($rates['flat_rate:13']); // Then remove this shipping method
+//       break; // Stop the loop, since we've already removed the shipping method from this package
+//     }
+// 
+//   }
+//   return $rates;
+// 
+// }
+// add_filter( 'woocommerce_package_rates', 'hide_shipping_method_based_on_shipping_class', 10, 2 );
 
 // filters the header cart's items count html via woocommerce_add_to_cart_fragments
 function theme_cart_count_fragments( $fragments )
@@ -192,11 +196,11 @@ function required_min_cart_subtotal_amount()
   // Only run in the Cart or Checkout pages
   if( is_cart() || is_checkout() ) {
     // HERE Set minimum cart total amount
-    $min_total = 29.99;
+    $min_total = 30;
     // Total (before taxes and shipping charges)
     $total = WC()->cart->subtotal;
     // Add an error notice is cart total is less than the minimum required
-    if( $total <= $min_total  ) {
+    if( $total < $min_total  ) {
       // Display an error message
       wc_add_notice( '<strong>' . sprintf( __("A minimum total purchase amount of %s is required to checkout."), wc_price($min_total) ) . '</strong>', 'error' );
     }

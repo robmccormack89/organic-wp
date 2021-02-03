@@ -30,8 +30,8 @@ $context['product_category_base'] = '/' . $product_category_base . '';
 $slides_args = array(
    'post_type' => 'slide',
    'post_status' => 'publish',
-   'orderby' => 'date',
-   'order' => 'asc',
+   // 'orderby' => 'date',
+   // 'order' => 'asc',
 );
 $context['home_slides'] = new Timber\PostQuery($slides_args);
 
@@ -43,8 +43,8 @@ $context['product_select_shortcode_id'] = '[product_page id="'.$home_product_sel
 $info_slides_args = array(
    'post_type' => 'info_slide',
    'post_status' => 'publish',
-   'orderby' => 'date',
-   'order' => 'asc',
+   // 'orderby' => 'date',
+   // 'order' => 'asc',
 );
 $context['info_home_slides'] = new Timber\PostQuery($info_slides_args);
 

@@ -1,10 +1,10 @@
 jQuery(function($) {
 
   // website preloader animation
-  $(window).load(function() {
-    $(".theme-preload").fadeOut("slow");
-    $('body').removeClass('no-overflow');
-  });
+  // $(window).load(function() {
+  //   $(".theme-preload").fadeOut("slow");
+  //   $('body').removeClass('no-overflow');
+  // });
 
   // ajax search js
   $(document).on("input", "#input_search",  _.debounce(function() {
