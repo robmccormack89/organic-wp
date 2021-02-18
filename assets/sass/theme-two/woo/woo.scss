@@ -1,0 +1,54 @@
+// woocommerce error
+.woocommerce-error {
+  list-style: none;
+  padding-left: 0;
+}
+// mini-cart
+.woocommerce-mini-cart img {
+  width: 50px;
+}
+li.woocommerce-mini-cart-item:before {
+  content: none;
+}
+.mini-cart-link {
+  font-weight: 700;
+}
+// cart page table
+.woocommerce-cart-form td.product-remove {
+  min-width: 20px;
+}
+.woocommerce-cart-form td.product-thumbnail {
+  min-width: 100px;
+}
+.woocommerce-cart-form td.product-name {
+  min-width: 150px;
+}
+// checkout
+.woocommerce-form-login-toggle, .woocommerce-form-coupon-toggle {
+  margin-bottom: 10px;
+}
+.woocommerce-checkout-review-order-table .product-total, .woocommerce-checkout-review-order-table .cart-subtotal td {
+  text-align: right;
+}
+// my account tab nav active item
+.is-active a {
+  background-color: $global-primary-background!important;
+  color: #fff!important;
+}
+// onsale badge
+.onsale.uk-card-badge {
+  top: 15px;
+  right: 15px;
+  left: auto;
+}
+// hide screen reader
+.screen-reader-text {
+  display: none!important;
+}
+// quantity form element (cart & single product)
+.quantity {
+  display: inline-block;
+}
+.quantity input {
+  max-width: 80px;
+}

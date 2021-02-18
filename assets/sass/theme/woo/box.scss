@@ -1,0 +1,45 @@
+// product boxes
+.cpb_product_boxes_custom .cpb-boxes .cpb-inner {
+  background: #f7fbf9;
+  border: none;    
+}
+.cpb_product_boxes_custom .cpb-boxes .cpb-inner:hover:before {
+  background: #20865f2e;
+}
+.cpb_product_boxes_custom .cpb-items .cpb-inner:hover .cpb-item-image:before {
+  background-position: center 50%;
+}
+.cpb-custom-product-boxes-items .cpb-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: unset;
+  margin-left: -15px;
+}
+.right-boxes .uk-card {
+  background: #fff;
+  box-shadow: 0 14px 25px #00000029;
+}
+.cpb-boxes .uk-grid-column-small>*, .cpb-boxes.uk-grid-small>* {
+  padding-left: 5px;
+}
+.cpb-boxes.uk-grid-small>.uk-grid-margin {
+  margin-top: 5px;
+}
+span.cpb_category_filters_item {
+  margin: 0 25px 0 0px;
+}
+span.woocommerce-Price-amount {
+  font-weight: 700;
+}
+.cpb_product_boxes_custom .cpb-boxes .cpb-inner:hover:before {
+  opacity: 1;
+  cursor: pointer;
+  z-index: 100;
+  background-image: url(/wp-content/plugins/custom-product-boxes/assets/images/remove-icon-light.png);
+  background-position: center 45%!important;
+  background-repeat: no-repeat!important;
+  background-size: 50px!important;
+}
+.woocommerce .cpb-item-image img {
+  border: 4px double #e8e8e8;
+}

@@ -1,11 +1,5 @@
 jQuery(function($) {
 
-  // website preloader animation
-  // $(window).load(function() {
-  //   $(".theme-preload").fadeOut("slow");
-  //   $('body').removeClass('no-overflow');
-  // });
-
   // ajax search js
   $(document).on("input", "#input_search",  _.debounce(function() {
     
@@ -53,11 +47,66 @@ jQuery(function($) {
       
     });
   }, 500));
+  
+  // ajax search mobile js
+  $(document).on("input", "#input_search_mobile",  _.debounce(function() {
+    
+    var input_value = $(this).val();
+    var query = input_value;
+    var req;
+    
+    if (query.length < 2) {
+      $('#response_search_results_mobile').hide();
+      return false;
+    }
+    
+    if (req != null) req.abort();
+
+    req = $.ajax({
+      type: 'post',
+      url: myAjax.ajaxurl,
+      data: {
+        action: 'ajax_live_search_mobile',
+        query: query
+      },
+      success: function(response){
+        
+        if(!response) {
+          alert('empty');
+          $('#response_search_results_mobile').hide();
+          return;
+        }
+        
+        var obj = JSON.parse(response);
+        
+        if (obj.result == 1) {
+          document.getElementById("response_search_results_mobile").innerHTML = obj.response;
+          $('#response_search_results_mobile').show();
+        }
+        
+        $('#response_search_results_mobile ul li a').wrapInTag({
+          words: [input_value]
+        });
+        
+      },
+      error: function (request, status, error) {
+        $('#response_search_results_mobile').hide();
+      }
+      
+    });
+  }, 500));
 
   // search results hide on additional click away
   $(document).on('click', function (e) {
     if ($(e.target).closest(".top-search-bar").length === 0) {
       $("#response_search_results").hide();
+    }
+  });
+  
+  // search results hide on additional click away
+  $(document).on('click', function (e) {
+    if ($(e.target).closest(".top-search-bar-mobile").length === 0) {
+      $("#response_search_results_mobile").hide();
     }
   });
 
@@ -84,19 +133,5 @@ jQuery(function($) {
     var modal = UIkit.modal("#MiniCartModal");
     modal.show();
   });
-  
-  // adding uikit classes to various woo elements
-  $("#loginform").addClass("uk-form-stacked");
-  $("label").addClass("uk-form-label");
-  $("#loginform .input").addClass("uk-input");
-  $("#loginform [ type=checkbox ]").addClass("uk-checkbox");
-  $("#loginform .button.button-primary").addClass("uk-button uk-button-default");
-  $(".woocommerce-message").addClass("uk-margin-top");
-  $(".woocommerce-notices-wrapper .button").addClass("uk-button uk-button-primary uk-button-small uk-margin-small-right");
-  $(".mnm_table").addClass("uk-table uk-table-striped uk-table-small");
-  $(".input-text.qty").addClass("uk-input");
-  $(".mnm_add_to_cart_button").addClass("uk-button uk-button-primary");
-  $(".woocommerce-product-details__short-description ul").addClass("uk-list uk-list-striped");
-  $(".single_add_to_cart_button").addClass("uk-button uk-button-primary");
     
 });

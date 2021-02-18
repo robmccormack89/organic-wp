@@ -1,0 +1,21 @@
+// woocommerce fonts
+@font-face {
+	font-family: 'star';
+	src: url('./webfonts/star.eot');
+	src: url('./webfonts/star.eot?#iefix') format('embedded-opentype'),
+		url('./webfonts/star.woff') format('woff'),
+		url('./webfonts/star.ttf') format('truetype'),
+		url('./webfonts/star.svg#star') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'WooCommerce';
+	src: url('./webfonts/WooCommerce.eot');
+	src: url('./webfonts/WooCommerce.eot?#iefix') format('embedded-opentype'),
+		url('./webfonts/WooCommerce.woff') format('woff'),
+		url('./webfonts/WooCommerce.ttf') format('truetype'),
+		url('./webfonts/WooCommerce.svg#WooCommerce') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

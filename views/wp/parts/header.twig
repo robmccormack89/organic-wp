@@ -1,0 +1,467 @@
+<header id="SiteHeader" class="site-header" data-template="header.twig">
+    
+  <div id="HeaderTop" class="top-bar uk-light theme-bg-darker">
+    <div class="uk-container">
+      
+      <div uk-grid>
+        
+        <div class="uk-width-auto top-nav-left">
+          <div class="uk-visible@m">
+            
+            {% if menu_top_left %}
+            
+              <ul class="uk-navbar-nav">
+              
+                {% for item in menu_top_left.get_items %}
+                  
+                  <li class="theme-border-left {{ item.classes | join(' ') }}">
+                    <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+                  </li>
+                
+                {% endfor %}
+                
+                <li class="theme-border-left">
+                  <a href="#" class="uk-text-capitalize">
+                    <i class="fas fa-truck-moving uk-margin-small-right"></i> Free Shipping for all orders of $150
+                  </a>
+                </li>
+              
+              </ul>
+            
+            {% else %}
+            
+              <ul class="uk-navbar-nav">
+                <li class="theme-border-left"><a href="#">Item</a></li>
+                <li class="theme-border-left"><a href="#" class="uk-text-capitalize"><i class="fas fa-truck-moving uk-margin-small-right"></i> Free Shipping for all orders of $150</a></li>
+              </ul>
+              
+            {% endif %}
+            
+          </div>
+        </div>
+        
+        <div class="uk-width-expand top-nav-center">
+          <div class="uk-text-center uk-hidden@m">Social</div>
+        </div>
+        
+        <div class="uk-width-auto top-nav-right">
+          <div class="uk-visible@m">
+            
+            {% if menu_top_right %}
+            
+              <ul class="uk-navbar-nav">
+                
+                <li class="theme-border-right">
+                  <a href="#" class="uk-text-capitalize">
+                    Find us on Facebook<i class="fab fa-facebook-f uk-margin-small-left"></i>
+                  </a>
+                </li>
+              
+                {% for item in menu_top_right.get_items %}
+                  
+                  <li class="theme-border-right {{ item.classes | join(' ') }}">
+                    <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+                  </li>
+                
+                {% endfor %}
+              
+              </ul>
+            
+            {% else %}
+            
+              <ul class="uk-navbar-nav">
+                <li class="theme-border-right">
+                  <a href="#" class="uk-text-capitalize">Find us on Facebook<i class="fab fa-facebook-f uk-margin-small-left"></i></a>
+                </li>
+                <li class="theme-border-right"><a href="#">FAQs</a></li>
+                <li class="theme-border-right"><a href="#">Contact us</a></li>
+              </ul>
+              
+            {% endif %}
+            
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="HeaderMain" class="header-main uk-section uk-section-small uk-visible@m">
+    <div class="uk-container">
+      <div class="desktop-header-grid" uk-grid>
+        
+        <div class="logo-left uk-width-1-2 uk-inline">
+          <a class="uk-logo uk-text-bold uk-text-emphasis uk-position-center-left padding-left-40" title="{{ site.title }}" href="{{ site.url }}"><img data-src="/wp-content/themes/organicwp-theme/assets/images/organicforhealth-logo.png" uk-img=""> <span class="uk-margin-small-left">{{ site.title }}.</span></a>
+        </div>
+        
+        <div class="search-navs-right uk-width-1-2">
+          
+          <div class="account-links uk-text-right" data-template="header-main-account.twig">
+            {% if not user %}
+              <a href="/my-account">Login / Register</a>
+            {% else %}
+              <a href="/my-account">My Account</a>
+            {% endif %}
+          </div>
+          
+          <nav class="search-cart uk-navbar-container uk-navbar-transparent uk-margin-small-top" uk-navbar>
+            <div class="uk-navbar-right">
+                
+              <div id="SimpleSearchForm" class="uk-navbar-item height-content pull-right-30" data-template="header-main-search.twig">
+                <form role="search" method="get" action="{{site.url}}" hidden>
+                  <div class="uk-inline">
+                    <a class="uk-form-icon uk-form-icon-flip uk-link-reset"><i class="fas fa-search fa-lg"></i></a>
+                    <input class="uk-input uk-form-width-medium mark-this-value" type="text" placeholder="Search..." id="SearchDesktop" name="s" autocomplete="off">
+                    <input type="hidden" name="post_type" value="post">
+                  </div>
+                </form>
+                <div class="top-search-bar">
+                	<form id="form_validate_search" class="form_search_main uk-width-1-1 uk-inline" role="search" method="get" action="{{site.url}}" accept-charset="utf-8" novalidate="novalidate">
+                		<div class="uk-search uk-search-default uk-width-1-1">
+                			<a href="#" title="Submit search" class="uk-search-icon-flip uk-icon uk-search-icon theme-border-left">
+                				<i class="fas fa-search fa-lg"></i>
+                			</a>
+                			<input class="form-control uk-search-input uk-input" type="text" name="search" maxlength="300" pattern=".*\S+.*" id="input_search" value="" placeholder="Start typing to search for produce..." required="" autocomplete="off"
+                        aria-invalid="true">
+                			<input type="hidden" name="post_type" value="product" />
+                		</div>
+                		<div id="response_search_results" class="search-results-ajax uk-height-max-medium uk-overflow-auto"></div>
+                	</form>
+                </div>
+              </div>
+              
+              {% if is_cart or is_checkout  %}
+                <div class="uk-navbar-item height-content pull-right-15">
+                  <a class="cart-icon uk-margin-left" href="/basket" aria-expanded="false"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                  {% do action('cart_ajax_result_count') %}
+                </div>
+              {% else %}
+                <div class="uk-navbar-item height-content pull-right-15">
+                  <a class="cart-icon uk-margin-left" aria-expanded="false" href="#MiniCartModal" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i>{% do action('cart_ajax_result_count') %}</a>
+                </div>
+              {% endif %}
+                
+            </div>
+          </nav>
+          
+        </div>
+          
+      </div>
+    </div>
+  </div>
+  
+  <div id="HeaderBottom" class="header-bottom uk-visible@m boundary-align theme-border-top">
+    <div class="uk-container">
+      <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-left">
+          <ul class="cats-menu-main uk-navbar-nav the-main-menu uk-background-primary">
+            <li class="uk-inline">
+              <a href="#">Browse Categories <i class="fas fa-chevron-down uk-margin-medium-left"></i></a>
+              <div uk-dropdown class="theme-border-top theme-border-left theme-border-right">
+                
+                {% if menu_cats %}
+                
+                  <ul class="uk-nav uk-dropdown-nav">
+                  
+                    {% for item in menu_cats.get_items %}
+                    
+                      {% if item.get_children %}
+                      
+                        <li class="theme-border-bottom {{ item.classes | join(' ') }}">
+                          <a href="{{ item.link }}">{{ item.title }} <i class="fas fa-angle-right uk-align-right uk-margin-remove" style="padding-top:4px;"></i></a>
+                          <div uk-dropdown="pos: right" class="theme-border-top theme-border-left theme-border-right">
+                            <ul class="uk-nav uk-dropdown-nav">
+                              {% for child in item.get_children %}
+                                <li class="theme-border-bottom">
+                                  <a href="{{ child.get_link }}">{{ child.title }}</a>
+                                  {% if child.children %}
+                                    <div uk-dropdown="pos: right" class="theme-border-top theme-border-left theme-border-right">
+                                      <ul class="uk-nav uk-dropdown-nav">
+                                        {% for third in child.children %}
+                                        <li class="theme-border-bottom">
+                                          <a href="{{ third.get_link }}">{{ third.title }}</a>
+                                        </li>
+                                        {% endfor %}
+                                      </ul>
+                                    </div>
+                                  {% endif %}
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </li>
+                      
+                      {% else %}
+                      
+                        <li class="theme-border-bottom {{ item.classes | join(' ') }}">
+                          <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+                        </li>
+                      
+                      {% endif %}
+                    
+                    {% endfor %}
+                  
+                  </ul>
+                
+                {% else %}
+                
+                  <ul class="uk-nav uk-dropdown-nav">
+                    <li class="theme-border-bottom">
+                      <a href="#">Clothing <i class="fas fa-angle-right uk-align-right uk-margin-remove" style="padding-top:4px;"></i></a>
+                      <div uk-dropdown="pos: right" class="theme-border-top theme-border-left theme-border-right">
+                        <ul class="uk-nav uk-dropdown-nav">
+                          <li class="theme-border-bottom"><a href="#">Accessories</a></li>
+                          <li class="theme-border-bottom"><a href="#">Hoodies</a></li>
+                          <li class="theme-border-bottom"><a href="#">Chocolate, Crisps & Cookies</a></li>
+                          <li class="theme-border-bottom"><a href="#">T-shirts</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="theme-border-bottom"><a href="#">Decor</a></li>
+                    <li class="theme-border-bottom"><a href="#">Fruit</a></li>
+                    <li class="theme-border-bottom">
+                      <a href="#">Groceries<i class="fas fa-angle-right uk-align-right uk-margin-remove" style="padding-top:4px;"></i></a>
+                      <div uk-dropdown="pos: right" class="theme-border-top theme-border-left theme-border-right">
+                        <ul class="uk-nav uk-dropdown-nav">
+                          <li class="theme-border-bottom"><a href="#">Baking</a></li>
+                          <li class="theme-border-bottom"><a href="#">Bread & Cereal</a></li>
+                          <li class="theme-border-bottom"><a href="#">Chocolate, Crisps & Cookies</a></li>
+                          <li class="theme-border-bottom"><a href="#">Coffee, Drinks & Juices</a></li>
+                          <li class="theme-border-bottom"><a href="#">Honey, Butters & Jams</a></li>
+                          <li class="theme-border-bottom"><a href="#">Nuts, Seeds & Grains</a></li>
+                          <li class="theme-border-bottom"><a href="#">Oils, Milks & Dairy/Dairy-free</a></li>
+                          <li class="theme-border-bottom"><a href="#">Sauces & Seasonings</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="theme-border-bottom"><a href="#">Music</a></li>
+                    <li class="theme-border-bottom"><a href="#">Product Boxes</a></li>
+                    <li class="theme-border-bottom"><a href="#">Vegetables</a></li>
+                  </ul>
+                  
+                {% endif %}
+
+              </div>
+            </li>
+          </ul>
+          <ul class="uk-navbar-nav the-main-menu">
+            
+            {% if has_menu_main %}
+              
+              {% for item in menu_main.get_items %}
+              
+                {% if item.get_children %}
+                
+                  <li class="{{ item.classes | join(' ') }}"><a href="{{ item.link }}">{{ item.title }}<i class="fas fa-angle-down menu-dropicon"></i></a>
+                    <div class="uk-navbar-dropdown">
+                      <ul class="uk-nav uk-navbar-dropdown-nav">
+                        {% for child in item.get_children %}
+                        <li>
+                          <a href="{{ child.get_link }}">{{ child.title }}</a>
+                            {% if child.children %}
+                            <ul class="uk-nav-sub">
+                              {% for third in child.children %}
+                              <li>
+                                <a href="{{ third.get_link }}">{{ third.title }}</a>
+                              </li>
+                              {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </li>
+                
+                {% elseif item.mega_menu == 'yes' %}
+                
+                <li class=" {{ item.classes | join(' ') }}">
+                  
+                  <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}<i class="fas fa-angle-down menu-dropicon"></i></a>
+                  
+                  {% set the_menu = function('get_post', item.select_mega_menu ) %}
+                
+                  <div uk-drop="pos: bottom-justify; boundary: .boundary-align; boundary-align: true;offset: 0" class="theme-border-bottom">
+                    <div class="uk-padding-small uk-background-default">
+                      <div class="uk-container">
+                        
+                        {{the_menu.post_content}}
+                        
+                      </div>
+                    </div>
+                  </div>
+                  
+                </li>
+                
+                {% else %}
+                
+                  <li class=" {{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+                
+                {% endif %}
+              
+              {% endfor %}
+            
+            {% else %}
+              <p class="uk-margin-remove uk-light">Add a menu to the Main Menu slot in Appearance > Menus</p>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav the-main-menu pull-right-15">
+            <li class="some-class">
+              <a href="#" uk-toggle>Build your Product Box <i class="fas fa-plus-circle uk-margin-small-left fa-lg uk-text-primary"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  <div id="HeaderMobile" class="header-mobile uk-hidden@m">
+    
+    <div uk-sticky="sel-target: .sticky-mobile-nav; cls-active: uk-navbar-sticky">
+      <nav class="sticky-mobile-nav uk-container uk-background-default uk-box-shadow-small" uk-navbar>
+        
+        <div class="uk-navbar-left">
+          
+          <a class="uk-navbar-toggle uk-navbar-item uk-text-emphasis" uk-toggle href="#mobile-offcanvas-nav">
+            <i class="fas fa-bars fa-lg"></i><span class="uk-flex-last push-left-7">Menu</span>
+          </a>
+          
+          <div id="mobile-offcanvas-nav" class="mobile-slide-navbar" uk-offcanvas="overlay: true;">
+            <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+              
+              <div class="top-search-bar-mobile">
+              	<form id="form_validate_search_mobile" class="form_search_main uk-width-1-1 uk-inline" role="search" method="get" action="{{site.url}}" accept-charset="utf-8" novalidate="novalidate">
+              		<div class="uk-search uk-search-default uk-width-1-1">
+              			<a href="#" title="Submit search" class="uk-search-icon-flip uk-icon uk-search-icon">
+              				<i class="fas fa-search fa-lg"></i>
+              			</a>
+              			<input class="form-control uk-search-input uk-input" type="text" name="search" maxlength="300" pattern=".*\S+.*" id="input_search_mobile" value="" placeholder="Start typing to search..." required="" autocomplete="off"
+                      aria-invalid="true">
+              			<input type="hidden" name="post_type" value="product" />
+              		</div>
+              		<div id="response_search_results_mobile" class="search-results-ajax uk-height-max-medium uk-overflow-auto "></div>
+              	</form>
+              </div>
+              
+              <ul class="uk-subnav uk-subnav-pill uk-text-center" uk-switcher>
+                <li><a href="#">MENU</a></li>
+                <li><a href="#">CATEGORIES</a></li>
+              </ul>
+              
+              <ul class="uk-switcher">
+                <li>
+                  <ul class="uk-nav-default uk-nav-parent-icon uk-position-relative" uk-nav>
+                    {% if has_menu_mobile %}
+                      {% for item in menu_mobile.get_items %}
+                        {% if item.get_children %}
+                          <li class="theme-border-bottom {{ item.classes | join(' ') }} uk-parent">
+                            <a href="{{ item.link }}">{{ item.title }}</a>
+                            <ul class="uk-nav-sub">
+                              {% for child in item.get_children %}
+                                <li class="theme-border-top">
+                                  <a href="{{ child.get_link }}">- {{ child.title }}</a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </li>
+                        {% else %}
+                          <li class="theme-border-bottom {{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if not user %}
+                        <li class="theme-border-bottom"><a href="/my-account"><i class="far fa-user uk-margin-small-right"></i> Login / Register</a></li>
+                      {% else %}
+                        <li class="theme-border-bottom"><a href="/my-account"><i class="far fa-user uk-margin-small-right"></i> My Account</a></li>
+                      {% endif %}
+                      <li class="theme-border-bottom"><a href="#"><i class="fas fa-plus uk-margin-small-right"></i> Buld your Product Box</a></li>
+                      <li class="theme-border-bottom"><a href="#"><i class="fab fa-facebook-f uk-margin-small-right"></i> Find us on Facebook</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+                <li>
+                  {% if menu_cats %}
+                    <ul class="uk-nav-default uk-nav-parent-icon uk-position-relative" uk-nav>
+                      {% for item in menu_cats.get_items %}
+                        {% if item.get_children %}
+                          <li class="theme-border-bottom {{ item.classes | join(' ') }} uk-parent">
+                            <a href="{{ item.link }}">{{ item.title }}</a>
+                            <ul class="uk-nav-sub">
+                              {% for child in item.get_children %}
+                                <li class="theme-border-top">
+                                  <a href="{{ child.get_link }}">- {{ child.title }}</a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </li>
+                        {% else %}
+                          <li class="theme-border-bottom {{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  {% else %}
+                    <p class="uk-margin-remove uk-light">Add a menu to the Main Menu slot in Appearance > Menus</p>
+                  {% endif %}
+                </li>
+              </ul>
+              
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="uk-navbar-center">
+          <a class="uk-logo uk-text-bold uk-text-emphasis" title="{{ site.title }}" href="{{ site.url }}">{{ site.title }}</a>
+        </div>
+        
+        <div class="uk-navbar-right">
+          {% if is_cart or is_checkout  %}
+            <div class="uk-navbar-item">
+              <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false"><i class="fas fa-shopping-cart fa-2x"></i></a>
+              {% do action('cart_ajax_result_count') %}
+            </div>
+          {% else %}
+            <div class="uk-navbar-item">
+              <a class="cart-icon uk-icon uk-margin-left uk-light" aria-expanded="false" href="#MiniCartModal" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i></a>
+              {% do action('cart_ajax_result_count') %}
+            </div>
+          {% endif %}
+        </div>
+        
+      </nav>
+    </div>
+    
+  </div>
+    
+</header>
+
+<div id="MiniCartModal" class="minicart-modal" uk-modal>
+  <div class="uk-modal-dialog">
+    <div class="uk-modal-body height-content uk-padding-remove" uk-overflow-auto>
+      <div class="widget_shopping_cart_content">
+        {{fn('woocommerce_mini_cart')}}
+      </div>
+      
+      <script>
+        jQuery(function($) {
+          function WooMiniCart() {
+            $(".woocommerce-mini-cart__buttons .button:first-child").addClass("uk-button uk-button-primary uk-button-small uk-width-1-1");
+            $(".woocommerce-mini-cart__buttons .button.checkout").addClass("uk-button uk-button-link uk-width-1-1 dont-underline");
+          };
+          $(".widget_shopping_cart_content").load(WooMiniCart());
+          $("body").on('DOMSubtreeModified', ".minicart-modal", WooMiniCart);
+        });
+      </script>
+    </div>
+  </div>
+</div>
+
+<div id="ProductBoxModal" class="product-box-modal uk-modal-container" uk-modal>
+  <div class="uk-modal-dialog">
+    <div class="uk-modal-body" uk-overflow-auto>
+      {{ function('do_shortcode', product_select_shortcode_id) }}
+    </div>
+  </div>
+</div>

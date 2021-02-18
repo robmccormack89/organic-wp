@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% block content_inner %}
+      
+  <article id="single-{{post.ID}}" class="uk-article uk-section uk-section-small uk-container uk-container-small {{post.class}}" data-template="single.twig">
+    
+    <h1 class="uk-article-title page-title">{{post.title}}</h1>
+    
+    <p class="uk-article-meta">
+      Written on {{post.date | date}}. Posted in
+      {% for category in post.categories %}
+      
+        {% if not loop.last %}
+          <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
+        {% endif %}
+      
+        {% if loop.last %}
+          <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+        {% endif %}
+        
+      {% endfor %}
+    </p>
+    
+    <div class="article-content">
+      
+      {% if post.thumbnail %}
+        <figure>
+          <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
+        </figure>
+        <figcaption class="uk-text-muted">{{ post.thumbnail.caption }}</figcaption>
+      {% endif %}
+      
+      {{post.content}}
+
+    </div>
+  
+  </article>
+
+{% endblock  %}

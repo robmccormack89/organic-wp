@@ -1,0 +1,80 @@
+{% extends 'base.twig' %}
+
+{% block spec_styles %}
+
+  {% set default_header_bg = '/assets/images/stock/field.jpg' %}
+  
+  {% if term_img %}
+    {% set header_bg = term_img %}
+  {% else %}
+    {% set header_bg = theme.link ~ '/assets/images/stock/field.jpg' %}
+  {% endif %}
+  
+  <style>
+    #PageTitleSection {
+      background-image: url('{{header_bg}}');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+  
+{% endblock %}
+
+{% block pageheader %}
+  <section id="PageTitleSection">
+    <div class="uk-overlay-primary uk-light uk-width-1-1">
+      <div class="uk-section uk-secton-large">
+        <div class="uk-container uk-text-center">
+          <div class="">
+            <h1 class="uk-margin-small-top uk-h1">{{ title }}</h1>
+            {% do action('woocommerce_archive_description') %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content_inner %}
+
+  <div class="uk-container" data-template="shop.twig">
+
+    {% do action('woocommerce_before_main_content') %}
+    
+    <div id="ajax-filters-container">
+      <div  id="MainProductArchive" class="uk-margin-top" uk-grid>
+      		
+    		<div class="uk-width-1-4@m">
+          {% include 'shop-filters.twig' %}
+    		</div>
+    		
+    		<div class="uk-width-3-4@m">
+          {% include 'shop-toolbar.twig' %}
+    			<div id="ProductGrid" class="archive-posts products uk-child-width-1-2 uk-child-width-1-{{columns}}@m uk-grid-small uk-margin-medium-bottom" uk-grid="masonry: true">
+    		    {% for post in products %}
+    		      {% include tease_template %}
+    		    {% endfor %}
+    		    {% if products is empty %}
+    		      {% do action('woocommerce_no_products_found') %}
+    		    {% endif %}
+    			</div>
+    			{% include 'pagination.twig' with { pagination : products.pagination( { show_all: true, mid_size: 3, end_size: 2 } ) } %}
+    		</div>
+
+      </div>
+    </div>
+
+    {% do action('woocommerce_after_shop_loop') %}
+
+    {% do action('woocommerce_after_main_content') %}
+    
+  </div>
+
+{% endblock  %}
+
+{% block spec_scripts %}
+  <script src="/wp-content/themes/organicwp-theme/assets/js/woo/shop.js"></script>
+  <script src="/wp-content/themes/organicwp-theme/assets/js/lib/jquery.pjax.min.js"></script>
+  <script src="/wp-content/themes/organicwp-theme/assets/js/woo/shop-filters.js"></script>
+{% endblock %}

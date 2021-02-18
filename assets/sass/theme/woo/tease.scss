@@ -1,0 +1,47 @@
+// tease product
+.tease-product .uk-card {
+  box-shadow: 0 0 2px 1px #b3b3b31f;
+}
+.tease-product-image {
+  border: 3px double #e8e8e8;
+}
+.tease-product-title .uk-card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.tease-product a.added_to_cart.wc-forward, .list-item a.added_to_cart.wc-forward {
+  display: none;
+}
+.tease-product-buttons .uk-button {
+  text-transform: capitalize;
+}
+.tease-product-buttons .uk-button-default {
+  border: 3px double #e5e5e5;
+  border-radius: 0px!important;
+}
+.tease-product-buttons .uk-button-default:hover {
+  border: 3px double #299169;
+  color: #299169;
+}
+.tease-product-buttons .uk-button.loading {
+  padding-right: 2.5rem;
+}
+.tease-product-buttons .uk-button.loading:after {
+  font-family: WooCommerce;
+  content: "\e01c";
+  vertical-align: top;
+  font-weight: 400;
+  position: absolute;
+  margin-left: 0.53em;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+.list-img {
+  height: 100% !important;
+  width: 100%;
+  object-fit: cover;
+}
+.tease-list-content {
+  height: 100%;
+}

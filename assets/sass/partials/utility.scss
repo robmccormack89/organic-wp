@@ -29,7 +29,12 @@
 .theme-border-solid-right {
   border-right: $theme_solid_border;
 }
-
+.uk-light .theme-border-left {
+  border-left: 1px solid #ffffff40;
+}
+.uk-light .theme-border-right {
+  border-right: 1px solid #ffffff40;
+}
 // backgrounds
 .theme-bg {
   background-color: $global-primary-background;
@@ -37,7 +42,6 @@
 .theme-bg-darker {
   background-color: $global-darker-bg-primary;
 }
-
 // utility
 .padding-10 {
   padding: 10px;
@@ -128,4 +132,10 @@
 }
 .margin-left-2 {
   margin-left: 2%;
+}
+.padding-5 {
+  padding: 5px;
+}
+.pull-left-20 {
+  margin-left: -20px;
 }

@@ -25,6 +25,15 @@ if ( is_singular('product') ) {
   $context['product'] = $product;
   // gets shipping class & sets variable
   $context['shipping_class'] = $product->get_shipping_class();
+  // Get related products
+  $related_limit = wc_get_loop_prop('per_page');
+  $related_ids = wc_get_related_products( $context['post']->id, 12 );
+  $context['related_products_title'] = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+  $context['related_products'] = Timber::get_posts( $related_ids );
+  // Get upsells
+  $upsell_ids = $product->get_upsell_ids();
+  $context['up_sells_title'] = apply_filters( 'woocommerce_product_upsells_products_heading', __( 'You may also like&hellip;', 'woocommerce' ) );
+  $context['up_sells'] =  Timber::get_posts( $upsell_ids );
   // Restore the context and loop back to the main query loop.
   wp_reset_postdata();
   // render singular woo template
@@ -37,7 +46,7 @@ if ( is_singular('product') ) {
   // set main query as products cariable 
   $context['products'] = $posts;
   // main template for woo archives is woo-archive
-  $templates = array( 'shop-archive.twig' );
+  $templates = array( 'shop.twig' );
   // main tease template
   $tease_template = array('tease-product.twig');
   
@@ -90,6 +99,11 @@ if ( is_singular('product') ) {
     // set the archive title
     $context['title'] = single_term_title( '', false );
     // then Restore the context and loop back to the main query loop.
+    
+    $thumbnail_id = get_term_meta( $term_id, 'thumbnail_id', true );
+    $image = wp_get_attachment_url( $thumbnail_id );
+    $context['term_img'] = $image;
+    
     wp_reset_postdata();
   };
 

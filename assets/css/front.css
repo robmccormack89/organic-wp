@@ -31,3 +31,9 @@
 .front-page .uk-tab, .front-page #my-id {
   display: none;
 }
+.home-cats-section .uk-inline img, .hover-my-img img {
+  transition: 0.3s;
+}
+.home-cats-section .uk-inline:hover img, .hover-my-img:hover img {
+  transform: scale(1.1);
+}

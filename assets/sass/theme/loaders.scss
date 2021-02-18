@@ -1,0 +1,111 @@
+// woo archive ajax loader
+.loader-ajax:before {
+  height: 1em;
+  width: 1em;
+  display: block;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  content: "";
+  -webkit-animation: spin 1s ease-in-out infinite;
+  animation: spin 1s ease-in-out infinite;
+  background: url(/wp-content/themes/organicwp-theme/assets/images/loader.svg) 50%;
+  background-size: cover;
+  line-height: 1;
+  text-align: center;
+  font-size: 2em;
+  color: #000;
+}
+// site preloader
+.no-js #loader {
+  display: none;
+}
+.js #loader {
+  display: block; position: absolute; left: 100px; top: 0;
+}
+.theme-preload {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(/wp-content/themes/organicwp-theme/assets/images/spinner.gif) center no-repeat #fff;
+}
+.no-overflow {
+  overflow: hidden;
+}
+// preloader
+.preloader {
+  align-items: center;
+  pointer-events: none;
+  background: rgb(255, 255, 255);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.5s linear;
+  width: 100%;
+  z-index: 9999;
+}
+// scroll loader
+.page-load-status {
+  display: none;
+  text-align: center;
+  color: #777;
+}
+.loader-ellips {
+  font-size: 20px;
+  position: relative;
+  width: 4em;
+  height: 1em;
+  margin: 10px auto;
+}
+.loader-ellips__dot {
+  display: block;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.5em;
+  background: $global-link-color;
+  position: absolute;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+.loader-ellips__dot:nth-child(1),
+.loader-ellips__dot:nth-child(2) {
+  left: 0;
+}
+.loader-ellips__dot:nth-child(3) {
+  left: 1.5em;
+}
+.loader-ellips__dot:nth-child(4) {
+  left: 3em;
+}
+@keyframes reveal {
+  from {
+    transform: scale(0.001);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes slide {
+  to {
+    transform: translateX(1.5em);
+  }
+}
+.loader-ellips__dot:nth-child(1) {
+  animation-name: reveal;
+}
+.loader-ellips__dot:nth-child(2),
+.loader-ellips__dot:nth-child(3) {
+  animation-name: slide;
+}
+.loader-ellips__dot:nth-child(4) {
+  animation-name: reveal;
+  animation-direction: reverse;
+}

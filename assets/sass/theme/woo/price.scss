@@ -1,0 +1,44 @@
+// prices
+// del {
+//   text-decoration-color: #F44336;
+//   text-decoration-style: solid;
+//   font-style: normal;
+//   font-size: 0.9rem;
+// }
+// ins,
+// mark {
+//   background: #fff;
+//   color: #666;
+// }
+// .grid-item ins > span.woocommerce-Price-amount,
+// .grid-item span.woocommerce-Price-amount,
+// .price .amount,
+// span.woocommerce-Price-amount {
+//   background-color: #fff;
+//   font-size: 1.5rem;
+//   color: #299169;
+// }
+// .grid-item del > span.woocommerce-Price-amount {
+//   font-size: 1rem;
+// }
+// .list-item ins > span.woocommerce-Price-amount,
+// .list-item span.woocommerce-Price-amount {
+//   background-color: #fff;
+//   font-size: 2.1rem;
+//   color: #299169;
+// }
+// .list-item del > span.woocommerce-Price-amount {
+//   font-size: 1.4rem;
+// }
+// .price {
+//   font-size: 1.2rem;
+//   font-weight: 700;
+// }
+ins, bdi {
+  background: none;
+  color: #20865f;
+}
+del bdi {
+  color: #666;
+  font-size: 0.9rem;
+}

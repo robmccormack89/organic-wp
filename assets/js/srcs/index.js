@@ -10,6 +10,3 @@ UIkit.use(Icons);
 
 // Make uikit available in window for inline scripts
 window.UIkit = UIkit;
-
-// load infinite scroll
-// window.InfiniteScroll = require('infinite-scroll');

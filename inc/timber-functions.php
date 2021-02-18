@@ -8,11 +8,13 @@
 // Define paths to Twig templates
 Timber::$dirname = array(
   'views/',
-  'views/archive',
-  'views/parts',
-  'views/singular',
+  'views/wp',
+  'views/wp/archive',
+  'views/wp/parts',
+  'views/wp/singular',
   'views/woo',
   'views/woo/parts',
+  'views/templates',
 );
 
 /**
@@ -30,7 +32,6 @@ class OrganicTheme extends TimberSite
   
   public function __construct()
   {
-    
     // custom
     add_action('after_setup_theme', array( $this, 'theme_supports'));
     add_action('wp_enqueue_scripts', array( $this, 'organic_theme_enqueue_assets'));
@@ -46,13 +47,11 @@ class OrganicTheme extends TimberSite
     add_action('init', array( $this, 'register_widget_areas' ));
     add_action('init', array( $this, 'register_navigation_menus' ));
     parent::__construct();
-    
   }
 
   // register custom post types
   public function register_post_types()
   {
-    
   	$labels_one = array(
   		'name'                  => _x( 'Banner Slides', 'Post Type General Name', 'text_domain' ),
   		'singular_name'         => _x( 'Banner Slide', 'Post Type Singular Name', 'text_domain' ),
@@ -229,15 +228,6 @@ class OrganicTheme extends TimberSite
         'after_title' => '</h3>'
       ));
       register_sidebar(array(
-        'name' => esc_html__('Footer One', 'organic-theme'),
-        'id' => 'footer-one',
-        'description' => esc_html__('Footer One Widget Area', 'organic-theme'),
-        'before_widget' => '',
-        'after_widget' => '',
-        'before_title' => '<h3 class="widget-title uk-h4">',
-        'after_title' => '</h3>'
-      ));
-      register_sidebar(array(
         'name' => esc_html__('Footer Two', 'organic-theme'),
         'id' => 'footer-two',
         'description' => esc_html__('Footer Two Widget Area', 'organic-theme'),
@@ -267,6 +257,10 @@ class OrganicTheme extends TimberSite
     register_nav_menus(array(
       'main' => __('Main Menu', 'organic-theme'),
       'mobile' => __('Mobile Menu', 'organic-theme'),
+      'categories' => __('Categories Menu', 'organic-theme'),
+      'header_top_left' => __('Header Top Left Menu', 'organic-theme'),
+      'header_top_right' => __('Header Top Right Menu', 'organic-theme'),
+      'footer' => __('Footer Menu', 'organic-theme'),
     ));
     
   }
@@ -284,9 +278,17 @@ class OrganicTheme extends TimberSite
     // register our menus
     $context['menu_main'] = new \Timber\Menu( 'main' );
     $context['menu_mobile'] = new \Timber\Menu('mobile');
+    $context['menu_cats'] = new \Timber\Menu( 'categories' );
+    $context['menu_top_left'] = new \Timber\Menu('header_top_left');
+    $context['menu_top_right'] = new \Timber\Menu('header_top_right');
+    $context['menu_footer'] = new \Timber\Menu('footer');
     // checks for if the menus are present
     $context['has_menu_main'] = has_nav_menu( 'main' );
     $context['has_menu_mobile'] = has_nav_menu( 'mobile' );
+    $context['has_menu_cats'] = has_nav_menu( 'categories' );
+    $context['has_menu_top_left'] = has_nav_menu('header_top_left');
+    $context['has_menu_top_right'] = has_nav_menu('header_top_right');
+    $context['has_menu_footer'] = has_nav_menu('footer');
     
     // get the cutomizer logo option & set variable
     $theme_logo_id = get_theme_mod( 'custom_logo' );
@@ -295,7 +297,6 @@ class OrganicTheme extends TimberSite
     
     // add sidebars to them context
     $context['header_top']  = Timber::get_widgets('Header Top');
-    $context['footer_one']  = Timber::get_widgets('Footer One');
     $context['footer_two']  = Timber::get_widgets('Footer Two');
     $context['footer_three']  = Timber::get_widgets('Footer Three');
 
@@ -356,8 +357,12 @@ class OrganicTheme extends TimberSite
     add_image_size('organic-theme-woo-archive-grid', 260, 260, true);
     add_image_size('organic-theme-cart-image', 80, 80, true);
     // add woo theme supports
-    add_theme_support( 'woocommerce' );
-    add_theme_support( 'wc-product-gallery-zoom' );
+    add_theme_support( 'woocommerce', array(
+      'thumbnail_image_width' => 200,
+      'gallery_thumbnail_image_width' => 100,
+      'single_image_width' => 500,
+    ) );
+    // add_theme_support( 'wc-product-gallery-zoom' );
     add_theme_support( 'wc-product-gallery-lightbox' );
     add_theme_support( 'wc-product-gallery-slider' );
     // stop the br tag madness in the content editor
@@ -394,7 +399,7 @@ class OrganicTheme extends TimberSite
     // theme base scripts; not jquery dependent
     wp_enqueue_script(
       'organic-theme',
-      get_template_directory_uri() . '/assets/js/main/main.js',
+      get_template_directory_uri() . '/assets/js/base.js',
       '',
       '3.1.5',
       true
@@ -423,7 +428,7 @@ class OrganicTheme extends TimberSite
     // font awesome
     wp_enqueue_style(
       'fontawesome-theme',
-      get_template_directory_uri() . '/assets/css/all.min.css'
+      get_template_directory_uri() . '/assets/css/lib/all.min.css'
     );
     // theme base css
     wp_enqueue_style(

@@ -1,0 +1,137 @@
+// single product container
+.single-product-container.uk-container-xsmall {
+  max-width: 500px!important;
+}
+// single product description
+.single-product .woocommerce-product-details__short-description {
+  padding-bottom: 30px;
+}
+.single-product .woocommerce-product-details__short-description > p {
+  margin-bottom: 0;
+}
+// single product price
+.single-product bdi {
+  font-size: 1.2rem;
+}
+// single product meta
+span.sku_wrapper,
+span.posted_in,
+span.tagged_as {
+  display: block;
+}
+.single-product .product_meta {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.single-product .product_meta {
+  margin-top: 30px;
+}
+// single product tabs
+.single-product h2.yikes-custom-woo-tab-title {
+  display: none;
+}
+.single-product .tab-content > p {
+  margin-top: 0;
+}
+.single-product img.allergies-img {
+  max-width: 20px;
+  margin-right: 5px;
+}
+.single-product .uk-card-small .uk-card-body,
+.single-product .uk-card-small.uk-card-body {
+  padding: 15px;
+}
+.single-product .tab-content .uk-table-small td,
+.single-product .tab-content .uk-table-small th {
+  padding: 4px 0;
+}
+.single-product .uk-tab > .uk-active > a {
+  color: #333;
+  border-color: #299169;
+}
+.single-product .uk-tab > * > a {
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  padding: 5px 10px;
+  color: #929292;
+  border-bottom: 1px solid transparent;
+  font-size: 0.875rem;
+  font-size: 1rem;
+  text-transform: capitalize;
+  transition: color 0.1s ease-in-out;
+}
+.single-product .tab-content.uk-card.uk-background-muted.uk-card-body.uk-card-small {
+  font-size: 0.9rem;
+}
+.single-product .tab-content h2 {
+  margin-bottom: 10px!important;
+}
+// single product onsale
+.product-left .onsale.uk-card-badge {
+  top: 15px;
+  left: 55px;
+  right: auto;
+}
+// product images
+.woocommerce #content div.product div.images,
+.woocommerce-page #content div.product div.images,
+.woocommerce-page div.product div.images,
+.woocommerce div.product div.images {
+  width: 100%;
+  height: 100%;
+}
+.woocommerce div.product div.images {
+  margin-bottom: 0;
+}
+// single product images responsive
+@media only screen and (max-device-width:767px) {
+  .woocommerce div.product div.images,
+  .woocommerce-page div.product div.images {
+    width: 100%;
+  }
+  .single-product-images img {
+    max-width: 150px!important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+// product images lightbox caption
+.pswp__caption__center {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  line-height: 20px;
+  color: #ccc;
+}
+// add to cart
+.single_add_to_cart_button {
+  display: inline-block;
+}
+.woocommerce-variation-add-to-cart {
+  margin-top: 20px;
+}
+.reset_variations {
+  position: absolute;
+  right: 5px;
+  bottom: -20px;
+}
+.quantity {
+  width: fit-content;
+  display: inline-block;
+}
+.woocommerce-variation-price {
+  margin-bottom: 20px;
+}
+.comment-form-rating {
+  margin-top: 20px;
+}
+// related & upsells
+#RelatedGrid span.onsale.uk-card-badge.uk-label,
+#UpsellsGrid span.onsale.uk-card-badge.uk-label {
+  left: 15px;
+}
+.uk-slider-items {
+  padding: 30px 20px;
+  transform: translate3d(0px, 0px, 0px);
+}

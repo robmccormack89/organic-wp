@@ -22,18 +22,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="coupon-box">
-
-<?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
-
+	<?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
 </div>
 
 <?php
-// If checkout registration is disabled and not logged in, the user cannot checkout.
-if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
-	echo esc_html( apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) ) );
-	return;
-}
-
+	// If checkout registration is disabled and not logged in, the user cannot checkout.
+	if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
+		echo '<div class="uk-margin-bottom">' . esc_html( apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) ) ) . '</div>';
+		return;
+	}
 ?>
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout uk-form-stacked" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
@@ -42,33 +39,33 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 		<?php if ( $checkout->get_checkout_fields() ) : ?>
 			
-		<div class="customer-crap">
+			<div class="customer-billing-shipping">
 
-			<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+				<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-			<div id="customer_details">
-				<div>
-					<?php do_action( 'woocommerce_checkout_billing' ); ?>
+				<div id="customer_details">
+					<div>
+						<?php do_action( 'woocommerce_checkout_billing' ); ?>
+					</div>
+
+					<div class="uk-margin-top">
+						<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+					</div>
 				</div>
 
-				<div class="uk-margin-medium-top">
-					<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+				<div class="uk-margin-top">
+					<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 				</div>
+			
 			</div>
-
-			<div class="uk-margin-medium-top">
-				<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
-			</div>
-		
-		</div>
 
 		<?php endif; ?>
 		
-		<div class="order-review-crap uk-margin-small-top">
+		<div class="customer-order-review">
 		
 			<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
 			
-			<h3 id="order_review_heading" class="uk-heading-line"><span><?php esc_html_e( 'Your order', 'woocommerce' ); ?></span></h3>
+			<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
 			
 			<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 

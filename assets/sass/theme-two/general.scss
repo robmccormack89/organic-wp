@@ -1,0 +1,23 @@
+// general
+html {
+  color: $body_font_colour;
+  font-family: $body_font;
+}
+/* fonts settings */
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge,
+h1, h2, h3, h4, h5, h6,
+.poppins,
+.uk-logo {
+  font-family: $heading_font;
+  font-weight: 700;
+  color: #0e0e0e;
+}
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle, .account-links a {
+  font-family: $body_font;
+  font-weight: 600!important;
+}
+// about page
+.about-logo-image {
+  padding: 0 0 20px 20px;
+  float: right;
+}

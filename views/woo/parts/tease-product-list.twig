@@ -2,15 +2,16 @@
 
 <article id="product-{{ post.id }}" {{ fn('post_class', ['entry', 'list-item', 'item'] ) }} data-template="tease-product-list.twig">
 	<div class="uk-card uk-card-hover uk-card-body uk-padding-small theme-border uk-grid-match uk-grid-collapse" uk-grid>
-		{% do 
-			action( 'woocommerce_before_shop_loop_item' ) %}
+		
+		{% do action( 'woocommerce_before_shop_loop_item' ) %}
+		
 		<div class="uk-width-1-5">
 			<a class="single-product-image-link" href="{{ post.link }}">
 				<img data-src="{{ post.thumbnail.src|resize(236, 293) }}" class="tease-product-image" alt="{{ post.thumbnail.alt }}" uk-img>
 			</a>
 		</div>
+		
 		<div class="uk-width-expand">
-
       <div class="uk-margin-left padding-15">
   			<div class="uk-position-relative uk-inline uk-width-1-1 tease-list-content">
           
@@ -48,7 +49,7 @@
           
   			</div>
     	</div>
-
 		</div>
+		
 	</div>
 </article>

@@ -1,18 +1,33 @@
-/* Global Custom Variables. What ever u want to use across the partialized files below */
+// Global Custom Variables. What ever u want to use across the partialized files below
 $theme_border: 1px solid #e5e5e5;
+$theme_border_colour: #e5e5e5;
+$theme_border_thick: 2px solid #e5e5e5;
 $theme_border_light: 1px solid rgba(255,255,255,.2);
 $theme_solid_border: 2px solid 1px solid #e5e5e591;
 
+$body_font_colour: #333;
+$dark_font_colour: #0e0e0e;
+$body_font: 'Lato', sans-serif;
+$heading_font: 'Poppins', sans-serif;
+
+$darker-muted-background: #efefef;
+
 // import your custom sass styles. you can partialize it how u like
-@import "assets/sass/partials/fonts.scss";
-@import "assets/sass/partials/footer.scss";
-@import "assets/sass/partials/general.scss";
-@import "assets/sass/partials/header.scss";
-@import "assets/sass/partials/loader.scss";
-@import "assets/sass/partials/pages.scss";
-@import "assets/sass/partials/responsive.scss";
-@import "assets/sass/partials/uikit.scss";
 @import "assets/sass/partials/utility.scss";
-@import "assets/sass/partials/woo.scss";
-@import "assets/sass/woo/woocommerce.scss";
-@import "assets/sass/woo/woocommerce-layout.scss";
+// theme
+@import "assets/sass/theme-two/general.scss";
+@import "assets/sass/theme-two/header.scss";
+@import "assets/sass/theme-two/footer.scss";
+@import "assets/sass/theme-two/loaders.scss";
+@import "assets/sass/theme-two/uikit.scss";
+// theme woo
+@import "assets/sass/theme-two/woo/woo.scss";
+@import "assets/sass/theme-two/woo/archive.scss";
+@import "assets/sass/theme-two/woo/tease.scss";
+@import "assets/sass/theme-two/woo/single.scss";
+@import "assets/sass/theme-two/woo/box.scss";
+@import "assets/sass/theme-two/woo/price.scss";
+// woo override
+@import "assets/sass/woocommerce/woocommerce-fonts.scss";
+@import "assets/sass/woocommerce/woocommerce.scss";
+@import "assets/sass/woocommerce/woocommerce-layout.scss";

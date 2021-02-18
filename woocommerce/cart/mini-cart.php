@@ -23,9 +23,9 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 <?php if ( ! WC()->cart->is_empty() ) : ?>
 
-	<div class="cart-list-box">
-		<div class="cart-list-area">
-			<ul class="woocommerce-mini-cart cart_list product_list_widget uk-list uk-list-striped uk-margin-remove <?php echo esc_attr( $args['list_class'] ); ?>">
+	<div class="cart-list-box theme-border-bottom">
+		<div class="cart-list-area padding-15">
+			<ul class="woocommerce-mini-cart cart_list product_list_widget uk-list uk-margin-remove <?php echo esc_attr( $args['list_class'] ); ?>">
 				<?php
 				do_action( 'woocommerce_before_mini_cart_contents' );
 
@@ -79,9 +79,9 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 								</div>
 							</div>
 							<?php endif; ?>
-							<!-- <div class="mini-cart-variation-data uk-hidden">
+							<div class="mini-cart-variation-data uk-hidden">
 								<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-							</div> -->
+							</div>
 						</li>
 						<?php
 					}
@@ -93,42 +93,31 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 		</div>
 	</div>
 
-	<div class="woocommerce-mini-cart__total total">
-		<div class="cart-subtotal-area padding-15">
-			<?php
-			/**
-			 * Hook: woocommerce_widget_shopping_cart_total.
-			 *
-			 * @hooked woocommerce_widget_shopping_cart_subtotal - 10
-			 */
-			do_action( 'woocommerce_widget_shopping_cart_total' );
-			?>
-		</div>
+	<div class="woocommerce-mini-cart__total total theme-border-bottom padding-15">
+		<?php
+		/**
+		 * Hook: woocommerce_widget_shopping_cart_total.
+		 *
+		 * @hooked woocommerce_widget_shopping_cart_subtotal - 10
+		 */
+		do_action( 'woocommerce_widget_shopping_cart_total' );
+		?>
 	</div>
 
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
-	<div class="woocommerce-mini-cart__buttons buttons">
-		<div class="cart-buttons-area padding-15">
-			<?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?>
-		</div>
+	<div class="woocommerce-mini-cart__buttons buttons padding-15">
+		<?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?>
 	</div>
 
 	<?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
 
 <?php else : ?>
 
-	<div class="woocommerce-mini-cart__empty-message padding-10">
+	<div class="woocommerce-mini-cart__empty-message">
 		<?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?>
 	</div>
 
 <?php endif; ?>
 
 <?php do_action( 'woocommerce_after_mini_cart' ); ?>
-
-<script>
-	jQuery(function($){
-		$("div.cart-buttons-area .button:first-child").addClass("uk-button uk-button-primary uk-button-small uk-width-1-1");
-		$(".button.checkout").addClass("uk-button uk-button-link uk-width-1-1");
-	});
-</script>

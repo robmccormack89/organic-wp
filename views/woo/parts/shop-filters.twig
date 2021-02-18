@@ -1,0 +1,63 @@
+<aside id="ProductFilters">
+  <ul uk-accordion="multiple: true">
+    <li class="uk-open">
+      <a class="uk-accordion-title uk-text-bold" href="#">Sort by:</a>
+      <div class="uk-accordion-content">
+        {% do action('woocommerce_before_shop_loop') %}
+      </div>
+    </li>
+    <li class="uk-open">
+      <a class="uk-accordion-title uk-text-bold" href="#">Categories</a>
+      <div class="uk-accordion-content">
+        <ul class="uk-nav uk-nav-default uk-height-medium uk-overflow-auto uk-margin-small-bottom cat-list">		
+
+          {% for cat in product_cats_for_filters %}
+          
+            {% if function ('product_cat_has_children', cat.term_id) %}
+            
+              <li class="uk-parent">
+                
+                <a href="{{ function ('add_query_arg_product_cats_for_filters', cat.slug) }}" class="{% if product_cat_var == cat.slug %}active{% endif %}" data-type="product_cat" data-name="{{ cat.name }}" data-pjax>
+                  
+                  <input class="uk-radio" type="radio" {% if product_cat_var == cat.slug %}checked{% endif %}>
+                  
+                  {{ cat.name }}
+                  
+                  <ul class="uk-nav-sub">
+                    
+                    {% for sub_cat in function ('subs_product_cats_for_filters', cat.term_id) %}
+                      <li>
+                        <a href="{{ function ('add_query_arg_product_cats_for_filters', sub_cat.slug) }}" class="{% if product_cat_var == sub_cat.slug %}active{% endif %}" data-name="{{ sub_cat.name }}" data-type="product_cat" data-pjax>
+                          <input class="uk-radio" type="radio" {% if product_cat_var == sub_cat.slug %}checked{% endif %}> {{ sub_cat.name }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                    
+                  </ul>
+                  
+                </a>
+                
+              </li>
+              
+            {% else %}
+            
+              <li>
+                <a href="{{ function ('add_query_arg_product_cats_for_filters', cat.slug) }}" class="{% if product_cat_var == cat.slug %}active{% endif %}" data-type="product_cat" data-name="{{ cat.name }}" data-pjax>
+                  <input class="uk-radio" type="radio" {% if product_cat_var == cat.slug %}checked{% endif %}> {{ cat.name }}
+                </a>
+              </li>
+              
+            {% endif %}
+            
+          {% endfor %}
+          
+          {% if product_cats_for_filters is empty %}
+            <li>Add some products to some categories</li>
+          {% endif %}
+          
+        </ul>
+        <a class="uk-link-text uk-text-primary uk-text-small filters-reset-link" href="{{ function ('remove_query_arg_product_cats_for_filters') }}" data-pjax>Reset</a>
+      </div>
+    </li>
+  </ul>
+</aside>

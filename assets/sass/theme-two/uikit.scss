@@ -1,0 +1,94 @@
+// global uikit edits
+.uk-alert h1,
+.uk-alert h2,
+.uk-alert h3,
+.uk-alert h4,
+.uk-alert h5,
+.uk-alert h6 {
+  color: $body_font_colour;
+}
+.uk-article-title {
+  font-size: 1.9rem;
+}
+.uk-button {
+  font-weight: 600;
+}
+.uk-button-link {
+  color: $global-primary-background;
+}
+.uk-card-badge {
+  position: absolute;
+  top: 30px;
+  right: auto;
+  left: 30px;
+  z-index: 1;
+}
+.uk-card-default .uk-card-footer {
+  border-top: none;
+}
+.uk-card-small .uk-card-body,
+.uk-card-small.uk-card-body {
+  padding: 25px;
+}
+.uk-container {
+  max-width: 1000px;
+}
+.uk-container-small {
+  max-width: 700px;
+}
+.uk-divider-small:after {
+  width: 50px;
+}
+.uk-dotnav > .uk-active > * {
+  background-color: hsl(157, 56%, 36%);
+}
+.uk-form-width-medium {
+  width: 320px;
+}
+.uk-light .uk-navbar-nav > li > a {
+  color: hsla(0,0%,100%,.7);
+}
+.uk-light .uk-navbar-nav > li > a:hover {
+  color: hsla(0,0%,100%,.9);
+}
+.uk-link-toggle:focus .uk-link, .uk-link-toggle:hover .uk-link, .uk-link:hover, a:hover {
+  text-decoration: none;
+}
+.uk-logo {
+  font-size: 1.8rem;
+}
+.uk-navbar-nav > li > a {
+  min-height: 50px;
+  color: $dark_font_colour;
+}
+.uk-overlay-primary {
+  background: linear-gradient(0deg, rgba(0,10,6,0.9304096638655462) 1%, rgba(0,0,0,0) 100%);
+}
+.uk-overlay-primary .uk-button-primary {
+  background-color: $global-primary-background;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.uk-overlay-primary .uk-button-primary:hover {
+  background-color: #1c7754;
+  color: #ffffff;
+}
+.uk-search-input {
+  font-weight: 400;
+}
+.uk-subnav>*>:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.uk-slidenav:focus,
+.uk-slidenav:hover {
+  color: $global-link-hover-color;
+}
+.uk-text-lead {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+.uk-text-emphasis {
+  color: $dark_font_colour!important;
+}

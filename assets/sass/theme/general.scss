@@ -1,0 +1,35 @@
+// general
+html {
+  color: #333;
+}
+.uk-h1,
+.uk-h2,
+.uk-h3,
+.uk-h4,
+.uk-h5,
+.uk-h6,
+.uk-heading-2xlarge,
+.uk-heading-large,
+.uk-heading-medium,
+.uk-heading-small,
+.uk-heading-xlarge,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+// about page
+.about-logo-image {
+  padding: 0 0 20px 20px;
+  float: right;
+}
+// breadcrumbs
+#breadcrumbs .uk-padding-small {
+  padding: 5px;
+}
+.bread-nav i.fa-angle-right {
+  padding: 0 5px;
+}
