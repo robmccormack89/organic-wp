@@ -5,6 +5,24 @@
  * @package RMcC_Uikit_Starter
 */
 
+// Purchase now requires a minimum total purchase amount (30euro)
+function required_min_cart_subtotal_amount()
+{  
+  // Only run in the Cart or Checkout pages
+  if( is_cart() || is_checkout() ) {
+    // HERE Set minimum cart total amount
+    $min_total = 30;
+    // Total (before taxes and shipping charges)
+    $total = WC()->cart->subtotal;
+    // Add an error notice is cart total is less than the minimum required
+    if( $total <= $min_total  ) {
+      // Display an error message
+      wc_add_notice( '<p class="uk-text-danger">' . sprintf( __("A minimum total purchase amount of %s is required to checkout."), wc_price($min_total) ) . '</p>', 'error' );
+    }
+  }  
+}
+add_action( 'woocommerce_check_cart_items', 'required_min_cart_subtotal_amount' );
+
 // remove woo scripts and styles selectively
 function theme_woo_script_styles()
 {
@@ -20,28 +38,6 @@ function theme_woo_script_styles()
   wp_deregister_script( 'selectWoo' );
   wp_dequeue_script( 'select2' );
   wp_deregister_script( 'select2' );
-  // wp_dequeue_script( 'wc-add-payment-method' );
-  // wp_dequeue_script( 'wc-lost-password' );
-  // wp_dequeue_script( 'wc_price_slider' );
-  // wp_dequeue_script( 'wc-single-product' );
-  // wp_dequeue_script( 'flexslider' );
-  // wp_dequeue_script( 'zoom' );
-  // wp_dequeue_script( 'wc-add-to-cart' );
-  // wp_dequeue_script( 'wc-cart-fragments' );
-  // wp_dequeue_script( 'wc-credit-card-form' );
-  // wp_dequeue_script( 'wc-checkout' );
-  // wp_dequeue_script( 'wc-add-to-cart-variation' );
-  // wp_dequeue_script( 'wc-single-product' );
-  // wp_dequeue_script( 'wc-cart' );
-  // wp_dequeue_script( 'wc-chosen' );
-  // wp_dequeue_script( 'woocommerce' );
-  // wp_dequeue_script( 'prettyPhoto' );
-  // wp_dequeue_script( 'prettyPhoto-init' );
-  // wp_dequeue_script( 'jquery-blockui' );
-  // wp_dequeue_script( 'jquery-placeholder' );
-  // wp_dequeue_script( 'jquery-payment' );
-  // wp_dequeue_script( 'fancybox' );
-  // wp_dequeue_script( 'jqueryui' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_woo_script_styles', 99 );
 
@@ -73,132 +69,15 @@ function custom_filter_wc_cart_item_remove_link( $sprintf, $cart_item_key ) {
 };
 add_filter( 'woocommerce_cart_item_remove_link', 'custom_filter_wc_cart_item_remove_link', 10, 2 );
 
-// // adding theme classes to woo checkout form elements via woocommerce_checkout_fields filter
-// function theme_checkout_fields( $fields )
-// {
-//   $fields['billing']['billing_first_name']['class'] = array('uk-width-1-2');
-//   $fields['billing']['billing_last_name']['class'] = array('uk-width-1-2');
-//   $fields['billing']['billing_company']['class'] = array('uk-width-1-1');
-//   $fields['billing']['billing_address_1']['class'] = array('uk-width-1-1');
-//   $fields['billing']['billing_address_2']['class'] = array('uk-width-1-1');
-//   $fields['billing']['billing_city']['class'] = array('uk-width-1-1');
-//   $fields['billing']['billing_postcode']['class'] = array('uk-width-1-1');
-//   $fields['billing']['billing_country']['class'] = array('uk-width-1-1');
-//   $fields['billing']['billing_state']['class'] = array('uk-width-1-1');
-//   $fields['billing']['billing_email']['class'] = array('uk-width-1-2');
-//   $fields['billing']['billing_phone']['class'] = array('uk-width-1-2');
-//   $fields['billing']['billing_first_name']['placeholder'] = 'First Name';
-//   $fields['billing']['billing_last_name']['placeholder'] = 'Last Name';
-//   $fields['billing']['billing_company']['placeholder'] = 'Company';
-//   $fields['billing']['billing_address_1']['placeholder'] = 'Street Address';
-//   $fields['billing']['billing_address_2']['placeholder'] = 'Address Additional';
-//   $fields['billing']['billing_city']['placeholder'] = 'City / Town';
-//   $fields['billing']['billing_postcode']['placeholder'] = 'Postcode';
-//   $fields['billing']['billing_email']['placeholder'] = 'Email Address';
-//   $fields['billing']['billing_phone']['placeholder'] = 'Phone No.';
-//   return $fields;
-// }
-// add_filter( 'woocommerce_checkout_fields' , 'theme_checkout_fields' );
-// 
-// // adding theme classes to various woo form elements via woocommerce_form_field_args filter
-// function theme_woo_form_field_args( $args, $key, $value = null )
-// {
-//   switch ( $args['type'] ) {
-// 
-//   case "select" :  /* Targets all select input type elements, except the country and state select input types */
-//     $args['class'][] = 'form-group'; // Add a class to the field's html element wrapper - woocommerce input types (fields) are often wrapped within a <p></p> tag
-//     $args['input_class'] = array('uk-select');
-//     //$args['custom_attributes']['data-plugin'] = 'select2';
-//     $args['label_class'] = array('uk-form-label');
-//     // $args['custom_attributes'] = array( 'data-plugin' => 'select2', 'data-allow-clear' => 'true', 'aria-hidden' => 'true',  ); // Add custom data attributes to the form input itself
-//   break;
-// 
-//   case 'country' : /* By default WooCommerce will populate a select with the country names - $args defined for this specific input type targets only the country select element */
-//     $args['class'][] = 'form-group single-country';
-//     $args['label_class'] = array('uk-form-label');
-//     $args['input_class'] = array('uk-select');
-//   break;
-// 
-//   case "state" : /* By default WooCommerce will populate a select with state names - $args defined for this specific input type targets only the country select element */
-//     $args['class'][] = 'form-group'; // Add class to the field's html element wrapper
-//     $args['input_class'] = array('uk-select');
-//     //$args['custom_attributes']['data-plugin'] = 'select2';
-//     $args['label_class'] = array('uk-form-label');
-//     $args['custom_attributes'] = array( 'data-plugin' => 'select2', 'data-allow-clear' => 'true', 'aria-hidden' => 'true',  );
-//   break;
-// 
-//   case "password" :
-// 
-//   case "text" :
-//     $args['input_class'] = array('uk-input', 'uk-form-controls');
-//     $args['label_class'] = array('uk-form-label');
-//   break;
-// 
-//   case "email" :
-//     $args['input_class'] = array('uk-input');
-//     $args['label_class'] = array('uk-form-label');
-//   break;
-// 
-//   case "tel" :
-//     $args['input_class'] = array('uk-input');
-//     $args['label_class'] = array('uk-form-label');
-//   break;
-// 
-//   case "number" :
-//     $args['input_class'] = array('uk-input');
-//     $args['label_class'] = array('uk-form-label');
-//   break;
-// 
-//   case 'textarea' :
-//     $args['input_class'] = array('uk-textarea');
-//     $args['custom_attributes'] = array( 'rows' => '8'  );
-//     $args['label_class'] = array('uk-form-label');
-//   break;
-// 
-//   case 'checkbox' :
-//   break;
-// 
-//   case 'radio' :
-//   break;
-// 
-//   default :
-//     $args['class'][] = 'form-group';
-//     $args['input_class'] = array('form-control', 'input-lg');
-//     $args['label_class'] = array('control-label');
-//   break;
-// 
-//   }
-//   return $args;
-// }
-// add_filter('woocommerce_form_field_args','theme_woo_form_field_args',10,3);
-
 /**
  * Woo actions
 */
 
-// function monarch_checkout_message()
-// {
-//   echo '<div class=""><p><span class="uk-label uk-text-capitalize uk-text-bold">To avail of our delivery options, dont forget to enter your eircode in the shipping calulator below by clicking change address. Delivery limited to n91 & c15 eircodes</span></p></div>';
-// }
-// add_action('woocommerce_before_cart_contents', 'monarch_checkout_message');
-
-// Purchase now requires a minimum total purchase amount (30euro)
-// function required_min_cart_subtotal_amount()
-// {
-//   // Only run in the Cart or Checkout pages
-//   if( is_cart() || is_checkout() ) {
-//     // HERE Set minimum cart total amount
-//     $min_total = 30;
-//     // Total (before taxes and shipping charges)
-//     $total = WC()->cart->subtotal;
-//     // Add an error notice is cart total is less than the minimum required
-//     if( $total < $min_total  ) {
-//       // Display an error message
-//       wc_add_notice( '<strong>' . sprintf( __("A minimum total purchase amount of %s is required to checkout."), wc_price($min_total) ) . '</strong>', 'error' );
-//     }
-//   }  
-// }
-// add_action( 'woocommerce_check_cart_items', 'required_min_cart_subtotal_amount' );
+function monarch_checkout_message()
+{
+  echo '<div class="uk-background-muted padding-10">To avail of our local delivery option, dont forget to enter your eircode in the shipping calulator below by clicking change address. Delivery limited to n91 & c15 eircodes</div>';
+}
+add_action('woocommerce_before_cart_contents', 'monarch_checkout_message');
 
 // changes the html for the the woo reset variations button
 function woocommerce_reset_variations_link_new_html()

@@ -1,6 +1,8 @@
 jQuery(function($) {
   // checkout
   function CheckoutRestyleAfterAjax() {
+    
+    $(".wc-backward.uk-button").addClass("uk-button-small uk-button-primary");
 
     $(".woocommerce-billing-fields__field-wrapper").attr("uk-grid");
     $(".woocommerce-billing-fields__field-wrapper").addClass("uk-grid-small");
