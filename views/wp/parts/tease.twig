@@ -1,25 +1,25 @@
-<article id="post-{{post.ID}}" class="uk-section uk-section-small uk-padding-remove-top item {{ post.class }}" data-template="tease.twig">
+<article id="post-{{post.ID|e('html_attr')}}" class="uk-section uk-section-small uk-padding-remove-top item {{ post.class|e('html_attr') }}" data-template="tease.twig">
   <header>
     <h3 class="uk-article-title uk-h4">
-      <a title="{{post.title}}" class="uk-link-reset" href="{{post.link}}">{{post.title}}</a>
+      <a title="{{post.title|e('html_attr')}}" class="uk-link-reset" href="{{post.link|e('esc_url')}}">{{post.title|e('esc_html')}}</a>
     </h3>
-    <p class="uk-article-meta">Written on {{post.date | date}}. Posted in
+    <p class="uk-article-meta">Written on {{post.date | date|e('esc_html')}}. Posted in
     {% for category in post.categories %}
       {% if not loop.last %}
-        <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
+        <a title="{{ category|e('html_attr') }}" href="{{ category.link|e('esc_url') }}">{{ category|e('esc_html') }}</a>,
       {% endif %}
       {% if loop.last %}
-        <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+        <a title="{{ category|e('html_attr') }}" href="{{ category.link|e('esc_url') }}">{{ category|e('esc_html') }}</a>
       {% endif %}
     {% endfor %}
     </p>
   </header>
   {% if post.get_thumbnail %}
   <figure>
-    <a title="{{ post.thumbnail.title }}" href="{{post.link}}">
-      <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
+    <a title="{{ post.thumbnail.title|e('html_attr') }}" href="{{post.link|e('esc_url')}}">
+      <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive')|e('esc_url') }}" width="800" height="300" alt="{{ post.thumbnail.alt|e('html_attr') }}" uk-img>
     </a>
   </figure>
   {% endif %}
-  <a href="{{post.link}}" title="Read More" class="uk-button uk-button-default">Read More</a>
+  <a href="{{post.link|e('esc_url')}}" title="Read More" class="uk-button uk-button-default">Read More</a>
 </article>

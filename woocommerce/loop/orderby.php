@@ -32,11 +32,21 @@ if (isset($_GET['orderby'])) {
 <ul class="uk-nav uk-nav-default uk-margin-small-bottom ajax-ordering">
 <?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
 	<li>
-		<a href="<?php echo esc_url(add_query_arg(array('orderby' => esc_attr($id),'_pjax' => false))); ?>" class="<?php if ($orderby_sort == esc_attr($id)) { echo 'active'; } ?>" data-type="orderby" data-name="<?php echo esc_html( $name );?>" data-pjax>
-			<input class="uk-radio " type="radio" <?php if ($orderby_sort == esc_attr($id)) { echo 'checked'; } ?>>
-			<?php echo esc_html( $name ); ?>
+		<a>
+			<label>
+				<input 
+				class="uk-radio <?php if ($orderby_sort == esc_attr($id)) { echo 'here'; } ?>" 
+				type="radio" 
+				data-link="<?php echo esc_url(add_query_arg(array('orderby' => esc_attr($id)))); ?>" 
+				onclick="quickLoad(event);" 
+				data-type="orderby" 
+				data-name="<?php echo esc_html( $name );?>"
+				<?php if ($orderby_sort == esc_attr($id)) { echo 'checked'; } ?>
+				>
+				<?php echo esc_html( $name ); ?>
+			</label>
 		</a>
 	</li>
 <?php endforeach; ?>
 </ul>
-<a class="uk-link-text uk-text-primary uk-text-small filters-reset-link" href="<?php echo esc_url(remove_query_arg(array( 'orderby', '_pjax'))); ?>" data-pjax>Reset</a>
+<a class="uk-link-text uk-text-primary uk-text-small filters-reset-link" data-link="<?php echo esc_url(remove_query_arg(array('orderby'))); ?>" onclick="quickLoad(event);">Reset</a>

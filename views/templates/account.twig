@@ -1,50 +1,17 @@
 {% extends "base.twig" %}
 
-{% block spec_styles %}
-
-  {% set default_header_bg = '/assets/images/stock/field.jpg' %}
-  
-  {% if post.thumbnail %}
-    {% set header_bg = post.thumbnail.src %}
-  {% else %}
-    {% set header_bg = theme.link ~ '/assets/images/stock/field.jpg' %}
-  {% endif %}
-  
-  <style>
-    #PageTitleSection {
-      background-image: url('{{header_bg}}');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-  </style>
-  
-{% endblock %}
-
 {% block pageheader %}
-  <section id="PageTitleSection">
-    <div class="uk-overlay-primary uk-light uk-width-1-1">
-      <div class="uk-section uk-secton-large">
-        <div class="uk-container uk-text-center">
-          <div class="">
-            <h1 class="uk-margin-small-top uk-h1">{{ post.title }}</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% include 'header-page.twig' %}
 {% endblock %}
 
 {% block content_inner %}
-  <article id="page-{{post.ID}}" class="uk-article uk-section uk-section-small uk-container {{post.class}}" data-template="account.twig">
-    
+  <article id="page-{{post.id|e('html_attr')}}" class="uk-article uk-section uk-section-small uk-container {{post.class|e('html_attr')}}" data-template="account.twig">
     <div class="article-content">
       {{post.content}}
     </div>
-  
   </article>
 {% endblock %}
 
 {% block spec_scripts %}
-  <script type='text/javascript' src='{{theme.link}}/assets/js/woo/account.js'></script>
+  <script type='text/javascript' src='{{theme.link|e('esc_url')}}/assets/js/woo/account.js'></script>
 {% endblock %}

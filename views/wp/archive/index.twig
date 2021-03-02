@@ -1,12 +1,12 @@
 {% extends 'base.twig' %}
 
+{% block pageheader %}
+  {% include 'header-archive.twig' %}
+{% endblock %}
+
 {% block content_inner %}
       
   <div class="uk-section uk-section-small uk-container uk-container-small" data-template="index.twig">
-    
-    <h1 class="archive-title uk-h2">{{ title }}</h1>
-    
-    <hr class="uk-divider-small">
       
     <div class="archive-posts posts uk-grid-small" uk-grid>
       {% for post in posts %}

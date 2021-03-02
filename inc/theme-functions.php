@@ -4,6 +4,19 @@
 *
 * @package Organic_Theme
 */
+
+// custom search queries, allows the use of multiple hidden filters on search.php
+function SearchFilter($query) {
+  $post_type = $_GET['post_type'];
+  if (!$post_type) {
+    $post_type = 'any';
+  }
+  if ($query->is_search) {
+    $query->set('post_type', $post_type);
+  };
+  return $query;
+}
+
 // add post states for custome page templates
 function ecs_add_post_state( $post_states, $post ) {
   

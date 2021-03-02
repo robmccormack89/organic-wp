@@ -133,5 +133,5 @@ jQuery(function($) {
     var modal = UIkit.modal("#MiniCartModal");
     modal.show();
   });
-    
+
 });

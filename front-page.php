@@ -48,4 +48,11 @@ $info_slides_args = array(
 );
 $context['info_home_slides'] = new Timber\PostQuery($info_slides_args);
 
+$args = array(
+   'post_type'             => 'product',
+   'post_status'           => 'publish',
+   'posts_per_page'        => '8',
+);
+$context['recent_products'] = new Timber\PostQuery($args);
+
 Timber::render(  'front-page.twig' , $context );

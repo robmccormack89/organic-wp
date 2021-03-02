@@ -1,42 +1,11 @@
 {% extends "base.twig" %}
 
-{% block spec_styles %}
-
-  {% set default_header_bg = '/assets/images/stock/field.jpg' %}
-  
-  {% if post.thumbnail %}
-    {% set header_bg = post.thumbnail.src %}
-  {% else %}
-    {% set header_bg = theme.link ~ '/assets/images/stock/field.jpg' %}
-  {% endif %}
-  
-  <style>
-    #PageTitleSection {
-      background-image: url('{{header_bg}}');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-  </style>
-  
-{% endblock %}
-
 {% block pageheader %}
-  <section id="PageTitleSection">
-    <div class="uk-overlay-primary uk-light uk-width-1-1">
-      <div class="uk-section uk-secton-large">
-        <div class="uk-container uk-text-center">
-          <div class="">
-            <h1 class="uk-margin-small-top uk-h1">{{ post.title }}</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% include 'header-page.twig' %}
 {% endblock %}
 
 {% block content_inner %}
-  <article id="page-{{post.ID}}" class="uk-article uk-section uk-section-small uk-container uk-container-small {{post.class}}" data-template="narrow.twig">
+  <article id="page-{{post.id|e('html_attr')}}" class="uk-article uk-section uk-section-small uk-container uk-container-small {{post.class|e('html_attr')}}" data-template="narrow.twig">
     
     <!-- <h1 class="uk-article-title page-title">{{post.title}}</h1>
     
@@ -45,7 +14,7 @@
     <div class="article-content">
       {% if post.thumbnail %}
         <figure>
-          <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
+          <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive')|e('esc_url') }}" width="800" height="300" alt="{{ post.thumbnail.alt|e('html_attr') }}" uk-img>
         </figure>
       {% endif %}
       {{post.content}}

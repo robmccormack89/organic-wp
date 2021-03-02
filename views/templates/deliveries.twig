@@ -1,0 +1,65 @@
+{% extends "base.twig" %}
+
+{% block pageheader %}
+  {% include 'header-page.twig' %}
+{% endblock %}
+
+{% block content_inner %}
+
+  <article id="page-{{post.id|e('html_attr')}}" class="uk-article uk-section uk-section-small {{post.class|e('html_attr')}}" data-template="page.twig">
+    
+    <div class="article-content">
+      
+      <!-- delivery options -->
+      
+      <h3 id="delivery-options">Delivery Options available on Checkout</h3>
+      
+      <p>On orders from <a href="/">organicforhealth.ie</a>, we offer 2 devlivery options:
+        <ul class="uk-list uk-list-bullet">
+          <li><strong>Local Delivery</strong> (Westmeath & Meath)</li>
+          <li><strong>In-store Pickup</strong></li>
+        </ul>
+      </p>
+      
+      <!-- local deliveries -->
+      
+      <h3 id="local-deliveries">Local Deliveries</h3>
+      
+      <p>Local delivery available in the following towns: <strong>Mullingar</strong>, <strong>Kinnegad</strong>, <strong>Navan</strong>, <strong>Athboy</strong>, <strong>Trim</strong>.</p>
+      
+      <p>You can also pick up your order from the <strong>shop in Mullingar on Thursday or Friday</strong>. You may pick it up at the <strong>Market at Sheridan's Cheesemongers Carnaross</strong> on <strong>Saturday's 10 am till 2 pm</strong>.</p>
+      
+      <p>Orders for deliver in Mullingar and Kinnegad most be in by <strong>Wednesday morning 9am for delivery on Thursday</strong>.</p>
+      
+      <p>Orders for deliver in Navan Trim and Athboy most be in by <strong>Friday morning 9am for delivery on Saturday afternoon</strong>.</p>
+      
+      <p>The minimum order amount is <strong>€30</strong></p>
+      
+      <!-- delivery routes -->
+      
+      <h3 id="delivery-routes">Delivery Routes & Pickup Information</h3>
+      
+      <ul id="delivery-routes" class="uk-list uk-list-divider uk-padding-small uk-background-muted">
+        <li>
+          <h4>Thursday Delivery Route</h4>
+          <p>Orders for <strong>Thursday</strong> delivery must be in strictly by <strong>9:00am Wednesday</strong>.</p>
+        </li>
+        <li>
+          <h4>Saturday Delivery Route</h4>
+          <p>Orders for <strong>Satruday</strong> delivery must be in strictly by <strong>7:00am Friday</strong>.</p>
+        </li>
+        <li>
+          <h4>Local Pickup</h4>
+          <p>Local pickup is available<strong> Thursday & Friday </strong> from the shop at<strong> 9b Pearse, St. Mullingar, Co. Westmeath</strong>. Local pickup runs from <strong>10am</strong> to <strong>5pm</strong>.</p>
+        </li>
+        <li>
+          <h4>Saturday</h4>
+          <p>Pickup from <strong>Sheridans Cheesemongers</strong>.</p>
+        </li>
+      </ul>
+
+    </div>
+  
+  </article>
+
+{% endblock  %}

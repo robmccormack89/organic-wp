@@ -1,3 +1,5 @@
+<div id="Top"></div>
+
 <header id="SiteHeader" class="site-header" data-template="header.twig">
     
   <div id="HeaderTop" class="top-bar uk-light theme-bg-darker">
@@ -14,15 +16,15 @@
               
                 {% for item in menu_top_left.get_items %}
                   
-                  <li class="theme-border-left {{ item.classes | join(' ') }}">
-                    <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+                  <li class="theme-border-left {{ item.classes | join(' ')|e('html_attr') }}">
+                    <a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
                   </li>
                 
                 {% endfor %}
                 
                 <li class="theme-border-left">
-                  <a href="#" class="uk-text-capitalize">
-                    <i class="fas fa-truck-moving uk-margin-small-right"></i> Free Shipping for all orders of $150
+                  <a href="/delivery" class="uk-text-capitalize">
+                    <i class="fas fa-truck-moving uk-margin-small-right"></i> We deliver to Mullingar, Kinnegad, Navan, Athboy & Trim.
                   </a>
                 </li>
               
@@ -41,7 +43,14 @@
         </div>
         
         <div class="uk-width-expand top-nav-center">
-          <div class="uk-text-center uk-hidden@m">Social</div>
+          <div class="uk-text-center uk-hidden@m">
+            <div>
+              <a href="https://www.facebook.com/organicforhealth.ie/" target="_blank" class="uk-text-capitalize"><i class="fab fa-facebook-f uk-margin-small-right"></i>Find us on Facebook</a>
+            </div>
+            <div>
+              <a href="/delivery" class="uk-text-capitalize"><i class="fas fa-truck-moving uk-margin-small-right"></i>We deliver to Mullingar, Kinnegad, Navan, Athboy & Trim.</a>
+            </div>
+          </div>
         </div>
         
         <div class="uk-width-auto top-nav-right">
@@ -52,15 +61,15 @@
               <ul class="uk-navbar-nav">
                 
                 <li class="theme-border-right">
-                  <a href="#" class="uk-text-capitalize">
+                  <a href="https://www.facebook.com/organicforhealth.ie/" target="_blank" class="uk-text-capitalize">
                     Find us on Facebook<i class="fab fa-facebook-f uk-margin-small-left"></i>
                   </a>
                 </li>
               
                 {% for item in menu_top_right.get_items %}
                   
-                  <li class="theme-border-right {{ item.classes | join(' ') }}">
-                    <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+                  <li class="theme-border-right {{ item.classes | join(' ')|e('html_attr') }}">
+                    <a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
                   </li>
                 
                 {% endfor %}
@@ -71,7 +80,7 @@
             
               <ul class="uk-navbar-nav">
                 <li class="theme-border-right">
-                  <a href="#" class="uk-text-capitalize">Find us on Facebook<i class="fab fa-facebook-f uk-margin-small-left"></i></a>
+                  <a href="https://www.facebook.com/organicforhealth.ie/" target="_blank" class="uk-text-capitalize">Find us on Facebook<i class="fab fa-facebook-f uk-margin-small-left"></i></a>
                 </li>
                 <li class="theme-border-right"><a href="#">FAQs</a></li>
                 <li class="theme-border-right"><a href="#">Contact us</a></li>
@@ -92,7 +101,9 @@
       <div class="desktop-header-grid" uk-grid>
         
         <div class="logo-left uk-width-1-2 uk-inline">
-          <a class="uk-logo uk-text-bold uk-text-emphasis uk-position-center-left padding-left-40" title="{{ site.title }}" href="{{ site.url }}"><img data-src="/wp-content/themes/organicwp-theme/assets/images/organicforhealth-logo.png" uk-img=""> <span class="uk-margin-small-left">{{ site.title }}.</span></a>
+          <a class="uk-logo uk-text-bold uk-text-emphasis uk-position-center-left padding-left-40" title="{{ site.title|e('html_attr') }}" href="{{ site.url|e('esc_url') }}">
+            <img data-src="{{theme_logo_url|e('esc_url')|default('/wp-content/themes/organicwp-theme/assets/images/organicforhealth-logo.png')}}" uk-img=""> <span class="uk-margin-small-left">{{ site.title|e('esc_html') }}</span>
+          </a>
         </div>
         
         <div class="search-navs-right uk-width-1-2">
@@ -109,7 +120,7 @@
             <div class="uk-navbar-right">
                 
               <div id="SimpleSearchForm" class="uk-navbar-item height-content pull-right-30" data-template="header-main-search.twig">
-                <form role="search" method="get" action="{{site.url}}" hidden>
+                <form role="search" method="get" action="{{site.url|e('esc_url')}}" hidden>
                   <div class="uk-inline">
                     <a class="uk-form-icon uk-form-icon-flip uk-link-reset"><i class="fas fa-search fa-lg"></i></a>
                     <input class="uk-input uk-form-width-medium mark-this-value" type="text" placeholder="Search..." id="SearchDesktop" name="s" autocomplete="off">
@@ -117,7 +128,7 @@
                   </div>
                 </form>
                 <div class="top-search-bar">
-                	<form id="form_validate_search" class="form_search_main uk-width-1-1 uk-inline" role="search" method="get" action="{{site.url}}" accept-charset="utf-8" novalidate="novalidate">
+                	<form id="form_validate_search" class="form_search_main uk-width-1-1 uk-inline" role="search" method="get" action="{{site.url|e('esc_url')}}" accept-charset="utf-8" novalidate="novalidate">
                 		<div class="uk-search uk-search-default uk-width-1-1">
                 			<a href="#" title="Submit search" class="uk-search-icon-flip uk-icon uk-search-icon theme-border-left">
                 				<i class="fas fa-search fa-lg"></i>
@@ -138,7 +149,10 @@
                 </div>
               {% else %}
                 <div class="uk-navbar-item height-content pull-right-15">
-                  <a class="cart-icon uk-margin-left" aria-expanded="false" href="#MiniCartModal" uk-toggle><i class="fas fa-shopping-cart fa-2x"></i>{% do action('cart_ajax_result_count') %}</a>
+                  <a class="cart-icon uk-margin-left" aria-expanded="false" href="#MiniCartModal" uk-toggle>
+                    <i class="fas fa-shopping-cart fa-2x"></i>
+                    {% do action('cart_ajax_result_count') %}
+                  </a>
                 </div>
               {% endif %}
                 
@@ -168,19 +182,19 @@
                     
                       {% if item.get_children %}
                       
-                        <li class="theme-border-bottom {{ item.classes | join(' ') }}">
-                          <a href="{{ item.link }}">{{ item.title }} <i class="fas fa-angle-right uk-align-right uk-margin-remove" style="padding-top:4px;"></i></a>
+                        <li class="theme-border-bottom {{ item.classes | join(' ')|e('html_attr') }}">
+                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }} <i class="fas fa-angle-right uk-align-right uk-margin-remove" style="padding-top:4px;"></i></a>
                           <div uk-dropdown="pos: right" class="theme-border-top theme-border-left theme-border-right">
                             <ul class="uk-nav uk-dropdown-nav">
                               {% for child in item.get_children %}
                                 <li class="theme-border-bottom">
-                                  <a href="{{ child.get_link }}">{{ child.title }}</a>
+                                  <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
                                   {% if child.children %}
                                     <div uk-dropdown="pos: right" class="theme-border-top theme-border-left theme-border-right">
                                       <ul class="uk-nav uk-dropdown-nav">
                                         {% for third in child.children %}
                                         <li class="theme-border-bottom">
-                                          <a href="{{ third.get_link }}">{{ third.title }}</a>
+                                          <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
                                         </li>
                                         {% endfor %}
                                       </ul>
@@ -194,8 +208,8 @@
                       
                       {% else %}
                       
-                        <li class="theme-border-bottom {{ item.classes | join(' ') }}">
-                          <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+                        <li class="theme-border-bottom {{ item.classes | join(' ')|e('html_attr') }}">
+                          <a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
                         </li>
                       
                       {% endif %}
@@ -253,17 +267,17 @@
               
                 {% if item.get_children %}
                 
-                  <li class="{{ item.classes | join(' ') }}"><a href="{{ item.link }}">{{ item.title }}<i class="fas fa-angle-down menu-dropicon"></i></a>
+                  <li class="{{ item.classes | join(' ')|e('html_attr') }}"><a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}<i class="fas fa-angle-down menu-dropicon"></i></a>
                     <div class="uk-navbar-dropdown">
                       <ul class="uk-nav uk-navbar-dropdown-nav">
                         {% for child in item.get_children %}
                         <li>
-                          <a href="{{ child.get_link }}">{{ child.title }}</a>
+                          <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
                             {% if child.children %}
                             <ul class="uk-nav-sub">
                               {% for third in child.children %}
                               <li>
-                                <a href="{{ third.get_link }}">{{ third.title }}</a>
+                                <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
                               </li>
                               {% endfor %}
                             </ul>
@@ -278,7 +292,7 @@
                 
                 <li class=" {{ item.classes | join(' ') }}">
                   
-                  <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}<i class="fas fa-angle-down menu-dropicon"></i></a>
+                  <a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}<i class="fas fa-angle-down menu-dropicon"></i></a>
                   
                   {% set the_menu = function('get_post', item.select_mega_menu ) %}
                 
@@ -296,7 +310,7 @@
                 
                 {% else %}
                 
-                  <li class=" {{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+                  <li class="{{ item.classes | join(' ')|e('html_attr') }}"><a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a></li>
                 
                 {% endif %}
               
@@ -310,7 +324,7 @@
         <div class="uk-navbar-right">
           <ul class="uk-navbar-nav the-main-menu pull-right-15">
             <li class="some-class">
-              <a href="#" uk-toggle>Build your Product Box <i class="fas fa-plus-circle uk-margin-small-left fa-lg uk-text-primary"></i></a>
+              <a href="/product/build-your-own-box/">Build your Product Box <i class="fas fa-plus-circle uk-margin-small-left fa-lg uk-text-primary"></i></a>
             </li>
           </ul>
         </div>
@@ -333,7 +347,7 @@
             <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
               
               <div class="top-search-bar-mobile">
-              	<form id="form_validate_search_mobile" class="form_search_main uk-width-1-1 uk-inline" role="search" method="get" action="{{site.url}}" accept-charset="utf-8" novalidate="novalidate">
+              	<form id="form_validate_search_mobile" class="form_search_main uk-width-1-1 uk-inline" role="search" method="get" action="{{site.url|e('esc_url')}}" accept-charset="utf-8" novalidate="novalidate">
               		<div class="uk-search uk-search-default uk-width-1-1">
               			<a href="#" title="Submit search" class="uk-search-icon-flip uk-icon uk-search-icon">
               				<i class="fas fa-search fa-lg"></i>
@@ -357,18 +371,18 @@
                     {% if has_menu_mobile %}
                       {% for item in menu_mobile.get_items %}
                         {% if item.get_children %}
-                          <li class="theme-border-bottom {{ item.classes | join(' ') }} uk-parent">
-                            <a href="{{ item.link }}">{{ item.title }}</a>
+                          <li class="theme-border-bottom {{ item.classes | join(' ')|e('html_attr') }} uk-parent">
+                            <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
                             <ul class="uk-nav-sub">
                               {% for child in item.get_children %}
                                 <li class="theme-border-top">
-                                  <a href="{{ child.get_link }}">- {{ child.title }}</a>
+                                  <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html') }}</a>
                                 </li>
                               {% endfor %}
                             </ul>
                           </li>
                         {% else %}
-                          <li class="theme-border-bottom {{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+                          <li class="theme-border-bottom {{ item.classes | join(' ')|e('html_attr') }}"><a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a></li>
                         {% endif %}
                       {% endfor %}
                       {% if not user %}
@@ -376,8 +390,8 @@
                       {% else %}
                         <li class="theme-border-bottom"><a href="/my-account"><i class="far fa-user uk-margin-small-right"></i> My Account</a></li>
                       {% endif %}
-                      <li class="theme-border-bottom"><a href="#"><i class="fas fa-plus uk-margin-small-right"></i> Buld your Product Box</a></li>
-                      <li class="theme-border-bottom"><a href="#"><i class="fab fa-facebook-f uk-margin-small-right"></i> Find us on Facebook</a></li>
+                      <li class="theme-border-bottom"><a href="/product/build-your-own-box/"><i class="fas fa-plus uk-margin-small-right"></i> Buld your Product Box</a></li>
+                      <li class="theme-border-bottom"><a href="https://www.facebook.com/organicforhealth.ie/" target="_blank"><i class="fab fa-facebook-f uk-margin-small-right"></i> Find us on Facebook</a></li>
                     {% endif %}
                   </ul>
                 </li>
@@ -386,18 +400,18 @@
                     <ul class="uk-nav-default uk-nav-parent-icon uk-position-relative" uk-nav>
                       {% for item in menu_cats.get_items %}
                         {% if item.get_children %}
-                          <li class="theme-border-bottom {{ item.classes | join(' ') }} uk-parent">
-                            <a href="{{ item.link }}">{{ item.title }}</a>
+                          <li class="theme-border-bottom {{ item.classes | join(' ')|e('html_attr') }} uk-parent">
+                            <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
                             <ul class="uk-nav-sub">
                               {% for child in item.get_children %}
                                 <li class="theme-border-top">
-                                  <a href="{{ child.get_link }}">- {{ child.title }}</a>
+                                  <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html') }}</a>
                                 </li>
                               {% endfor %}
                             </ul>
                           </li>
                         {% else %}
-                          <li class="theme-border-bottom {{ item.classes | join(' ') }}"><a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a></li>
+                          <li class="theme-border-bottom {{ item.classes | join(' ')|e('html_attr') }}"><a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a></li>
                         {% endif %}
                       {% endfor %}
                     </ul>
@@ -413,7 +427,7 @@
         </div>
         
         <div class="uk-navbar-center">
-          <a class="uk-logo uk-text-bold uk-text-emphasis" title="{{ site.title }}" href="{{ site.url }}">{{ site.title }}</a>
+          <a class="uk-logo uk-text-bold uk-text-emphasis" title="{{ site.title|e('html_attr') }}" href="{{ site.url|e('esc_url') }}">{{ site.title|e('esc_html') }}</a>
         </div>
         
         <div class="uk-navbar-right">
@@ -454,14 +468,6 @@
           $("body").on('DOMSubtreeModified', ".minicart-modal", WooMiniCart);
         });
       </script>
-    </div>
-  </div>
-</div>
-
-<div id="ProductBoxModal" class="product-box-modal uk-modal-container" uk-modal>
-  <div class="uk-modal-dialog">
-    <div class="uk-modal-body" uk-overflow-auto>
-      {{ function('do_shortcode', product_select_shortcode_id) }}
     </div>
   </div>
 </div>

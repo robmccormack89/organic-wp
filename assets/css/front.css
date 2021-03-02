@@ -37,3 +37,16 @@
 .home-cats-section .uk-inline:hover img, .hover-my-img:hover img {
   transform: scale(1.1);
 }
+
+.home-recent-products .tease-product-image {
+    border: 3px double #e5e5e5;
+    height: 200px!important;
+    width: 100%!important;
+    object-fit: cover;
+}
+
+#slideshow_banner .swiper-slide, .home-hero-bg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

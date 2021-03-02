@@ -7,14 +7,14 @@
         
         {% if has_menu_footer %}
         
-          <h4>{{menu_footer.title}}</h4>
+          <h4>{{menu_footer.title|e('esc_html')}}</h4>
         
           <ul class="uk-nav uk-nav-default" uk-nav>
           
             {% for item in menu_footer.get_items %}
               
-              <li class=" {{ item.classes | join(' ') }}">
-                <a title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+              <li class=" {{ item.classes | join(' ')|e('html_attr') }}">
+                <a title="{{ item.title|e('html_attr') }}" href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
               </li>
             
             {% endfor %}
@@ -38,7 +38,7 @@
       
       <div class="uk-width-1-2@m">
         {% if footer_two %}
-        	{{footer_two}}
+        	{{footer_two|e('wp_kses_post')}}
         {% else %}
           <h4>Consectetur adipiscing</h4>
           <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
@@ -48,7 +48,7 @@
       
       <div class="uk-width-1-3@m footer-last">
         {% if footer_three %}
-        	{{footer_three}}
+        	{{footer_three|e('wp_kses_post')}}
         {% else %}
           <h4>Lorem ipsum</h4>
           <p>
@@ -67,7 +67,7 @@
       <div class="" uk-grid>
         
         <div id="FooterBottomLeft" class="uk-width-1-2@s uk-text-small uk-text-center uk-text-left@s">
-          <p>© Copyright 2020 - <span class="uk-text-bold uk-text-primary">{{site.title}}</span></p>
+          <p>© Copyright 2020 - <span class="uk-text-bold uk-text-primary">{{site.title|e('esc_html')}}</span></p>
         </div>
         
         <div id="FooterBottomRight" class="uk-width-1-2@s uk-text-small uk-text-center uk-text-right@s">

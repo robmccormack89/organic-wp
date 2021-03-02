@@ -1,0 +1,54 @@
+<div id="ToolbarNav" class="uk-margin-bottom" data-template="shop-toolbar.twig">
+  
+  <div class="desktop-toolbar">
+    <nav id="ShopToolbar" class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+      
+      <div id="ShopToolbarLeft" class="uk-navbar-left pull-left-15">
+        {% if function('current_product_orderby_var') %}
+          <div class="uk-navbar-item min-height-40">
+            <a class="uk-badge badge-sort close-icon" data-link="{{ function ('remove_query_arg', ['orderby'])|e('esc_url') }}" onclick="quickLoad(event);"></a>
+          </div>
+        {% endif %}
+        {% if function('current_product_cat_var') %}
+          <div class="uk-navbar-item min-height-40">
+            <a class="uk-badge badge-cat close-icon" data-link="{{ function ('remove_query_arg_product_cats_for_filters')|e('esc_url') }}" onclick="quickLoad(event);">
+            </a>
+          </div>
+        {% endif %}
+        {% if function('current_product_gridlist_var') %}
+        <div class="uk-navbar-item min-height-40">
+          <a class="uk-badge badge-view close-icon" data-link="{{ function ('remove_query_arg', ['grid_list'])|e('esc_url') }}" onclick="quickLoad(event);">
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      
+      <div id="ShopToolbarRight" class="uk-navbar-right pull-right-15">
+        <div id="GridList" class="uk-navbar-item min-height-40">
+          <a 
+          data-link="{{ function ('add_query_arg', 'grid_list', 'grid-view')|e('esc_url') }}" 
+          data-type="grid_list" 
+          data-name="Grid View" 
+          onclick="quickLoad(event);" 
+          class="uk-visible@s grid-toggle icon grid-icon uk-button uk-button-default uk-button-small padding-0-10 uk-margin-small-right {% if function('get_query_var', 'grid_list') == 'grid-view' %}uk-active{% endif %}" 
+          > 
+          </a>
+          <a 
+          data-link="{{ function ('add_query_arg', 'grid_list', 'list-view')|e('esc_url') }}" 
+          data-type="grid_list" 
+          data-name="List View" 
+          onclick="quickLoad(event);" 
+          class="uk-visible@s list-toggle icon list-icon uk-button uk-button-default uk-button-small padding-0-10 {% if function('get_query_var', 'grid_list') == 'list-view' %}uk-active{% endif %}" 
+          > 
+          </a>
+          <a uk-toggle="target: #toggle-animation" class="uk-button uk-button-default uk-button-small padding-0-10 uk-hidden@m">Filter</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  
+  <div id="toggle-animation" class="uk-card uk-card-default uk-card-small uk-card-body uk-margin-small" hidden>
+    {% include 'shop-filters.twig' %}
+  </div>
+  
+</div>

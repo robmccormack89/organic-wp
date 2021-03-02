@@ -18,7 +18,7 @@
           
           <p>Sorry, we couldn't find what you're looking for. You can try searching for something using the Search Form below.</p>
 
-          <form class="uk-search uk-search-default uk-width-1-1 search-form" role="search" method="get" action="{{site.url}}">
+          <form class="uk-search uk-search-default uk-width-1-1 search-form" role="search" method="get" action="{{site.url|e('esc_url')}}">
             <span uk-search-icon></span>
             <input class="uk-search-input" name="s" type="search" placeholder="Search this website...">
           </form>

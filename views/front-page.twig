@@ -1,101 +1,167 @@
 {% extends 'base.twig' %}
 
 {% block spec_styles %}
-  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/lib/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/front.css" />
+  <link rel="stylesheet" href="{{theme.link|e('esc_url')}}/assets/css/lib/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{{theme.link|e('esc_url')}}/assets/css/front.css" />
 {% endblock %}
 
 {% block content_outer %}
   <div id="single-{{post.ID}}" class="front-page {{post.class}}" data-template="front-page.twig">
-
-    <div id="slideshow_banner" class="swiper-container">
-      <div class="swiper-wrapper">
-        
-        {% for slide in home_slides %}
-          {% if slide.thumbnail %}
-            {% set thumb = slide.thumbnail.src|resize(1920, 370) %}
-          {% else %}
-            {% set thumb = 'https://via.placeholder.com/1920x370.png?text=Add+a+featured+image' %}
-          {% endif %}
-          
-          <div class="swiper-slide" style="background-position: center;background-image: url('{{ thumb }}');background-size: cover;background-repeat: no-repeat;">
-            <div class="uk-overlay-primary uk-light uk-width-1-1">
-              <div class="uk-section uk-secton-large">
-                <div class="uk-container uk-text-left">
-                  <div class="uk-width-1-2@m">
-                    <h4 class="uk-margin-small-bottom uk-h5">{{slide.home_banner_slide_subtitle}}</h4>
-                    <h2 class="uk-margin-small-top uk-h1">{{slide.title}}</h2>
-                    <p>{{slide.content}}</p>
-                    <a href="{{slide.home_banner_slide_button_link}}" class="uk-button uk-button-primary uk-border-rounded">{{slide.home_banner_slide_button_text}}</a>
-                  </div>
-                </div>
-              </div>
+    
+    <div class="home-hero-bg" style="background-image: url(' {{theme.link}}/assets/images/stock/field.jpg ');">
+      <div class="uk-overlay-primary uk-light uk-width-1-1">
+        <div class="uk-section uk-secton-large">
+          <div class="uk-container uk-text-left">
+            <div class="uk-width-1-2@m">
+              <h4 class="uk-margin-small-bottom uk-h5">Our Mission</h4>
+              <h2 class="uk-margin-small-top uk-h1">Welcome to Organic for health</h2>
+              <p>We source the finest organic produce to sell at our markets & online, so you can get the best quality food delivered straight to you door at the best value for your money.</p>
+              <a href="/shop" class="uk-button uk-button-primary uk-border-rounded">Start Shopping</a>
             </div>
           </div>
-        {% endfor %}
-        
-        {% if home_slides is empty %}
-          <div class="swiper-slide" style="background-position: center;background-image: url('https://via.placeholder.com/1920x370');background-size: cover;background-repeat: no-repeat;">
-            <div class="uk-overlay-primary uk-light uk-width-1-1">
-              <div class="uk-section uk-secton-large">
-                <div class="uk-container uk-text-left">
-                  <div class="uk-width-1-2@m">
-                    <h4 class="uk-margin-small-bottom uk-h5">Slide One</h4>
-                    <h2 class="uk-margin-small-top uk-h1">Example Slider</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud.</p>
-                    <a href="#" class="uk-button uk-button-primary uk-border-rounded">Get started</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        {% endif %}
-
+        </div>
       </div>
-      <div class="swiper-pagination"></div>
     </div>
-      
+    
     <div class="home-info-section uk-section uk-section-small uk-padding-small uk-section-muted">
       <div class="uk-container">
         <div id="slideshow_info" class="swiper-container">
           <div class="swiper-wrapper">
             
-            {% for slide in info_home_slides %}
-              <div class="swiper-slide">
-                <a href="{{slide.info_slide_link_url}}" class="uk-link-reset">
-                  <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
-                    <div class="uk-width-auto">
-                      {{slide.info_slide_icon_html}}
-                    </div>
-                    <div class="uk-width-expand">
-                      <h4 class="uk-h5 uk-margin-remove-bottom">{{slide.title}}</h4>
-                      <p class="uk-margin-remove uk-text-small">{{slide.content}}</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            {% endfor %}
-            
-            {% if info_home_slides is empty %}
             <div class="swiper-slide">
-              <a href="#" class="uk-link-reset">
+              <a href="/delivery" class="uk-link-reset">
                 <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
-                  <div class="uk-width-auto"><i class="fas fa-hand-point-up fa-2x"></i></div>
+                  <div class="uk-width-auto"><i class="fas fa-thumbtack fa-2x"></i></div>
                   <div class="uk-width-expand">
-                    <h4 class="uk-h5 uk-margin-remove-bottom">Add some Home Info Slides</h4>
-                    <p class="uk-margin-remove uk-text-small">Add some Home Info Slides in the Dashboard</p>
+                    <h4 class="uk-h5 uk-margin-remove-bottom">Min. orders €30</h4>
+                    <p class="uk-margin-remove uk-text-small">Minimum on all orders/purchases is currently set to €30</p>
                   </div>
                 </div>
               </a>
             </div>
-            {% endif %}
+            
+            <div class="swiper-slide">
+              <a href="/delivery" class="uk-link-reset">
+                <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                  <div class="uk-width-auto"><i class="fas fa-hand-point-up fa-2x"></i></div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h5 uk-margin-remove-bottom">Where we deliver</h4>
+                    <p class="uk-margin-remove uk-text-small">We deliver to Mullingar, Kinnegad, Navan, Athboy & Trim. Find out more →</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            
+            <div class="swiper-slide">
+              <a href="/contact" class="uk-link-reset">
+                <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                  <div class="uk-width-auto"><i class="fas fa-envelope fa-2x"></i></div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h5 uk-margin-remove-bottom">Contact us</h4>
+                    <p class="uk-margin-remove uk-text-small">If you are outside our delivery areas, we may be able to arrange an alternative</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            
+            <div class="swiper-slide">
+              <a href="/delivery" class="uk-link-reset">
+                <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                  <div class="uk-width-auto"><i class="fas fa-store fa-2x"></i></div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h5 uk-margin-remove-bottom">Instore Pickup</h4>
+                    <p class="uk-margin-remove uk-text-small">We offer quick & easy in-store collection. Find our store →</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            
+            <div class="swiper-slide">
+              <a href="/product/build-your-own-box/" class="uk-link-reset">
+                <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                  <div class="uk-width-auto"><i class="fas fa-hand-point-up fa-2x"></i></div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h5 uk-margin-remove-bottom">Build your Product Box</h4>
+                    <p class="uk-margin-remove uk-text-small">Have your own product box delivered straight to your door</p>
+                  </div>
+                </div>
+              </a>
+            </div>
             
           </div>
         </div>
       </div>
     </div>
     
-    <div class="home-cats-section uk-section uk-section-default">
+    <div class="uk-section uk-section-default uk-container uk-container-small home-recent-products">
+      <div class="uk-text-center uk-margin-bottom">
+        <p class="uk-text-meta uk-text-uppercase uk-margin-small-bottom">{{site.title}}</p>
+        <h2 class="uk-margin-remove">About us</h2>
+        <p class="uk-text-meta uk-margin-small-top">{{site.description}}</p>
+        <hr class="uk-divider-small">
+      </div>
+      <div class="about-content uk-text-center">        
+        <p>We are small family run business there’s me, Samantha and our two children Rachel and William Jr. We believe the only way to health is to supply the body with nutrient rich food that have been grown without the use of any synthetic chemicals. That is why anything we sell or grow is organic.</p>
+        <p>Our goal is to have happy healthy customers and to give them the best quality and value, you can get. So if there is ever any problem with anything you get from us please let us know and we will replace or refund it.</p>
+        <a href="/about">Read more about us →</a>
+      </div>
+    </div>
+    
+    <div class="uk-section uk-section-muted">
+      <div class="uk-container uk-margin-bottom uk-text-center">
+        <p class="uk-text-meta uk-text-uppercase uk-margin-small-bottom">{{site.title}}</p>
+        <h2 class="uk-margin-remove">{{homepage_product_category_section_title}}</h2>
+        <p class="uk-text-meta uk-margin-small-top">{{site.description}}</p>
+        <hr class="uk-divider-small">
+        <div class="home-cats-grid uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-{{homepage_product_category_columns}}@m uk-text-center uk-grid-small" uk-grid>
+          
+          {% for item in shopcats %}
+          
+            {% set thumbnail_id = function ('get_term_meta', item.term_id, 'thumbnail_id', true ) %}
+            {% set cat_thumb = function ('wp_get_attachment_url', thumbnail_id) %}
+            
+            {% if cat_thumb %}
+              {% set cat_thumb_url = cat_thumb|resize(650, 360) %}
+            {% else %}
+              {% set cat_thumb_url = 'https://via.placeholder.com/650x360' %}
+            {% endif %}
+          
+            <a id="{{ item.term_id }}" href="{{product_category_base}}/{{ item.slug }}" class="uk-link-reset">
+              <div class="uk-inline uk-border-rounded uk-overflow-hidden">
+                <img src="{{ cat_thumb_url }}" class="uk-border-rounded" alt="">
+                <div class="uk-overlay-primary uk-position-cover uk-border-rounded">
+                  <div class="uk-position-center">
+                    <p class="uk-h3">{{ item.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+          
+          {% if home_slides is empty %}
+            <p class="uk-text-center">Add Some Product Categories with Products</p>
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="uk-section uk-section-default uk-container home-recent-products">
+      <div class="uk-text-center uk-container uk-container-small uk-margin-bottom">
+        <p class="uk-text-meta uk-text-uppercase uk-margin-small-bottom">{{site.title}}</p>
+        <h2 class="uk-margin-remove">Recently Added Products</h2>
+        <p class="uk-text-meta uk-margin-small-top">{{site.description}}</p>
+        <hr class="uk-divider-small">
+      </div>
+      <div id="ProductsGrid" class="uk-child-width-1-2 uk-child-width-1-4@m uk-grid-small" uk-grid="masonry:true;">
+        {% for post in recent_products %}
+         {% include 'tease-product.twig' %}
+        {% endfor %}
+      </div>
+      <a href="/shop" class="uk-button uk-button-primary uk-align-center uk-width-small">Go to Shop</a>
+    </div>
+    
+    <div class="home-cats-section uk-section uk-section-default" hidden>
       <div class="uk-container">
         
         <h3 class="uk-text-center uk-margin-medium-bottom">{{homepage_product_category_section_title}}</h3>
@@ -144,6 +210,7 @@
 {% endblock  %}
 
 {% block spec_scripts %}
-  <script src="/wp-content/themes/organicwp-theme/assets/js/lib/swiper-bundle.min.js"></script>
-  <script src="/wp-content/themes/organicwp-theme/assets/js/front.js"></script>
+  <script src="{{theme.link|e('esc_url')}}/assets/js/lib/swiper-bundle.min.js"></script>
+  <script src="{{theme.link|e('esc_url')}}/assets/js/front.js"></script>
+  <script src="{{theme.link|e('esc_url')}}/assets/js/woo/shop.js"></script>
 {% endblock %}

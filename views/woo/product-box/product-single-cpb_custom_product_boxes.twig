@@ -1,0 +1,41 @@
+{% extends 'base.twig' %}
+
+{% block spec_styles %}
+  <style>
+    .product_title {
+      display: none;
+    }
+  </style>
+{% endblock %}
+
+{% block pageheader %}
+  {% include 'header-page.twig' %}
+{% endblock %}
+
+{% block content_inner %}
+
+  <div class="uk-container" data-template="product-single-cpb_custom_product_boxes.twig">
+    <section class="uk-section uk-section-small">
+        <div class="single-product-container uk-container">
+          
+          {% do action('woocommerce_before_single_product') %}
+          
+          <div id="product-{{post.id}}" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
+            <form method="post" name="" enctype="multipart/form-data" class="cart">  
+              {% do action('cpb_custom_product_boxes_page_layout', post.id) %}
+            </form>
+          </div>
+        </div>
+      </section>
+
+    {# do action('woocommerce_after_single_product_summary') #}
+
+    {# do action('woocommerce_after_single_product') #}
+
+  </div>
+
+{% endblock %}
+
+{% block spec_scripts %}
+  <script type="text/javascript" src="{{theme.link|e('esc_url')}}/assets/js/woo/single-product-box.js"></script>
+{% endblock %}

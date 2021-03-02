@@ -3,11 +3,13 @@
 {% block spec_styles %}
 {% endblock %}
 
-{% block content %}
+{% block pageheader %}
+  {% include 'header-page.twig' %}
+{% endblock %}
 
-  <div class="uk-container" data-template="product-single-cpb_custom_product_boxes.twig">
+{% block content_inner %}
 
-    {% include 'breads.twig' %}
+  <div class="uk-container" data-template="product-single-build-your-own-box-subscription.twig">
 
     {% do action('woocommerce_before_single_product') %}
     

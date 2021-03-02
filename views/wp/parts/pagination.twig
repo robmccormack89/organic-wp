@@ -1,7 +1,7 @@
 {% if (pagination.next or pagination.prev) %}
   <div data-template="pagination.twig">
     
-    <div class="uk-padding pagi uk-hidden">
+    <div class="uk-padding pagi">
       <ul class="uk-pagination uk-flex-center">
         {% if pagination.prev %}
           <li>
@@ -38,15 +38,6 @@
           <p class="infinite-scroll-error">No items to load</p>
         </div>
       </div>
-      <script>
-        var infScroll = new InfiniteScroll( '.archive-posts', {
-          path: '.next',
-          append: '.item',
-          status: '.page-load-status',
-          hideNav: '.pagi',
-          history: false,
-        });
-      </script>
     {% endif %}
     
   </div>

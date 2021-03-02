@@ -1,21 +1,25 @@
 {% extends "base.twig" %}
 
+{% block pageheader %}
+  {% include 'header-page.twig' %}
+{% endblock %}
+
 {% block content_inner %}
       
-  <article id="single-{{post.ID}}" class="uk-article uk-section uk-section-small uk-container uk-container-small {{post.class}}" data-template="single.twig">
+  <article id="single-{{post.id|e('html_attr')}}" class="uk-article uk-section uk-section-small uk-container uk-container-small {{post.class|e('html_attr')}}" data-template="single.twig">
     
-    <h1 class="uk-article-title page-title">{{post.title}}</h1>
+    <h1 class="uk-article-title page-title">{{post.title|e('esc_html')}}</h1>
     
     <p class="uk-article-meta">
-      Written on {{post.date | date}}. Posted in
+      Written on {{post.date | date|e('esc_html')}}. Posted in
       {% for category in post.categories %}
       
         {% if not loop.last %}
-          <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>,
+          <a title="{{ category|e('html_attr') }}" href="{{ category.link|e('esc_url') }}">{{ category|e('esc_html') }}</a>,
         {% endif %}
       
         {% if loop.last %}
-          <a title="{{ category }}" href="{{ category.link }}">{{ category }}</a>
+          <a title="{{ category|e('html_attr') }}" href="{{ category.link|e('esc_url') }}">{{ category|e('esc_html') }}</a>
         {% endif %}
         
       {% endfor %}
@@ -23,17 +27,10 @@
     
     <div class="article-content">
       
-      {% if post.thumbnail %}
-        <figure>
-          <img data-src="{{ post.thumbnail.src('organic-theme-featured-image-archive') }}" width="800" height="300" alt="{{ post.thumbnail.alt }}" uk-img>
-        </figure>
-        <figcaption class="uk-text-muted">{{ post.thumbnail.caption }}</figcaption>
-      {% endif %}
-      
-      {{post.content}}
+      {{post.content|e('wp_kses_post')}}
 
     </div>
-  
+
   </article>
 
 {% endblock  %}

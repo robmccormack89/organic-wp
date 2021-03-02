@@ -1,29 +1,34 @@
 {% extends 'base.twig' %}
 
 {% block spec_styles %}
-
-  <!-- load in swiper-js css -->
-  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/lib/swiper-bundle.min.css" />
-
-  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/front.css" />
-
+  <link rel="stylesheet" href="{{theme.link|e('esc_url')}}/assets/css/lib/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{{theme.link|e('esc_url')}}/assets/css/front.css" />
 {% endblock %}
 
-{% block content %}
-
+{% block content_outer %}
   <div id="single-{{post.ID}}" class="front-page {{post.class}}" data-template="front-page.twig">
+    
+    <div class="" style="background-position: center;background-image: url(' {{theme.link}}/assets/images/stock/field.jpg ');background-size: cover;background-repeat: no-repeat;">
+      <div class="uk-overlay-primary uk-light uk-width-1-1">
+        <div class="uk-section uk-secton-large">
+          <div class="uk-container uk-text-left">
+            <div class="uk-width-1-2@m">
+              <h4 class="uk-margin-small-bottom uk-h5">Our mission</h4>
+              <h2 class="uk-margin-small-top uk-h1">Welcome to Organic for health</h2>
+              <p>We source the finest organic produce to sell at our markets & online, so you can get the best quality food delivered straight to you door at the best value for your money.</p>
+              <a href="/shop" class="uk-button uk-button-primary uk-border-rounded">Start Shopping</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div id="slideshow_banner" class="swiper-container" hidden>
+    <div id="slideshow_banner" class="swiper-container">
       <div class="swiper-wrapper">
         
         {% for slide in home_slides %}
-          {% if slide.thumbnail %}
-            {% set thumb = slide.thumbnail.src|resize(1920, 370) %}
-          {% else %}
-            {% set thumb = 'https://via.placeholder.com/1920x370.png?text=Add+a+featured+image' %}
-          {% endif %}
           
-          <div class="swiper-slide" style="background-position: center;background-image: url('{{ thumb }}');background-size: cover;background-repeat: no-repeat;">
+          <div class="swiper-slide" style="background-image: url('{{ slide.thumbnail.src|resize(1920, 370)|default('https://via.placeholder.com/1920x370.png?text=Add+a+featured+image') }}');">
             <div class="uk-overlay-primary uk-light uk-width-1-1">
               <div class="uk-section uk-secton-large">
                 <div class="uk-container uk-text-left">
@@ -40,7 +45,7 @@
         {% endfor %}
         
         {% if home_slides is empty %}
-          <div class="swiper-slide" style="background-position: center;background-image: url('https://via.placeholder.com/1920x370');background-size: cover;background-repeat: no-repeat;">
+          <div class="swiper-slide" style="background-image: url('https://via.placeholder.com/1920x370');">
             <div class="uk-overlay-primary uk-light uk-width-1-1">
               <div class="uk-section uk-secton-large">
                 <div class="uk-container uk-text-left">
@@ -60,7 +65,7 @@
       <div class="swiper-pagination"></div>
     </div>
       
-    <div class="home-info-section uk-section uk-section-small uk-padding-small uk-section-muted" hidden>
+    <div class="home-info-section uk-section uk-section-small uk-padding-small uk-section-muted">
       <div class="uk-container">
         <div id="slideshow_info" class="swiper-container">
           <div class="swiper-wrapper">
@@ -98,6 +103,21 @@
           </div>
         </div>
       </div>
+    </div>
+    
+    <div class="uk-section uk-section-default uk-container home-recent-products">
+      <div class="uk-text-center uk-container uk-container-small uk-margin-bottom">
+        <p class="uk-text-meta uk-text-uppercase uk-margin-small-bottom">{{site.title}}</p>
+        <h2 class="uk-margin-remove">Recently Added Products</h2>
+        <p class="uk-text-meta uk-margin-small-top">{{site.description}}</p>
+        <hr class="uk-divider-small">
+      </div>
+      <div id="ProductsGrid" class="uk-child-width-1-2 uk-child-width-1-4@m uk-grid-small" uk-grid="masonry:true;">
+        {% for post in recent_products %}
+         {% include 'tease-product.twig' %}
+        {% endfor %}
+      </div>
+      <a href="/shops" class="uk-button uk-button-primary uk-align-center uk-width-small">Go to Shop</a>
     </div>
     
     <div class="home-cats-section uk-section uk-section-default" hidden>
@@ -146,14 +166,10 @@
     </div>
     
   </div>
-
 {% endblock  %}
 
 {% block spec_scripts %}
-
-  <!-- load in swiper-js js -->
-  <script src="/wp-content/themes/organicwp-theme/assets/js/lib/swiper-bundle.min.js"></script>
-
-  <script src="/wp-content/themes/organicwp-theme/assets/js/front.js"></script>
-
+  <script src="{{theme.link|e('esc_url')}}/assets/js/lib/swiper-bundle.min.js"></script>
+  <script src="{{theme.link|e('esc_url')}}/assets/js/front.js"></script>
+  <script src="{{theme.link|e('esc_url')}}/assets/js/woo/shop.js"></script>
 {% endblock %}

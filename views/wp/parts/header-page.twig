@@ -1,0 +1,10 @@
+<section id="PageTitleSection" style="background-image: url('{{post.thumbnail.src|e('esc_url')|default(theme.link ~ '/assets/images/stock/field.jpg')}}');">
+  <div class="uk-overlay-primary uk-light uk-width-1-1">
+    <div class="uk-section uk-section-small">
+      <div class="uk-container">
+        <h1 class="uk-margin-small-top uk-h1">{{ post.title|e('esc_html') }}</h1>
+        {% include 'breads.twig' %}
+      </div>
+    </div>
+  </div>
+</section>

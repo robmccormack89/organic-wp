@@ -14,6 +14,10 @@ Timber::$dirname = array(
   'views/wp/singular',
   'views/woo',
   'views/woo/parts',
+  'views/woo/parts/shop',
+  'views/woo/parts/single',
+  'views/woo/parts/tease',
+  'views/woo/product-box',
   'views/templates',
 );
 
@@ -404,10 +408,8 @@ class OrganicTheme extends TimberSite
       '3.1.5',
       true
     );
-    
     // enqueue wp jquery
     wp_enqueue_script( 'jquery' );
-    
     // global (site wide) scripts; uses jquery
     wp_enqueue_script(
       'global',
@@ -424,8 +426,29 @@ class OrganicTheme extends TimberSite
         'ajaxurl' => admin_url( 'admin-ajax.php')
       )
     );
-    
-    // font awesome
+    // inf scroll
+    wp_enqueue_script(
+      'inf-scroll',
+      get_template_directory_uri() . '/assets/js/lib/infinite-scroll.pkgd.min.js',
+      false
+    );
+    // woo globals
+    wp_enqueue_script(
+      'woo-global',
+      get_template_directory_uri() . '/assets/js/woo/woo.js',
+      'jquery',
+      '',
+      true
+    );
+    // quickload
+    wp_enqueue_script(
+      'quickload',
+      get_template_directory_uri() . '/assets/js/quickload.js',
+      'jquery',
+      '',
+      true
+    );
+    // font awesomes
     wp_enqueue_style(
       'fontawesome-theme',
       get_template_directory_uri() . '/assets/css/lib/all.min.css'

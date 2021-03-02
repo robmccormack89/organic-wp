@@ -1,5 +1,23 @@
 jQuery(function(){
   
+  // first swiper
+  var slider_swiper = new Swiper('#slideshow_banner', {
+    centeredSlides: true,
+    // autoplay: {
+    //   delay: 4000,
+    //   disableOnInteraction: true,
+    // },
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'progressbar',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+  
   // second swiper
   var info_swiper = new Swiper('#slideshow_info', {
     slidesPerView: 1,

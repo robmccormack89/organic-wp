@@ -1,13 +1,13 @@
 {{ fn('timber_set_product', post) }}
 
-<div id="product-{{ post.id }}" class="entry grid-item item tease-product {{ post.class }}" data-product-id="{{ post.id }}" data-template="tease-product.twig">
+<div id="product-{{ post.id|e('html_attr') }}" class="entry grid-item item tease-product {{ post.class|e('html_attr') }}" data-product-id="{{ post.id|e('html_attr') }}" data-template="tease-product.twig">
   <div class="uk-card uk-card-hover theme-border padding-15 uk-text-center">
     
     {% do action('woocommerce_before_shop_loop_item') %}
     
     <div id="ProductMedia" class="media-figure uk-card-media-top">
-      <a class="single-product-image-link" href="{{ post.link }}">
-        <img data-src="{{ post.thumbnail.src('medium') }}" class="tease-product-image" alt="{{ post.thumbnail.alt }}" uk-img>
+      <a class="single-product-image-link" href="{{ post.link|e('esc_url') }}">
+        <img data-src="{{ post.thumbnail.src('medium')|e('esc_url') }}" class="tease-product-image" alt="{{ post.thumbnail.alt|e('html_attr') }}" uk-img>
       </a>
       {% do action('woocommerce_before_shop_loop_item_title') %}
     </div>
@@ -15,7 +15,7 @@
     <div id="ProductInfo" class="uk-card-body uk-padding-small">
       <div id="ProductTitle" class="tease-product-title">
         {% do action('woocommerce_shop_loop_item_title') %}
-        <h3 class="uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ post.title }}</a></h3>
+        <h3 class="uk-card-title"><a class="uk-link-heading" href="{{ post.link|e('esc_url') }}">{{ post.title|e('esc_html') }}</a></h3>
       </div>
       <div id="ProductPriceRating">
         {% do action( 'woocommerce_after_shop_loop_item_title' ) %}

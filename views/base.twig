@@ -3,20 +3,24 @@
 
   <head>
     
-    <meta charset="{{site.charset}}" />
+    <meta charset="{{site.charset|e('html_attr')}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     {{ function('wp_head') }}
     
     {% block spec_styles %}
     {% endblock %}
-
-    <script src="{{theme.link}}/assets/js/lib/infinite-scroll.pkgd.min.js"></script>
-    
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   
+    <!-- inline styles -->
     <style>
+      #ProductFilters label {
+        cursor: pointer;
+      }
+      .woocommerce-notices-wrapper {
+        margin-bottom: 10px;
+      }
       /* product boxes */
       .cpb_product_boxes_custom .cpb-boxes .cpb-inner {
         background: #f7fbf9;
@@ -72,11 +76,44 @@
       .uk-light, .uk-overlay-primary {
         color: hsla(0,0%,100%,.9);
       }
+      #PageTitleSection {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* background-color: #6abe52;
+        background-blend-mode: luminosity; */
+      }
+      
+      .uk-panel-scrollable {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        /* overflow: scroll; */
+        padding: 0;
+        border: none;
+      }
+      
+      .list-item .onsale {
+      	margin-bottom: 10px;
+      }
+      
+      .search-results-ajax ul li a, .search-results-ajax ul li a:hover {
+        font-weight: 400!important;
+      }
+      .search-results-ajax strong {
+        color: #6abe52;
+      }
+      
+      /* #PageTitleSection .uk-overlay-primary {
+        background: linear-gradient(0deg,rgb(106 190 82 / 86%) 100%,transparent);
+      } */
     </style>
       
   </head>
 
-  <body class="{{ body_class }} no-overflow" data-template="base.twig">
+  <body class="{{ body_class|e('html_attr') }} no-overflow" data-template="base.twig">
     <div id="ThemePreload" class="theme-preload"></div>
 
     {% block header %}
@@ -86,22 +123,23 @@
     {% block main %}
       <main id="MainContent">
         {% block content %}
+          <div class="block-content_wrap">
         
-          {% block pageheader %}
-          {% endblock %}
+            {% block pageheader %}
+            {% endblock %}
+              
+            {% block content_outer %}
+              <section id="PageContent" class="uk-container">
+                {% block content_inner %}
+                  <p>Sorry, Nothing to Display!!</p>
+                {% endblock %}
+              </section>
+            {% endblock %}
             
-          {% block content_outer %}
-            <section id="PageContent" class="uk-container">
-              {% include 'breads.twig' %}
-              {% block content_inner %}
-                <p>Sorry, Nothing to Display!!</p>
-              {% endblock %}
-            </section>
-          {% endblock %}
-          
-          {% block pagefooter %}
-          {% endblock %}
-        
+            {% block pagefooter %}
+            {% endblock %}
+            
+          </div>
         {% endblock %}
       </main>
     {% endblock %}
@@ -112,13 +150,11 @@
     
     {{ function('wp_footer') }}
     
-    <script type='text/javascript' src='{{theme.link}}/assets/js/woo/woo.js'></script>
-    
     {% block spec_scripts %}
     {% endblock %}
     
+    <!-- site preloader loader anim -->
     <script>
-      // website preloader animation
       window.onload = function(){
         document.getElementById("ThemePreload").classList.add("hidden");
         document.getElementsByTagName("BODY")[0].classList.remove("no-overflow");

@@ -2,7 +2,7 @@
 /**
  * Template Name: Contact Page Template
  *
- * @package Ubiquitous_Waddle
+ * @package Organic_Theme
  */
 
 $context = Timber::context();

@@ -1,8 +1,8 @@
 {% extends 'base.twig' %}
 
 {% block spec_styles %}
-  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/lib/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="/wp-content/themes/organicwp-theme/assets/css/single-product.css" />
+  <link rel="stylesheet" href="{{theme.link|e('esc_url')}}/assets/css/lib/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{{theme.link|e('esc_url')}}/assets/css/single-product.css" />
 {% endblock %}
 
 {% block content_outer %}
@@ -17,7 +17,7 @@
 
       <div class="single-product-container uk-container uk-container-small">
           
-        <div id="product-{{post.id}}" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
+        <div id="product-{{post.id|e('html_attr')}}" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class|e('html_attr') }}">
 
           <div class="uk-child-width-1-2@m" uk-grid="masonry: true;">
             
@@ -39,7 +39,7 @@
       
     {% do action('woocommerce_after_single_product_summary') %}
     
-    <meta itemprop="url" content="{{ post.link }}" />
+    <meta itemprop="url" content="{{ post.link|e('html_attr') }}" />
     
     {% if not related_products is empty %}
       <div class="uk-section uk-section-small">
@@ -64,7 +64,7 @@
     
     {% if not up_sells is empty %}
       <section class="uk-section uk-section-small">
-        <h2>{{up_sells_title}}</h2>
+        <h2>{{up_sells_title|e('esc_html')}}</h2>
         <div uk-slider="velocity: 5">
           <div class="uk-position-relative">
             <div class="uk-slider-container">
@@ -91,6 +91,6 @@
 {% endblock  %}
 
 {% block spec_scripts %}
-  <script src="/wp-content/themes/organicwp-theme/assets/js/lib/swiper-bundle.min.js"></script>
-  <script type="text/javascript" src="{{theme.link}}/assets/js/woo/single-product.js"></script>
+  <script src="{{theme.link|e('esc_url')}}/assets/js/lib/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="{{theme.link|e('esc_url')}}/assets/js/woo/single-product.js"></script>
 {% endblock %}
