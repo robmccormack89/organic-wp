@@ -7,3 +7,5 @@ compilation_cache/
 package-lock.json
 notes.txt
 dev/
+_old
+_old/
